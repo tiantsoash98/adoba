@@ -1,0 +1,152 @@
+// Breakpoints
+$breakpoints:(
+    ultra-large: 1920px,
+    extra-large: 1440px,
+    large: 1280px,
+    medium: 991px, // tablet
+    small: 767px, // mobile landscape
+    extra-small: 576px, // mobile portrait
+    tiny: 320px, // tiny screens
+);
+
+$min-font-size : 1.25rem;
+
+:root {
+    // Base
+    --vw: 100vw;
+    --vh: 100vh;
+    --unit-vw: calc(var(--vw) / 100);
+    --unit-vh: calc(var(--vh) / 100);
+    --unit-fx: calc(var(--vw)/ 1440);
+    --unit-fy: calc(var(--vh)/ 960);
+
+    //Grid
+    --base-unit: 24;
+    --base-unit-x-margin: calc(4 * var(--base-unit));
+
+    // Spacing
+    --space-xxs: calc(0.25 * var(--base-unit));
+    --space-xs: calc(0.5 * var(--base-unit));
+    --space-sm: var(--base-unit);
+    --space-md: calc(2 * var(--base-unit));
+    --space-lg: calc(4.5 * var(--base-unit));
+    --space-xl: calc(7 * var(--base-unit));
+    --space-xxl: calc(9 * var(--base-unit));
+
+    --r-base-unit: calc(var(--base-unit) * var(--unit-fx));
+    --r-grid-x-margin: calc( var(--base-unit-x-margin) * var(--unit-fx));
+    --r-space-xxs: calc( var(--space-xxs) * var(--unit-fx));
+    --r-space-xs: calc( var(--space-xs) * var(--unit-fx));
+    --r-space-sm: calc( var(--space-sm) * var(--unit-fx));
+    --r-space-md: calc( var(--space-md) * var(--unit-fx));
+    --r-space-lg: calc( var(--space-lg) * var(--unit-fx));
+    --r-space-xl: calc( var(--space-xl) * var(--unit-fx));
+    --r-space-xxl: calc( var(--space-xxl) * var(--unit-fx));
+
+    // Colors
+    --color-neutral-0: #ffffff;
+    --color-neutral-5: #F3F3F3;
+    --color-neutral-10: #E7E7E7;
+    --color-neutral-15: #DBDBDB;
+    --color-neutral-20: #D0D0D0;
+    --color-neutral-30: #B8B8B8;
+    --color-neutral-40: #A0A0A0;
+    --color-neutral-50: #898989;
+    --color-neutral-60: #717171;
+    --color-neutral-70: #595959;
+    --color-neutral-80: #414141;
+    --color-neutral-90: #2A2A2A;
+    --color-neutral-95: #1E1E1E;
+    --color-neutral-100: #121212;
+    --brand-primary: var(--color-neutral-5);
+    --brand-secondary: var(--color-neutral-95);
+    --background-color: var(--color-neutral-5);
+    --text-color: var(--color-neutral-95);
+
+    // Fonts
+    --font-family-primary: "Suisse Int'l";
+    --font-family-secondary: 'Inter';
+    --font-weight: 350;
+
+    // Typescale
+    --title-1: 64;
+    --title-2: 48;
+    --title-3: 42;
+    --title-4: 32;
+    --title-5: 24;
+    --title-6: 20;
+    --paragraph-text: 17;
+    --callout-text: 14;
+    --footnote-text: 12;
+    --display-text: 72;
+    --min-font-size: $min-font-size;
+
+    // Breakpoints
+    --br-xxl:   #{map-get($map: $breakpoints, $key: ultra-large)};
+    --br-xl:    #{map-get($map: $breakpoints, $key: extra-large)};
+    --br-lg:    #{map-get($map: $breakpoints, $key: large)};
+    --br-md:    #{map-get($map: $breakpoints, $key: medium)};
+    --br-sm:    #{map-get($map: $breakpoints, $key: small)};
+    --br-xxs:   #{map-get($map: $breakpoints, $key: tiny)};
+
+    // Min width values
+    --br-min-width-xxl:   #{map-get($map: $breakpoints, $key: ultra-large) + 1px};
+    --br-min-width-xl:    #{map-get($map: $breakpoints, $key: extra-large) + 1px};
+    --br-min-width-lg:    #{map-get($map: $breakpoints, $key: large) + 1px};
+    --br-min-width-md:    #{map-get($map: $breakpoints, $key: medium) + 1px};
+    --br-min-width-sm:    #{map-get($map: $breakpoints, $key: small) + 1px};
+    --br-min-width-xxs:   #{map-get($map: $breakpoints, $key: tiny) + 1px};
+
+    // z-index
+    --z-index-loader: 1000;
+    --z-index-nav: 100;
+    --z-index-menu: 90;
+
+    // Easing
+    --default-ease: '.43,.194,.021,1';
+    --alias-default-ease: cubic-bezier(.43,.195,.02,1);
+
+    // Navbar 
+    --header-blend-mode: normal;
+    --header-color: var(--brand-primary);
+    --default-show-nav-menu-breakpoint: var(--br-sm);
+}
+
+
+
+/*==============================================================
+    Responsive
+==============================================================*/
+// Media orientation portrait & Screen width below 767px
+@media screen and (max-width: map-get($map: $breakpoints, $key: small))  and (orientation: portrait){
+    :root{
+        --unit-fx: calc(var(--vw)/ 375);
+        --unit-fy: calc(var(--vh)/ 726);
+        --base-unit: 12;
+
+        $min-font-size : 1rem;
+
+        // Typescale
+        --title-1: 32;
+        --title-2: 24;
+        --title-3: 16;
+        --title-4: 14;
+        --paragraph-text: 12;
+        --callout-text: 10;
+        --display-text: 48;
+    }
+}
+
+// Media orientation portrait & Screen width below 576px
+@media screen and (max-width: map-get($map: $breakpoints, $key: extra-small))  and (orientation: portrait){
+    :root{
+        // Typescale
+        --title-1: 30;
+        --title-2: 26;
+        --title-3: 22;
+        --title-4: 18;
+        --paragraph-text: 16;
+        --callout-text: 12;
+        --display-text: 64;
+    }
+}

@@ -1,0 +1,120 @@
+// Typography
+@mixin h1 {
+    font-family: var(--font-family-primary), 'Arial', serif;
+    @include font-size(var(--title-1));
+    letter-spacing: -0.12vw;
+    line-height: 1.1;
+    font-weight: 350;
+
+    @include media(small){
+        letter-spacing: -0.5px;
+    }
+}
+@mixin h2 {
+    font-family: var(--font-family-primary), 'Arial', serif;
+    @include font-size(var(--title-2));
+    letter-spacing:  -0.06vw;
+    line-height: 1.2;
+    font-weight: 350;
+}
+@mixin h3 {
+    font-family: var(--font-family-primary), 'Arial', serif;
+    @include font-size(var(--title-3));
+    letter-spacing: -0.06vw;
+    line-height: 1.2;
+    font-weight: 350;
+}
+@mixin h4 {
+    font-family: var(--font-family-primary), 'Arial', serif;
+    @include font-size(var(--title-4));
+    letter-spacing: 0;
+    line-height: 1.4;
+    font-weight: 350;
+}
+
+@mixin h5 {
+    font-family: var(--font-family-primary), 'Arial', serif;
+    @include font-size(var(--title-5));
+    letter-spacing: 0;
+    line-height: 1.4;
+    font-weight: 350;
+}
+
+@mixin h6 {
+    font-family: var(--font-family-primary), 'Arial', serif;
+    @include font-size(var(--title-6));
+    letter-spacing: -0.03vw;
+    line-height: 1.4;
+    font-weight: 350;
+}
+
+@mixin p {  
+    font-family: var(--font-family-secondary), 'Arial', serif;
+    @include font-size(var(--paragraph-text));
+    letter-spacing: -0.03vw;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+@mixin callout-text {
+    font-family: var(--font-family-secondary), 'Arial', serif;
+    @include font-size(var(--callout-text), 1rem);
+    line-height: 1.4;
+    letter-spacing: normal;
+    font-weight: 400;
+}
+
+@mixin footnote-text {
+    font-family: var(--font-family-secondary), 'Arial', serif;
+    @include font-size(var(--footnote-text), 0.85rem);
+    line-height: 1.4;
+    letter-spacing: normal;
+    font-weight: 400;
+}
+
+
+@mixin display-text {
+    font-family: var(--font-family-secondary), 'Arial', serif;
+    @include font-size(var(--display-text));
+    line-height: 1;
+    letter-spacing: -0.2vw;
+    font-weight: 500;
+}
+
+
+// Mixin
+@mixin font-size($font-size, $min-size: $min-font-size){
+    font-size: max(calc( $font-size * var(--unit-fx)), $min-size); 
+}
+
+// For media max-width
+@mixin media($breakpoint, $orientation: "") {
+    @if $orientation != "" {
+        @media screen and (max-width: map-get($map: $breakpoints, $key: $breakpoint)) and (orientation: $orientation){
+            @content;
+        }
+    }
+    @else {
+        @media screen and (max-width: map-get($map: $breakpoints, $key: $breakpoint)){
+            @content;
+        }
+    }
+    
+}
+
+// For media min-width
+@mixin media-min-width($breakpoint) {
+    // Add +1px to value to avoid conflict with max-width on given breakpoint
+    $value: map-get($map: $breakpoints, $key: $breakpoint) + 1;
+
+    @media screen and (min-width: $value){
+        @content;
+    }
+}
+
+// For media orientation portrait
+@mixin media-portrait(){
+    @media screen and (orientation: portrait){
+        @content;
+    }
+}
