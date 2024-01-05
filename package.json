@@ -14,5 +14,9 @@
     "sass": "^1.69.7",
     "vue": "^3.4.5",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^1.0.33",
+    "nuxt-lenis": "^1.0.4"
   }
 }
