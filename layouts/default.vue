@@ -1,17 +1,13 @@
 <template>
     <div>
-        <header class="header">
-            Header here
-        </header>
+        <Header/>
 
         <!-- output the page content -->
         <main class="page-wrapper">
             <slot />
         </main>
 
-        <footer class="footer">
-            Footer here
-        </footer>
+        <Footer/>
     </div>
 </template>
 
