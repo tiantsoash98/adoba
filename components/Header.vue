@@ -94,14 +94,18 @@ export default {
                                 </svg>
                             </div>
                         </li>
-                        <li><a href="#">Le studio</a></li>
-                        <li><a href="#">Réalisations</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Jobs</a></li>
-                        <li><a href="#">
-                            <Button text="Contact" class="button--small button--white"></Button>
-                        </a></li>
+                        <li><NuxtLink to="/studio">Le Studio</NuxtLink></li>
+                        <li><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
+                        <li><NuxtLink to="/blog">Blog</NuxtLink></li>
+                        <li><NuxtLink to="/faq">FAQ</NuxtLink></li>
+                        <li><NuxtLink to="/jobs">Jobs</NuxtLink></li>
+                        <li><NuxtLink to="/contact">Contact</NuxtLink></li>
+
+                        <li>
+                            <NuxtLink to="/contact">
+                                <Button text="Contact" class="button--small button--white"></Button>
+                            </NuxtLink>
+                        </li>
                     </ul>
                 </nav>
             </div>

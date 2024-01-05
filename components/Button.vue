@@ -10,9 +10,13 @@
   </button>
 </template>
 
-<script setup>
+<script>
 
-const { text } = defineProps(['text'])
+export default {
+    props: {
+        text: String,
+    },
+}
 
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="height: 120vh;background-color: gray;"></div>
+        <h1>Blog</h1>
     </div>
 </template>
 

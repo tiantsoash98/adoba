@@ -14,11 +14,9 @@ export default {
             context.emit('backdropClick')
         }
         const animationOpenComplete = () => {
-            console.log("Animation open complete")
             context.emit('animationOpenComplete')
         }
         const animationCloseComplete = () => {
-            console.log("Animation close complete")
             context.emit('animationCloseComplete')
         }
 
