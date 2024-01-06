@@ -4,10 +4,14 @@
     const props = defineProps({
         headerState: String
     })
-    const emit = defineEmits(['backdropClick', 'animationOpenComplete', 'animationCloseComplete'])
+    const emit = defineEmits([
+        'backdropClick', 
+        'animationOpenComplete', 
+        'animationCloseComplete'
+    ])
 
     const {data: services }  = await useFetch('/api/services')
-    const isOpen = useServiceDropdownIsOpen()
+    const isOpen = useServiceDropdownOpen()
     
     const closeHeaderMenu = () => {
         emit('backdropClick')
@@ -26,7 +30,7 @@
         return new Promise((resolve) => {
             gsap.timeline({
                 onComplete: () => {
-                    useServiceDropdownIsOpen(true)
+                    isOpen.value = true
                     emit('animationOpenComplete')
                     resolve()
                 },
@@ -53,7 +57,7 @@
         return new Promise((resolve) => {
             gsap.timeline({
                 onComplete: () => {
-                    useServiceDropdownIsOpen(false)
+                    isOpen.value = false
                     emit('animationCloseComplete')
                     resolve()
                 },

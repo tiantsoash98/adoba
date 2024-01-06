@@ -9,7 +9,6 @@
 </template>
   
 <script setup>
-    const gsap = useGsap()
     const lenisOptions = useLenis();
     
     onMounted(() => {

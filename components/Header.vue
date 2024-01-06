@@ -1,69 +1,52 @@
-<script>
-export default {
-    async setup(){
-        const {data: services }  = await useFetch('/api/services')
+<script setup>
+    const isBeyondFold = useScrollBeyondFold()
+    const isScrollingDown = useScrollingDown()
+    const isClickable = useHeaderClickable()
+    const headerState = useHeaderState()
+    const startHidePosition = ref(0)
+    const currentScrollPosition = ref(0)
 
-        return {
-            services
+    onMounted(() => {
+        startHidePosition.value = window.innerHeight/2;
+        window.addEventListener("scroll", onScroll)
+    })
+    onBeforeUnmount(() => {
+        window.removeEventListener("scroll", onScroll)
+    })
+
+    function onScroll(){
+        isScrollingDown = (currentScrollPosition < window.scrollY);
+        isBeyondFold = (window.scrollY > startHidePosition);
+        currentScrollPosition = window.scrollY;
+    }
+    function toogleServicesDropdown(){
+        
+        if(isClickable && headerState.value == "open"){
+            openHeader()
         }
-    },
-    data() {
-        return {
-            isBeyondFold: ref(false),
-            isScrollingDown: ref(false),
-            startHidePosition: ref(0),
-            currentScrollPosition: ref(0),
-            isClickable: ref(true),
-            headerState: ref("open")
-        }
-    },
-    mounted() {
-        this.startHidePosition = window.innerHeight/2;
-        window.addEventListener("scroll", this.onScroll)
-    },
-    beforeDestroy() {
-        window.removeEventListener("scroll", this.onScroll)
-    },
-    methods: {
-        onScroll(){
-            this.isScrollingDown = (this.currentScrollPosition < window.scrollY);
-            this.isBeyondFold = (window.scrollY > this.startHidePosition);
-            this.currentScrollPosition = window.scrollY;
-        },
-        toogleServicesDropdown(){
-            if(this.isClickable && this.headerState == "open"){
-                this.openHeader()
-            }
-            else if(this.isClickable && this.headerState == "close"){
-                this.closeHeader()
-            }
-        },
-        openHeader(){
-            this.isClickable = false;
-            this.headerState = "opening";
-        },
-        closeHeader(){
-            this.isClickable = false;
-            this.headerState = "closing";
-        },
-        dropdownOpenAnimationComplete(){
-            this.isClickable = true;
-            this.headerState = "close";
-        },
-        dropdownCloseAnimationComplete(){
-            this.isClickable = true;
-            this.headerState = "open";
-        }
-    },
-    computed: {
-        isServicesDropdownOpen() {
-            return this.headerState == 'close';
-        },
-        isServicesDropdownClose() {
-            return this.headerState == 'open';
+        else if(isClickable && headerState.value == "close"){
+            closeHeader()
         }
     }
-}
+    function openHeader(){
+        isClickable.value = false;
+        headerState.value = "opening";
+    }
+    function closeHeader(){
+        isClickable.value = false;
+        headerState.value = "closing";
+    }
+    function dropdownOpenAnimationComplete(){
+        isClickable.value = true;
+        headerState.value = "close";
+    }
+    function dropdownCloseAnimationComplete(){
+        isClickable.value = true;
+        headerState.value = "open";
+    }
+
+    const isServicesDropdownOpen = computed(() => headerState.value == 'close')
+    const isServicesDropdownClose = computed(() => headerState.value == 'open')
 </script>
     
 <template>
