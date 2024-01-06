@@ -15,16 +15,16 @@
     })
 
     function onScroll(){
-        isScrollingDown = (currentScrollPosition < window.scrollY);
-        isBeyondFold = (window.scrollY > startHidePosition);
-        currentScrollPosition = window.scrollY;
+        isScrollingDown.value = (currentScrollPosition.value < window.scrollY);
+        isBeyondFold.value= (window.scrollY > startHidePosition.value);
+        currentScrollPosition.value = window.scrollY;
     }
     function toogleServicesDropdown(){
         
-        if(isClickable && headerState.value == "open"){
+        if(isClickable.value && headerState.value == "open"){
             openHeader()
         }
-        else if(isClickable && headerState.value == "close"){
+        else if(isClickable.value && headerState.value == "close"){
             closeHeader()
         }
     }

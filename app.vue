@@ -9,11 +9,10 @@
 </template>
   
 <script setup>
-    const lenisOptions = useLenis();
+    const lenisOptions = useLenis();  
     
     onMounted(() => {
-        const cursor = useCursor()
-
+        const cursor = useCursor();  
         document.querySelectorAll('[data-cursor="-neutral"]').forEach(item => {
             item.addEventListener('mouseenter', () => {
                 cursor.removeState('-exclusion');

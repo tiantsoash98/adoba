@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.scss'],
   modules: [
-    'nuxt-lenis'
-  ],
+    'nuxt-lenis',
+    '@nuxt/image',
+  ]
 })
