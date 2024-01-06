@@ -16,7 +16,8 @@
         </div>
         <div class="service__img-container">
             <div class="service__img-wrapper" data-cursor-text="Voir" data-cursor="-neutral">
-                <NuxtImg 
+                <nuxt-img 
+                    :placeholder="[50, 25, 75, 5]"
                     :src="imgPath(img)"
                     class="service__img" 
                     sizes="80vw sm:80vw md:80vw" 

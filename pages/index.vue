@@ -8,7 +8,15 @@
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
-                    <NuxtImg class="home-hero__img" densities="x1 x2" sizes="100vw sm:100vw md:100vw" src="/adoba-header.jpg" alt="Adoba Hero img"/>
+                    <nuxt-img
+                        :placeholder="[50, 25, 75, 5]"
+                        class="home-hero__img" 
+                        densities="x1 x2" 
+                        sizes="100vw sm:100vw md:100vw" 
+                        src="/adoba-header.jpg" 
+                        alt="Adoba Hero Img"
+                        preload
+                        />
                 </div>
                 <div class="container home-hero__content-wrapper">
                     <div class="home-hero__title-wrapper">
