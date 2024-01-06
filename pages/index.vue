@@ -1,10 +1,14 @@
 <template>
     <div>
+        <transition
+            appear
+            @enter="heroEnter"
+        >
         <section class="section section--no-padding-top section--no-padding-bottom home-hero">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
-                    <NuxtImg class="home-hero__img" format="jpg" sizes="100vw sm:100vw md:100vw" src="/adoba-header.jpg" alt="Adoba Hero img"/>
+                    <NuxtImg class="home-hero__img" densities="x1 x2" sizes="100vw sm:100vw md:100vw" src="/adoba-header.jpg" alt="Adoba Hero img"/>
                 </div>
                 <div class="container home-hero__content-wrapper">
                     <div class="home-hero__title-wrapper">
@@ -27,12 +31,63 @@
                 </div>
             </div>
         </section>
+        </transition>
+        <transition appear @enter="presentationScroll">
+            <section class="section home-presentation">
+                <div class="container">
+                    <div class="home-presentation__content-wrapper">
+                        <div class="home-presentation__title-wrapper">
+                            <h2 class="text-visually-hidden">Adoba a pour ambition de proposer des solutions immersives visuelles, digitales innovantes dans l’univers de l’architecture, l’immobilier et la construction.</h2>
+                            <div class="home-presentation__title title-h3">Adoba a pour ambition de proposer des solutions immersives visuelles, digitales innovantes dans l’univers de l’architecture, l’immobilier et la construction.</div>
+                        </div>
+                        <div class="home-presentation__button-wrapper">
+                            <Button text="Contactez-nous"></Button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </transition>
 
     </div>
 </template>
 
 <script setup>
+    import SplitType from 'split-type';
+    const { gsap } = useGsap();
 
+    const heroEnter = (el, done) => {
+        SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
+
+        gsap.timeline({
+            defaults: { duration: 1, ease: "power2.out" },
+            onComplete: done
+        })
+        .from('.home-hero__title--word', {
+            opacity: 0,
+            yPercent: 100,
+            stagger: 0.05,
+            delay: 1
+        })
+    }
+    const presentationScroll = (el) => {
+        let triggerEl = el;
+        let targetEl = '.home-hero__img';
+
+        gsap.timeline({
+            defaults: { duration: 1 },
+            scrollTrigger: {
+                trigger: triggerEl,
+                //trigger element - viewport
+                start: "top bottom",
+                end: "top top",
+                scrub: true
+            }
+        })
+        .to(targetEl, {
+            yPercent: 25,
+            ease: "none"
+        })
+    }
 </script>
 
 <style lang="scss" scoped>
