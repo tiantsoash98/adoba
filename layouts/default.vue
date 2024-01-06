@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="page__cursor">
         <Header/>
 
         <!-- output the page content -->
-        <main class="page-wrapper">
+        <main class="page__wrapper">
             <slot />
         </main>
 

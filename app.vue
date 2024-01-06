@@ -3,21 +3,25 @@
       :options="lenisOptions"
     >
         <NuxtLayout>
-            <NuxtPage />
+            <NuxtPage/>
         </NuxtLayout>
     </lenis>
 </template>
   
 <script setup>
-    const lenisOptions = {
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    }
+    const gsap = useGsap()
+    const lenisOptions = useLenis();
+    
+    onMounted(() => {
+        const cursor = useCursor()
+
+        document.querySelectorAll('[data-cursor="-neutral"]').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursor.removeState('-exclusion');
+            });
+            item.addEventListener('mouseleave', () => {
+                cursor.addState('-exclusion');
+            });
+        }) 
+    });
 </script>

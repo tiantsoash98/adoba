@@ -1,97 +1,77 @@
-<script>
-import gsap from 'gsap';
+<script setup>
+    const { gsap } = useGsap();
 
-export default {
-    data() {
-        return {
-            isOpen: ref(false)
-        }
-    },
-    setup(props, context) {
-        const services = inject('services')
-        
-        const closeHeaderMenu = () => {
-            context.emit('backdropClick')
-        }
-        const animationOpenComplete = () => {
-            context.emit('animationOpenComplete')
-        }
-        const animationCloseComplete = () => {
-            context.emit('animationCloseComplete')
-        }
-
-        return {
-            services,
-            closeHeaderMenu,
-            animationOpenComplete,
-            animationCloseComplete
-        }
-    },
-    props: {
+    const props = defineProps({
         headerState: String
-    },
-    watch: {
-        headerState: function(newVal){
-            if(newVal == "opening"){
-                this.openServices();
-            }
-            else if(newVal == "closing") {
-                this.closeServices();
-            }
-        }
-    },
-    methods: {
-        async openServices(){
-            return new Promise((resolve) => {
-                gsap.timeline({
-                    onComplete: () => {
-                        this.isOpen = true
-                        this.animationOpenComplete()
-                        resolve()
-                    },
-                    defaults: {
-                        duration: 1,
-                        ease: "power2.inOut"
-                    },
-                })
-                .set('.menu', { display: 'block'})
-                .set('.menu__links-wrapper', { display: 'block' })
-                .set('.menu__backdrop', { display: 'block' })
-                .set('.menu__img-content', { display: 'block', opacity: 0})
-                .set('.menu__label', { yPercent: 100, opacity: 0 }, 0)
-                .to('.menu__backdrop', { opacity: 0.5, pointerEvents: 'all' })
-                .to('.menu__frame', { scaleY: 1 }, '<')
-                .to('.header', { '--header-color': 'var(--brand-secondary)' }, '<')
-                .to('.menu__links-wrapper', { opacity: 1 }, '<+0.3s')
-                .to('.menu__label', { yPercent: 0, opacity: 1, stagger: 0.15 }, 0)
+    })
+    const emit = defineEmits(['backdropClick', 'animationOpenComplete', 'animationCloseComplete'])
 
-            })
-        },
-        async closeServices(){
-            return new Promise((resolve) => {
-                gsap.timeline({
-                    onComplete: () => {
-                        this.isOpen = false
-                        this.animationCloseComplete()
-                        resolve()
-                    },
-                    defaults: {
-                        duration: 1,
-                        ease: "power2.inOut"
-                    },
-                })
-                .to('.menu__label', { yPercent: 100, opacity: 0, stagger: {each: 0.08, from: "end",}, duration: 0.5 })
-                .to('.menu__img-content', { opacity: 0}, '<')
-                .to('.menu__frame', { scaleY: 0 }, '-=0.8s')
-                .to('.header', { '--header-color': 'var(--brand-primary)' }, '<')
-                .to('.menu__backdrop', { opacity: 0, pointerEvents: 'none' }, '<')
-                .set('.menu__links-wrapper', { opacity: 0, display: 'none' })
-                .set('.menu__backdrop', { display: 'none' })
-                .set('.menu', { display: 'none'})     
-            })
-        },
+    const {data: services }  = await useFetch('/api/services')
+    const isOpen = useServiceDropdownIsOpen()
+    
+    const closeHeaderMenu = () => {
+        emit('backdropClick')
     }
-}
+
+    watch(() => props.headerState, (newVal) => {
+        if(newVal == "opening"){
+            openServices();
+        }
+        else if(newVal == "closing") {
+            closeServices();
+        }
+    });
+
+    function openServices() {
+        return new Promise((resolve) => {
+            gsap.timeline({
+                onComplete: () => {
+                    useServiceDropdownIsOpen(true)
+                    emit('animationOpenComplete')
+                    resolve()
+                },
+                defaults: {
+                    duration: 1,
+                    ease: "power2.inOut"
+                },
+            })
+            .set('.menu', { display: 'block'})
+            .set('.menu__links-wrapper', { display: 'block' })
+            .set('.menu__backdrop', { display: 'block' })
+            .set('.menu__img-content', { display: 'block', opacity: 0})
+            .set('.menu__label', { yPercent: 100, opacity: 0 }, 0)
+            .to('.menu__backdrop', { opacity: 0.5, pointerEvents: 'all' })
+            .to('.menu__frame', { scaleY: 1 }, '<')
+            .to('.header', { '--header-color': 'var(--brand-secondary)' }, '<')
+            .to('.menu__links-wrapper', { opacity: 1 }, '<+0.3s')
+            .to('.menu__label', { yPercent: 0, opacity: 1, stagger: 0.15 }, 0)
+
+        })
+    }
+
+    function closeServices() {
+        return new Promise((resolve) => {
+            gsap.timeline({
+                onComplete: () => {
+                    useServiceDropdownIsOpen(false)
+                    emit('animationCloseComplete')
+                    resolve()
+                },
+                defaults: {
+                    duration: 1,
+                    ease: "power2.inOut"
+                },
+            })
+            .to('.menu__label', { yPercent: 100, opacity: 0, stagger: {each: 0.08, from: "end",}, duration: 0.5 })
+            .to('.menu__img-content', { opacity: 0}, '<')
+            .to('.menu__frame', { scaleY: 0 }, '-=0.8s')
+            .to('.header', { '--header-color': 'var(--brand-primary)' }, '<')
+            .to('.menu__backdrop', { opacity: 0, pointerEvents: 'none' }, '<')
+            .set('.menu__links-wrapper', { opacity: 0, display: 'none' })
+            .set('.menu__backdrop', { display: 'none' })
+            .set('.menu', { display: 'none'})     
+        })
+    }
 </script>
     
 <template>
