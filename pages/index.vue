@@ -1,21 +1,15 @@
 <template>
     <div>
-        <transition
-            appear
-            @enter="heroEnter"
-        >
         <section class="section section--no-padding-top section--no-padding-bottom home-hero">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
-                    <nuxt-img
-                        :placeholder="[50, 25, 75, 5]"
+                    <NuxtImg
                         class="home-hero__img" 
                         densities="x1 x2" 
                         sizes="100vw sm:100vw md:100vw" 
                         src="/adoba-header.jpg" 
                         alt="Adoba Hero Img"
-                        preload
                         />
                 </div>
                 <div class="container home-hero__content-wrapper">
@@ -39,21 +33,18 @@
                 </div>
             </div>
         </section>
-        </transition>
-        <transition appear @enter="presentationScroll">
-            <section class="section home-presentation">
-                <div class="container">
-                    <div class="home-presentation__content-wrapper">
-                        <div class="home-presentation__title-wrapper">
-                            <h2 class="home-presentation__title title-h3"> {{ content.presentation }}</h2>
-                        </div>
-                        <div class="home-presentation__button-wrapper">
-                            <Button text="Contactez-nous"></Button>
-                        </div>
+        <section class="section home-presentation">
+            <div class="container">
+                <div class="home-presentation__content-wrapper">
+                    <div class="home-presentation__title-wrapper">
+                        <h2 class="home-presentation__title title-h3"> {{ content.presentation }}</h2>
+                    </div>
+                    <div class="home-presentation__button-wrapper">
+                        <Button text="Contactez-nous"></Button>
                     </div>
                 </div>
-            </section>
-        </transition>
+            </div>
+        </section>
        <HomeServices></HomeServices>
        <HomeAdvantages :advantages="content.advantages"></HomeAdvantages>
     </div>
@@ -64,12 +55,16 @@
     const { gsap } = useGsap();
     const { data: content }  = await useFetch('/api/accueil')
     
-    const heroEnter = (el, done) => {
+    onMounted(() => {
+        animatePageEnter()
+        presentationEnter()
+    });
+
+    const animatePageEnter = () => {
         SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
 
         gsap.timeline({
-            defaults: { duration: 1, ease: "power2.out" },
-            onComplete: done
+            defaults: { duration: 1, ease: "power2.out" }
         })
         .from('.home-hero__title--word', {
             opacity: 0,
@@ -78,8 +73,8 @@
             delay: 1
         })
     }
-    const presentationScroll = (el) => {
-        let triggerEl = el;
+    const presentationEnter = () => {
+        let triggerEl = '.home-presentation';
         let targetEl = '.home-hero__img';
 
         gsap.timeline({
