@@ -1,3 +1,4 @@
+export const useAdobaServices = () => useState("adobaServices", () => [])
 export const useServiceDropdownOpen = () => useState("serviceDropdownIsOpen", () => false)
 export const useScrollBeyondFold = () => useState("isScrollBeyondFold", () => false)
 export const useScrollingDown = () => useState("isScrollingDown", () => false)

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div  data-cursor="-exclusion">
         <transition
             appear
             @enter="heroEnter"
@@ -47,14 +47,14 @@
                 </div>
             </section>
         </transition>
-
+       <HomeServices />
     </div>
 </template>
 
 <script setup>
     import SplitType from 'split-type';
     const { gsap } = useGsap();
-
+    
     const heroEnter = (el, done) => {
         SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
 
@@ -188,15 +188,6 @@
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
-        }
-    }
-    &-services {
-        background-color: var(--brand-secondary);
-        color: var(--brand-primary);
-
-        &__label-wrapper {
-            color: var(--color-neutral-40);
-            margin-bottom: var(--r-space-md);
         }
     }
     &-works {

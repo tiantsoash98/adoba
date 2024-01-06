@@ -10,7 +10,7 @@
         'animationCloseComplete'
     ])
 
-    const {data: services }  = await useFetch('/api/services')
+    const services = useAdobaServices()
     const isOpen = useServiceDropdownOpen()
     
     const closeHeaderMenu = () => {
