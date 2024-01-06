@@ -15,8 +15,10 @@
     services.value = fetchedServices
     
     onMounted(() => {
-        const cursor = useCursor();  
+        const { cursor } = useCursor();  
+        
         document.querySelectorAll('[data-cursor="-neutral"]').forEach(item => {
+            
             item.addEventListener('mouseenter', () => {
                 cursor.removeState('-exclusion');
             });

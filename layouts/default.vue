@@ -1,5 +1,5 @@
 <template>
-    <div class="page__cursor">
+    <div class="page__cursor" data-cursor="-exclusion">
         <Header/>
 
         <!-- output the page content -->

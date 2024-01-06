@@ -1,5 +1,5 @@
 <template>
-    <div  data-cursor="-exclusion">
+    <div>
         <transition
             appear
             @enter="heroEnter"
