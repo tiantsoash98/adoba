@@ -37,8 +37,7 @@
                 <div class="container">
                     <div class="home-presentation__content-wrapper">
                         <div class="home-presentation__title-wrapper">
-                            <h2 class="text-visually-hidden">Adoba a pour ambition de proposer des solutions immersives visuelles, digitales innovantes dans l’univers de l’architecture, l’immobilier et la construction.</h2>
-                            <div class="home-presentation__title title-h3">Adoba a pour ambition de proposer des solutions immersives visuelles, digitales innovantes dans l’univers de l’architecture, l’immobilier et la construction.</div>
+                            <h2 class="home-presentation__title title-h3"> {{ content.presentation }}</h2>
                         </div>
                         <div class="home-presentation__button-wrapper">
                             <Button text="Contactez-nous"></Button>
@@ -47,13 +46,15 @@
                 </div>
             </section>
         </transition>
-       <HomeServices />
+       <HomeServices></HomeServices>
+       <HomeAdvantages :advantages="content.advantages"></HomeAdvantages>
     </div>
 </template>
 
 <script setup>
     import SplitType from 'split-type';
     const { gsap } = useGsap();
+    const { data: content }  = await useFetch('/api/accueil')
     
     const heroEnter = (el, done) => {
         SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
@@ -209,19 +210,6 @@
             margin-top: var(--r-space-md);
             display: flex;
             justify-content: center;
-        }
-    }
-    &-advantages {
-        background-color: var(--color-neutral-80);
-        color: var(--color-neutral-0);
-
-        &__list-wrapper {
-            margin-top: var(--r-space-md);
-            padding-bottom: var(--r-space-md);
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            column-gap: var(--r-space-md);
-            row-gap: var(--r-space-md);
         }
     }
 }

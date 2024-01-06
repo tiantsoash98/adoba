@@ -2,7 +2,7 @@
     <section class="pre-footer">
         <div class="container pre-footer__main-wrapper">
             <NuxtLink to="/contact">
-                <div class="pre-footer__label title-h6">Un projet à réaliser</div>
+                <div class="pre-footer__label title-h6">Un projet à réaliser ?</div>
                 <div class="pre-footer__content-wrapper" data-cursor-text="Nous contacter" data-cursor="-neutral">
                     <div class="pre-footer__title-wrapper">
                         <h6 class="text-visually-hidden">Donnons vie à votre imaginaire architectural</h6>

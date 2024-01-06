@@ -1,15 +1,3 @@
-<script setup>
-    const props = defineProps({
-        index: Number,
-        title: String,
-        description: String,
-        img: String
-    })
-
-    const serviceId = computed(() => `0${props.index}.`)
-    const imgPath = (img) => `/${img}`
-</script>
-
 <template>
     <div class="service">
         <div class="service__border"></div>
@@ -39,6 +27,19 @@
         </div>
     </div>
 </template>
+
+<script setup>
+    const props = defineProps({
+        index: Number,
+        title: String,
+        description: String,
+        img: String
+    })
+
+    const serviceId = computed(() => `0${props.index}.`)
+    const imgPath = (img) => `/${img}`
+</script>
+
 
 <style scoped lang="scss">
 .service {
