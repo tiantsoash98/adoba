@@ -2,10 +2,10 @@
     <section class="pre-footer">
         <div class="container pre-footer__main-wrapper">
             <NuxtLink to="/contact">
-                <div class="pre-footer__label title-h6">Un projet à réaliser ?</div>
+                <div class="pre-footer__label title-h6">{{ content.footerCtaLabel }}</div>
                 <div class="pre-footer__content-wrapper" data-cursor-text="Nous contacter" data-cursor="-neutral">
                     <div class="pre-footer__title-wrapper">
-                        <h6 class="text-visually-hidden">Donnons vie à votre imaginaire architectural</h6>
+                        <h6 class="text-visually-hidden">{{ content.footerCtaText }}</h6>
                         <div class="pre-footer__title title-h1">Donnons vie à votre</div>
                         <div class="pre-footer__title title-h1">imaginaire architectural</div>
                     </div>
@@ -31,9 +31,9 @@
                     </div>
                     <div class="footer__infos-wrapper">
                         <div class="footer__email-wrapper">
-                            <span class="title-h6">hello@adoba.com</span>
+                            <span class="title-h6">{{ content.footerEmail }}</span>
                         </div>
-                        <div class="footer__description callout-text">Adoba, studio en visualisation 3D architecture</div>
+                        <div class="footer__description callout-text">{{ content.footerDescription }}</div>
                     </div>
                 </div>
                 <div class="footer__section">
@@ -60,12 +60,12 @@
                 </div>
                 <div class="footer__section">
                     <div class="footer__section-title paragraph-text--medium">Newsletter</div>
-                    <span class="footer__newsletter-text">Inscrivez-vous et tenez-vous informer de nos dernières nouvelles.</span>
+                    <span class="footer__newsletter-text">{{ content.footerNewsletterText }}</span>
                 </div>
             </div>
             <div class="footer__end-wrapper">
                 <div class="footer__launched-wrapper">
-                    <span class="footnote-text">© 2023 - Company launched by Numarena</span>
+                    <span class="footnote-text">{{ content.footerCopyrights[0].children[0].text }}</span>
                 </div>
                 <ul class="footer__socials-wrapper">
                     <li class="footer__social footer__social--facebook">
@@ -105,8 +105,8 @@
 </template>
 
 <script setup>
-    onMounted(() => {
-        console.log('FooterMonted')
+    const { data: content }  = await useFetch('/api/footer', {
+        transform: (_content) => _content.data.data.attributes
     })
 </script>
 

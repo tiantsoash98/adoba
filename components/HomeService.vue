@@ -11,13 +11,15 @@
             </div>
             <div class="service__right-wrapper">
                 <p>{{ description }}</p>
-                <Button text="Voir Plus" class="button--tertiary button--white"></Button>
+                <NuxtLink :to="slug">
+                    <Button text="Voir Plus" class="button--tertiary button--white"></Button>
+                </NuxtLink>
+                
             </div>
         </div>
         <div class="service__img-container">
             <div class="service__img-wrapper" data-cursor-text="Voir" data-cursor="-neutral">
-                <nuxt-img 
-                    :placeholder="[50, 25, 75, 5]"
+                <NuxtImg 
                     :src="imgPath(img)"
                     class="service__img" 
                     sizes="80vw sm:80vw md:80vw" 
@@ -32,13 +34,13 @@
 <script setup>
     const props = defineProps({
         index: Number,
+        slug: String,
         title: String,
         description: String,
         img: String
     })
 
     const serviceId = computed(() => `0${props.index}.`)
-    const imgPath = (img) => `/${img}`
 </script>
 
 

@@ -10,7 +10,7 @@
         'animationCloseComplete'
     ])
 
-    const services = useAdobaServices()
+    const {data: services }  = await useFetch('/api/header')
     const isOpen = useServiceDropdownOpen()
     
     const closeHeaderMenu = () => {
@@ -86,11 +86,11 @@
             <div class="container menu__content-wrapper">
                 <ul class="menu__links-wrapper">
                     <li v-for="service in services" :key="service.title">
-                        <a href="#">
+                        <NuxtLink :to="service.slug">
                             <div class="menu__link title-h6">
                                 <div class="menu__label">{{ service.title }}</div>
                             </div>
-                        </a>
+                        </NuxtLink>
                     </li>
                 </ul>
                 <div class="menu__img-content">

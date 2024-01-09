@@ -30,6 +30,8 @@ export default defineNuxtConfig({
     url: process.env.CMS_BASE_URL
   },
   runtimeConfig: {
-    cmsBaseUrl: process.env.CMS_BASE_URL
+    public: {
+      cmsBaseUrl: process.env.CMS_BASE_URL
+    }
   }
 })

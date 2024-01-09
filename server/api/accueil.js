@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
-    const { cmsBaseUrl } = useRuntimeConfig()
+    const runtimeConfig  = useRuntimeConfig()
 
-    const uri = `${cmsBaseUrl}/api/accueil-page`;
+    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/accueil-page`;
  
     const data = await $fetch(uri)
 

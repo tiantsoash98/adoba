@@ -101,12 +101,12 @@
             </div>
         </div>
     </header>
-    <HeaderMenu 
+    <HeaderServicesDropdown
         :headerState="headerState" 
         @backdrop-click="closeHeader" 
         @animation-open-complete="dropdownOpenAnimationComplete"
         @animation-close-complete="dropdownCloseAnimationComplete">
-    </HeaderMenu>
+    </HeaderServicesDropdown>
 </template>
 
 <style scoped lang="scss">

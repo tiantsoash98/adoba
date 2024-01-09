@@ -1,4 +1,4 @@
 export default function (imgUrl) {
-    const { cmsBaseUrl } = useRuntimeConfig()
-    return `${cmsBaseUrl}${imgUrl}`;
-  }
+  const config = useRuntimeConfig()
+  return `${ config.public.cmsBaseUrl }${ imgUrl }`;
+}

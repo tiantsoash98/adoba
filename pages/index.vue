@@ -8,7 +8,7 @@
                         class="home-hero__img" 
                         densities="x1 x2" 
                         sizes="100vw sm:100vw md:100vw" 
-                        :src="imgPath(content.attributes.homeHeaderImg.data.attributes.url)" 
+                        :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                         alt="Adoba Hero Img"
                         />
                 </div>
@@ -20,7 +20,9 @@
                         <div class="home-hero__title home-hero__title--3 title-h1">l'architecture de demain</div>
                     </div>
                     <div class="home-hero__button-wrapper">
-                        <Button text="Contactez-nous" class="button--primary"></Button>
+                        <NuxtLink to="/contact">
+                            <Button text="Contactez-nous" class="button--primary"></Button>
+                        </NuxtLink>
                     </div>
                 </div>
                 <div class="home-hero__scroll-wrapper">
@@ -37,16 +39,21 @@
             <div class="container">
                 <div class="home-presentation__content-wrapper">
                     <div class="home-presentation__title-wrapper">
-                        <h2 class="home-presentation__title title-h3"> {{ content.attributes.homePresentation }}</h2>
+                        <h2 class="home-presentation__title title-h3"> {{ content.homePresentation }}</h2>
                     </div>
                     <div class="home-presentation__button-wrapper">
-                        <Button text="Contactez-nous"></Button>
+                        <NuxtLink to="/contact">
+                            <Button text="Contactez-nous"></Button>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
         </section>
-       <HomeServices></HomeServices>
-       <!-- <HomeAdvantages :advantages="content.advantages"></HomeAdvantages> -->
+       <HomeServices :services="content.services.data"></HomeServices>
+       <HomeAdvantages 
+            :label="content.advantageTitle"
+            :advantages="content.avantages.data"
+            ></HomeAdvantages>
     </div>
 </template>
 
@@ -54,26 +61,26 @@
     import SplitType from 'split-type';
     const { gsap } = useGsap();
     const { data: content }  = await useFetch('/api/accueil', {
-        transform: (_content) => _content.data.data
+        transform: (_content) => _content.data.data.attributes
     })
 
 
     useHead({
-        title: content.value.attributes.metadata.metaTitle,
+        title: content.value.metadata.metaTitle,
         meta: [
-            { name: 'description', content: content.value.attributes.metadata.metaDescription }
+            { name: 'description', content: content.value.metadata.metaDescription }
         ]
     })
 
     useSeoMeta({
-        description: content.value.attributes.metadata.metaDescription,
-        ogTitle: content.value.attributes.metadata.metaTitle,
-        ogDescription: content.value.attributes.metadata.metaDescription,
-        ogImage: imgPath(content.value.attributes.metadata.metaImage.data.attributes.url),
+        description: content.value.metadata.metaDescription,
+        ogTitle: content.value.metadata.metaTitle,
+        ogDescription: content.value.metadata.metaDescription,
+        ogImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
         ogUrl: useRoute().fullPath,
-        twitterTitle: content.value.attributes.metadata.metaTitle,
-        twitterDescription: content.value.attributes.metadata.metaDescription,
-        twitterImage: imgPath(content.value.attributes.metadata.metaImage.data.attributes.url),
+        twitterTitle: content.value.metadata.metaTitle,
+        twitterDescription: content.value.metadata.metaDescription,
+        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
         twitterCard: 'summary'
     })
 
@@ -93,7 +100,7 @@
             opacity: 0,
             yPercent: 100,
             stagger: 0.05,
-            delay: 1
+            delay: 0.3
         })
     }
     const presentationEnter = () => {

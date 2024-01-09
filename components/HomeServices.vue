@@ -8,10 +8,11 @@
                 <ul>
                     <li v-for="(service, index) in services" :key="service.index">
                         <HomeService
-                            :index="service.index"
-                            :title="service.title"
-                            :description="service.description"
-                            :img="service.img"
+                            :slug="service.attributes.serviceSlug"
+                            :index="index"
+                            :title="service.attributes.serviceTitle"
+                            :description="service.attributes.serviceDescription"
+                            :img="service.attributes.serviceImg.data.attributes.url"
                             :class="{'service--active': index === isActiveIndex}"
                             @click="toogleActiveService(index)"
                         ></HomeService>
@@ -23,7 +24,10 @@
 </template>
 
 <script setup>
-    const services = useAdobaServices();
+    const props = defineProps({
+        services: Array
+    })
+
     const isActiveIndex = ref(-1);
 
     const toogleActiveService = (index) => {
