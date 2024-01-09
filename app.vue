@@ -1,4 +1,5 @@
 <template>
+    <PageLoader></PageLoader>
     <lenis
       :options="lenisOptions"
     >
@@ -9,7 +10,7 @@
 </template>
   
 <script setup>
-    const lenisOptions = useLenis();  
+    const lenisOptions = useLenis()  
     
     onMounted(() => {
         const { cursor } = useCursor();  

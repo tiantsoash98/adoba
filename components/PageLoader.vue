@@ -1,39 +1,29 @@
-<script>
-import { ref } from 'vue'
-import gsap from 'gsap'
+<script setup>
+const { gsap } = useGsap()
+const isVisible = ref(true)
+const loaded = useSiteLoaded()
 
-export default {
-    data() {
-        return {
-            isVisible: ref(true)
-        }
-    },
-    props: {
-        loaded: Boolean
-    },
-    watch: {
-        loaded: function(newState){
-            if(newState == true){
-                this.animateLoaderOut().then(()=> {
-                    this.isVisible = false;
-                })
-            }
-        }
-    },
-    methods: {
-        async animateLoaderOut(){
-            return gsap.timeline({
-                defaults: {
-                    duration: 1,
-                    ease: "power2.inOut"
-                },
-            })
-            .to('.page-loader__logo', { yPercent: -100, duration: 0.5 })
-            .to('.page-loader__frame', {opacity: 0})
-        }
+watch(() => loaded, (newVal) => {
+    console.log('Changed', loaded)
+    if(newVal == true){
+        animateLoaderOut().then(()=> {
+            isVisible.value = false;
+        })
     }
+});
+
+function animateLoaderOut(){
+    return gsap.timeline({
+        defaults: {
+            duration: 1,
+            ease: "power2.inOut"
+        },
+    })
+    .to('.page-loader__logo', { yPercent: 100, duration: 0.5 })
+    .to('.page-loader__frame', {opacity: 0})
 }
 </script>
+
 
 <template>
     <div class="page-loader" v-if="isVisible">

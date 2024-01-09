@@ -9,7 +9,8 @@
                         densities="x1 x2" 
                         sizes="100vw sm:100vw md:100vw" 
                         :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
-                        alt="Adoba Hero Img"
+                        :alt="content.homeHeaderImg.data.attributes.alternativeText"
+                        preload
                         />
                 </div>
                 <div class="container home-hero__content-wrapper">
@@ -64,7 +65,6 @@
         transform: (_content) => _content.data.data.attributes
     })
 
-
     useHead({
         title: content.value.metadata.metaTitle,
         meta: [
@@ -84,7 +84,6 @@
         twitterCard: 'summary'
     })
 
-    
     onMounted(() => {
         animatePageEnter()
         presentationEnter()

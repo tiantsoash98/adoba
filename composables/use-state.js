@@ -1,3 +1,4 @@
+export const useSiteLoaded = () => useState("isSiteLoaded", () => false)
 export const useAdobaServices = () => useState("adobaServices", () => [])
 export const useServiceDropdownOpen = () => useState("serviceDropdownIsOpen", () => false)
 export const useScrollBeyondFold = () => useState("isScrollBeyondFold", () => false)
