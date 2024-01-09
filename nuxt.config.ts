@@ -1,6 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  app: {
+    head: {
+      title: 'Adoba',
+      htmlAttrs: {
+        lang: 'fr',
+        prefix: 'og: https://ogp.me/ns#'
+      },
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg',
+          href: '/favicon.svg'
+        }
+      ]
+    }
+  },
   build: {
     transpile: ['gsap'],
   },

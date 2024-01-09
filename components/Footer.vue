@@ -104,8 +104,10 @@
     </footer>
 </template>
 
-<script>
-
+<script setup>
+    onMounted(() => {
+        console.log('FooterMonted')
+    })
 </script>
 
 <style scoped lang="scss">

@@ -8,7 +8,7 @@
                         class="home-hero__img" 
                         densities="x1 x2" 
                         sizes="100vw sm:100vw md:100vw" 
-                        src="/adoba-header.jpg" 
+                        :src="imgPath(content.attributes.homeHeaderImg.data.attributes.url)" 
                         alt="Adoba Hero Img"
                         />
                 </div>
@@ -56,6 +56,27 @@
     const { data: content }  = await useFetch('/api/accueil', {
         transform: (_content) => _content.data.data
     })
+
+
+    useHead({
+        title: content.value.attributes.metadata.metaTitle,
+        meta: [
+            { name: 'description', content: content.value.attributes.metadata.metaDescription }
+        ]
+    })
+
+    useSeoMeta({
+        description: content.value.attributes.metadata.metaDescription,
+        ogTitle: content.value.attributes.metadata.metaTitle,
+        ogDescription: content.value.attributes.metadata.metaDescription,
+        ogImage: imgPath(content.value.attributes.metadata.metaImage.data.attributes.url),
+        ogUrl: useRoute().fullPath,
+        twitterTitle: content.value.attributes.metadata.metaTitle,
+        twitterDescription: content.value.attributes.metadata.metaDescription,
+        twitterImage: imgPath(content.value.attributes.metadata.metaImage.data.attributes.url),
+        twitterCard: 'summary'
+    })
+
     
     onMounted(() => {
         animatePageEnter()
