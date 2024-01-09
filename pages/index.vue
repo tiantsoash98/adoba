@@ -37,7 +37,7 @@
             <div class="container">
                 <div class="home-presentation__content-wrapper">
                     <div class="home-presentation__title-wrapper">
-                        <h2 class="home-presentation__title title-h3"> {{ content.presentation }}</h2>
+                        <h2 class="home-presentation__title title-h3"> {{ content.attributes.homePresentation }}</h2>
                     </div>
                     <div class="home-presentation__button-wrapper">
                         <Button text="Contactez-nous"></Button>
@@ -46,14 +46,16 @@
             </div>
         </section>
        <HomeServices></HomeServices>
-       <HomeAdvantages :advantages="content.advantages"></HomeAdvantages>
+       <!-- <HomeAdvantages :advantages="content.advantages"></HomeAdvantages> -->
     </div>
 </template>
 
 <script setup>
     import SplitType from 'split-type';
     const { gsap } = useGsap();
-    const { data: content }  = await useFetch('/api/accueil')
+    const { data: content }  = await useFetch('/api/accueil', {
+        transform: (_content) => _content.data.data
+    })
     
     onMounted(() => {
         animatePageEnter()

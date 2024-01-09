@@ -8,5 +8,12 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-lenis',
     '@nuxt/image',
-  ]
+    '@nuxtjs/strapi'
+  ],
+  strapi: {
+    url: process.env.CMS_BASE_URL
+  },
+  runtimeConfig: {
+    cmsBaseUrl: process.env.CMS_BASE_URL
+  }
 })
