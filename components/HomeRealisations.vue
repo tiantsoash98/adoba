@@ -9,7 +9,10 @@
                     <p>{{ description }}</p>
                 </div>
             </div>
-            <!-- <ImagesGrid :list="featuredWorks" class="works__grid"></ImagesGrid> -->
+            <ImgGallery
+                gallery="home-gallery"
+                :images="realisations"
+            ></ImgGallery>
             <div class="works__button-wrapper">
                 <NuxtLink to="/realisations">
                     <Button text="Voir toutes nos réalisations"></Button>
