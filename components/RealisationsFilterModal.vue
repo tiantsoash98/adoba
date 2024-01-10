@@ -10,7 +10,7 @@
                         v-for="(filter) in filters" 
                         :key="filter.key"
                         :data-value="filter.key"
-                        class="realisations-modal__option title-h6"
+                        :class="{'realisations-modal__option title-h6': true, 'realisations-modal__option--selected': isSelected(filter.key)}"
                         @click="updateSelected(filter.key)"
                     >
                         {{ filter.value }}
@@ -34,6 +34,9 @@
         emit('updateFilter', key)
     }
 
+    const isSelected = (key) => {
+        return key == props.selected
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -85,6 +88,10 @@
     &__option {
         cursor: pointer;
         margin-bottom: var(--r-space-md);
+
+        &--selected {
+            color: var(--color-neutral-50);
+        }
     }
 }
 </style>
