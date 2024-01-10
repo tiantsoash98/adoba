@@ -51,6 +51,11 @@
             </div>
         </section>
        <HomeServices :services="content.services.data"></HomeServices>
+       <HomeRealisations 
+            :title="content.realisationTitle"
+            :description="content.realisationDescription"
+            :realisations="content.realisations.data"
+        ></HomeRealisations>
        <HomeAdvantages 
             :label="content.advantageTitle"
             :advantages="content.avantages.data"
