@@ -9,7 +9,7 @@
                     <li v-for="(service, index) in services" :key="service.index">
                         <HomeService
                             :slug="service.attributes.serviceSlug"
-                            :index="index"
+                            :index="index + 1"
                             :title="service.attributes.serviceTitle"
                             :description="service.attributes.serviceDescription"
                             :img="service.attributes.serviceImg.data.attributes.url"
