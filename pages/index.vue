@@ -64,8 +64,9 @@
 </template>
 
 <script setup>
-import SplitType from 'split-type';
+    import SplitType from 'split-type';
     const { gsap } = useGsap();
+    const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
@@ -90,6 +91,7 @@ import SplitType from 'split-type';
     })
 
     onMounted(() => {
+        headerExclusion.value = false
         animatePageEnter()
         presentationEnter()
     });

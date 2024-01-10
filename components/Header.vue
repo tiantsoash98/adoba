@@ -6,6 +6,10 @@
     const startHidePosition = ref(0)
     const currentScrollPosition = ref(0)
 
+    const props = defineProps({
+        isExclusionOnStart: Boolean,
+    })
+    
     onMounted(() => {
         startHidePosition.value = window.innerHeight/2;
         window.addEventListener("scroll", onScroll)
@@ -16,7 +20,7 @@
 
     function onScroll(){
         isScrollingDown.value = (currentScrollPosition.value < window.scrollY);
-        isBeyondFold.value= (window.scrollY > startHidePosition.value);
+        isBeyondFold.value = (window.scrollY > startHidePosition.value);
         currentScrollPosition.value = window.scrollY;
     }
     function toogleServicesDropdown(){
@@ -53,7 +57,7 @@
     <header 
     :class="{
         'header': true, 
-        'header--exclusion': isBeyondFold, 
+        'header--exclusion': isBeyondFold || isExclusionOnStart, 
         'header--page-scrolling-down': isBeyondFold && !isScrollingDown,
         'header--hide': isBeyondFold && isScrollingDown,
         'header--open': isServicesDropdownOpen,
@@ -84,7 +88,7 @@
                                 </svg>
                             </div>
                         </li>
-                        <li><NuxtLink to="/studio">Le Studio</NuxtLink></li>
+                        <li><NuxtLink to="/studio">Le studio</NuxtLink></li>
                         <li><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
                         <li><NuxtLink to="/blog">Blog</NuxtLink></li>
                         <li><NuxtLink to="/faq">FAQ</NuxtLink></li>
