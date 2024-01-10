@@ -89,8 +89,6 @@
                         <li><NuxtLink to="/blog">Blog</NuxtLink></li>
                         <li><NuxtLink to="/faq">FAQ</NuxtLink></li>
                         <li><NuxtLink to="/jobs">Jobs</NuxtLink></li>
-                        <li><NuxtLink to="/contact">Contact</NuxtLink></li>
-
                         <li>
                             <NuxtLink to="/contact">
                                 <Button text="Contact" class="button--small button--white"></Button>
