@@ -1,10 +1,12 @@
 <script setup>
 const { gsap } = useGsap()
 const isVisible = ref(true)
-const loaded = useSiteLoaded()
+const props = defineProps({
+    loaded: Boolean
+})
 
-watch(() => loaded, (newVal) => {
-    console.log('Changed', loaded)
+watch(() => props.loaded, (newVal) => {
+    console.log('PageLoader loaded props changed to ', newVal)
     if(newVal == true){
         animateLoaderOut().then(()=> {
             isVisible.value = false;

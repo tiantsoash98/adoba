@@ -1,5 +1,4 @@
 <template>
-    <PageLoader></PageLoader>
     <lenis
       :options="lenisOptions"
     >
