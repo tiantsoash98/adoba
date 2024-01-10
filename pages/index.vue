@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-    import SplitType from 'split-type';
+import SplitType from 'split-type';
     const { gsap } = useGsap();
     const { data: content }  = await useFetch('/api/accueil', {
         transform: (_content) => _content.data.data.attributes
@@ -93,14 +93,20 @@
         SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
 
         gsap.timeline({
-            defaults: { duration: 1, ease: "power2.out" }
+            defaults: { ease: "power3.out" }
         })
         .from('.home-hero__title--word', {
             opacity: 0,
             yPercent: 100,
             stagger: 0.05,
-            delay: 0.3
+            duration: 1.1,
+            delay: 0.4
         })
+        .from('.home-hero__img', {
+            scale: 1.2,
+            duration: 1.6,
+        }, '<')
+        
     }
     const presentationEnter = () => {
         let triggerEl = '.home-presentation';

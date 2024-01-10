@@ -6,7 +6,6 @@ const props = defineProps({
 })
 
 watch(() => props.loaded, (newVal) => {
-    console.log('PageLoader loaded props changed to ', newVal)
     if(newVal == true){
         animateLoaderOut().then(()=> {
             isVisible.value = false;
@@ -61,6 +60,7 @@ function animateLoaderOut(){
         height: 100vh;
         width: 100%;
         background-color: var(--brand-secondary);
+        transform-origin: top;
     }
     &__wrapper {
         width: 100%;
