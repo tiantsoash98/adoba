@@ -9,6 +9,7 @@
             :data-pswp-height="image.attributes.realisationImg.data.attributes.height"
             target="_blank"
             rel="noreferrer"
+            data-cropped="true"
         >
             <NuxtImg 
                 :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
@@ -16,7 +17,7 @@
                 :alt="image.attributes.realisationTitle"
                 loading="lazy"
             />
-      </a>
+        </a>
     </div>
 </template>
 
@@ -37,6 +38,9 @@ const lightbox = new PhotoSwipeLightbox({
     arrowPrev: false,
     arrowNext: false,
     zoom: false,
+    easing: 'cubic-bezier(.43,.195,.02,1)',
+    showAnimationDuration: 1100,
+    hideAnimationDuration: 1000,
     pswpModule: PhotoSwipe
 });
 
@@ -47,11 +51,44 @@ onMounted(() => {
 onUnmounted(() => {
     lightbox.destroy()
 })
-
-
-
 </script>
 
 <style lang="scss" scoped>
+.gallery {
+    padding-top: var(--r-space-lg);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 20px;
 
+    &__img-wrapper {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1s cubic-bezier(.43,.195,.02,1);
+
+        &:hover {
+            transform: scale(1.1);
+            transform: scale(1);
+        }
+    }
+}
+// .container {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//   gap: 20px;
+//   background: teal;
+//   padding: 15px;
+// }
+// .container img {
+//   width: 100%;
+//   display: block;
+//   -webkit-filter: grayscale(1);
+//   filter: grayscale(1);
+//   transition: all 100ms ease-out;
+// }
 </style>
