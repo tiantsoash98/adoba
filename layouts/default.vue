@@ -1,6 +1,6 @@
 <template>
     <div class="page__cursor" data-cursor="-exclusion">
-        <!-- <PageLoader :loaded="loaded"></PageLoader> -->
+        <PageLoader :loaded="loaded"></PageLoader>
         <Header/>
 
         <!-- output the page content -->

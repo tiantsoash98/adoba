@@ -105,7 +105,7 @@ import SplitType from 'split-type';
             yPercent: 100,
             stagger: 0.05,
             duration: 1.1,
-            delay: 0.4
+            delay: 0.5
         })
         .from('.home-hero__img', {
             scale: 1.2,
