@@ -15,7 +15,7 @@
                 </div>
                 <div class="container home-hero__content-wrapper">
                     <div class="home-hero__title-wrapper">
-                        <h1 class="text-visually-hidden">Avec la 3D dessinons ensemble l'architecture de demain</h1>
+                        <h1 class="text-visually-hidden">{{ content.homeHeadline }}</h1>
                         <div class="home-hero__title home-hero__title--1 title-h1">Avec la 3D</div>
                         <div class="home-hero__title home-hero__title--2 title-h1">dessinons ensemble</div>
                         <div class="home-hero__title home-hero__title--3 title-h1">l'architecture de demain</div>
@@ -61,7 +61,7 @@
 <script setup>
 import SplitType from 'split-type';
     const { gsap } = useGsap();
-    const { data: content }  = await useFetch('/api/accueil', {
+    const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
 
