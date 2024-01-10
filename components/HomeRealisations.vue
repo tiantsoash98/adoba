@@ -9,10 +9,12 @@
                     <p>{{ description }}</p>
                 </div>
             </div>
-            <ImgGallery
-                gallery="home-gallery"
-                :images="realisations"
-            ></ImgGallery>
+            <div class="works__gallery-wrapper">
+                <ImgGallery
+                    gallery="home-gallery"
+                    :images="realisations"
+                ></ImgGallery>
+            </div>
             <div class="works__button-wrapper">
                 <NuxtLink to="/realisations">
                     <Button text="Voir toutes nos réalisations"></Button>
@@ -43,8 +45,8 @@
     &__text-wrapper {
         grid-column: span 5;
     }
-    &__grid {
-        margin-top: var(--r-space-lg);
+    &__gallery-wrapper {
+        padding-top: var(--r-space-lg);
     }
     &__button-wrapper {
         margin-top: var(--r-space-md);

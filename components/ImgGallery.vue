@@ -55,7 +55,6 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .gallery {
-    padding-top: var(--r-space-lg);
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
     gap: 20px;
