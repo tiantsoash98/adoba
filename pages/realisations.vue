@@ -33,6 +33,11 @@
                 </div>
             </div>
         </section>
+        <RealisationsFilterModal 
+            :selected="selectedFilter"
+            :filters="filters"
+            @updateFilter="uptadeSelectedFilter"
+            ></RealisationsFilterModal>
     </div>
 </template>
 
@@ -44,7 +49,18 @@
     const { data: works }  = await useFetch('/api/realisations', {
         transform: (_works) => _works.data.data
     })
+
     const selectedFilter = ref("")
+    const filters = content.value.services.data.reduce((res, item) => {
+        res.push({ key: item.attributes.serviceSlug, value: item.attributes.serviceTitle });
+        return res;
+    }, []);
+    filters.unshift({ key: "", value: "Tous" })
+
+    const uptadeSelectedFilter = (key) => {
+        selectedFilter.value = key
+    }
+
     const filteredImages = computed(() => {
         if(selectedFilter.value == ""){
             return works.value
@@ -52,8 +68,7 @@
         else {
             return works.value.filter((work) => work.attributes.service.data.attributes.serviceSlug == selectedFilter.value)
         }
-    })
-    
+    })    
 
     onMounted(() => {
         headerExclusion.value = true
@@ -115,7 +130,7 @@
         height: 1px;
         background-color: var(--color-neutral-50);
         transform-origin: left;
-        transition: transform 1.3s var(--alias-default-ease) .2s;
+        transition: transform 1.3s var(--alias-default-ease) .1s;
 
         &::before {
             content: "";
@@ -125,7 +140,7 @@
             width: 100%;
             height: 1px;
             background-color: var(--color-neutral-50);
-            transition: transform 1.3s var(--alias-default-ease) .2s;
+            transition: transform 1.3s var(--alias-default-ease) .1s;
             transform: translateX(-115%);
         }
     }
