@@ -24,6 +24,11 @@
                         :class="{'realisations-modal__option title-h6': true, 'realisations-modal__option--selected': isSelected(filter.key)}"
                         @click="updateSelected({key: filter.key, text: filter.value})"
                     >
+                        <div class="realisations-modal__active-icon-wrapper">
+                            <svg class="realisations-modal__active-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.2 13.4">
+                                <polygon points="17.2 6.7 10.5 13.4 9.8 12.7 15.3 7.2 0 7.2 0 6.2 15.3 6.2 9.8 .7 10.5 0 17.2 6.7"/>
+                            </svg>
+                        </div>
                         {{ filter.value }}
                     </li>
                 </ul>
@@ -110,10 +115,11 @@
             .to('.realisations-modal__wrapper', { 
                 xPercent: -100,
                 duration: 0.6,
+                delay: 0.3
             })
             .to('.realisations-modal__backdrop', { 
                 opacity: 0,      
-            }, 0)
+            }, '<')
             .set('.realisations-modal__backdrop', { display: 'none', pointerEvents: 'none'})
             .set('.realisations-modal', { display: 'none'})
         }
@@ -122,6 +128,7 @@
 
 <style lang="scss" scoped>
 .realisations-modal{
+    $root: &;
     position: fixed;
     top: 0;
     left: 0;
@@ -180,6 +187,8 @@
         margin-bottom: var(--r-space-sm);
         transition: transform 0.6s var(--alias-default-ease) .1s,
                     color 0.6s var(--alias-default-ease);
+        display: flex;
+        align-items: center;
 
         &:hover {
             transform: translateX(1rem);
@@ -187,7 +196,26 @@
 
         &--selected {
             color: var(--color-neutral-50);
+
+            #{$root}__active-icon {
+                transform: translateX(0%);
+            }
         }
+    }
+    &__active-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: var(--r-space-xs);
+        margin-right: var(--r-space-xs); 
+        overflow: hidden;
+    }
+    &__active-icon{
+        width: 100%;
+        fill: currentColor;
+        transform: translateX(-100%);
+        transition: transform 0.3s var(--alias-default-ease);
     }
     &__icon-wrapper {
         padding: var(--r-space-xs);

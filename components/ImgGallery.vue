@@ -76,18 +76,4 @@ onUnmounted(() => {
         }
     }
 }
-// .container {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-//   gap: 20px;
-//   background: teal;
-//   padding: 15px;
-// }
-// .container img {
-//   width: 100%;
-//   display: block;
-//   -webkit-filter: grayscale(1);
-//   filter: grayscale(1);
-//   transition: all 100ms ease-out;
-// }
 </style>

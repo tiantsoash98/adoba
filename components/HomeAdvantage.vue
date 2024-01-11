@@ -35,7 +35,6 @@ const props = defineProps({
 
 <style scoped lang="scss">
     .advantage {
-        $root:&;
         --text-color: var(--color-neutral-50);
 
         &__border {
