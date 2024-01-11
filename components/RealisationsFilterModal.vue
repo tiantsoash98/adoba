@@ -4,8 +4,8 @@
         <div class="realisations-modal__wrapper">
             <div class="realisations-modal__top-wrapper">
                 <div class="realisations-modal__icon-wrapper" @click="closeModal">
-                    <svg class="realisations-modal__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.4 17.2">
-                        <polygon points="6.7 17.2 0 10.5 .7 9.8 6.2 15.3 6.2 0 7.2 0 7.2 15.3 12.7 9.8 13.4 10.5 6.7 17.2"/>
+                    <svg class="realisations-modal__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.7 24.7">
+                        <polygon points="22.4 24.7 12.4 14.7 2.4 24.7 0 22.4 10 12.4 0 2.4 2.4 0 12.4 10 22.4 0 24.7 2.4 14.7 12.4 24.7 22.4 22.4 24.7"/>
                     </svg>
                 </div>
             </div>
@@ -81,12 +81,13 @@
     }
     &__top-wrapper {
         display: flex;
+        flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        flex-direction: row;
+        height: max(8vh, var(--r-space-sm));
     }
     &__content-wrapper {
-        padding: 0 var(--r-space-md);
+        padding: 0 var(--r-space-md) max(8vh, var(--r-space-sm)) var(--r-space-md);
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -105,6 +106,12 @@
     &__option {
         cursor: pointer;
         margin-bottom: var(--r-space-md);
+        transition: transform 0.6s var(--alias-default-ease) .1s,
+                    color 0.6s var(--alias-default-ease);
+
+        &:hover {
+            transform: translateX(1rem);
+        }
 
         &--selected {
             color: var(--color-neutral-50);
@@ -115,15 +122,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
         max-width: var(--r-space-md);
-        margin-left: var(--r-space-xs);
-        transition: transform 1s var(--alias-default-ease) .1s; 
     }
     &__icon{
         width: 100%;
         fill: currentColor;
-        animation: bounce 2s linear infinite 2s;
     }
 }
 </style>
