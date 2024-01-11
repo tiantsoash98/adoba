@@ -10,6 +10,10 @@
             target="_blank"
             rel="noreferrer"
             data-cropped="true"
+            :class="{
+                'gallery__img': true,
+                'gallery__img--tall': (image.attributes.realisationImg.data.attributes.height > image.attributes.realisationImg.data.attributes.width)
+            }"
         >
             <NuxtImg 
                 :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
@@ -57,6 +61,7 @@ onUnmounted(() => {
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-auto-flow: dense;
     gap: 20px;
 
     &__img-wrapper {
@@ -64,16 +69,22 @@ onUnmounted(() => {
         height: 100%;
         overflow: hidden;
     }
-    & img {
+    &__img {
+        &--tall {
+            grid-row: span 2;
+        }
+        &:nth-child(5n-2) {
+            grid-row: span 2;
+        }
+        &:nth-child(5n) {
+            grid-column: span 2;
+        }
+    }
+    & img{
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 1s cubic-bezier(.43,.195,.02,1);
-
-        &:hover {
-            transform: scale(1.1);
-            transform: scale(1);
-        }
     }
 }
 </style>
