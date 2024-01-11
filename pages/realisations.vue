@@ -7,22 +7,13 @@
                         <h1>{{ content.realisationTitle }}</h1>
                     </div>
                 </div>
-                <div class="realisations__filter-wrapper">
-                    <div class="title-h6">{{ selectedFilter ? selectedFilter : "Toutes les réalisations" }}</div>
+                <div class="realisations__filter-wrapper" @click="openFilterModal">
+                    <div class="title-h6">{{ selectedFilterValue ? selectedFilterValue : "Toutes les réalisations" }}</div>
                     <div class="realisations__icon-wrapper">
                         <svg class="realisations__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.4 17.2">
                             <polygon points="6.7 17.2 0 10.5 .7 9.8 6.2 15.3 6.2 0 7.2 0 7.2 15.3 12.7 9.8 13.4 10.5 6.7 17.2"/>
                         </svg>
                     </div>
-                    <!-- <select v-model="selectedFilter">
-                        <option value="" selected>Toutes les réalisations</option>
-                        <option 
-                            v-for="(filterOption) in content.services.data" 
-                            :key="filterOption.attributes.serviceSlug"
-                            :value="filterOption.attributes.serviceSlug">
-                                {{ filterOption.attributes.serviceTitle }}
-                        </option>
-                    </select> -->
                     <div class="realisations__bottom-border"></div>
                 </div>
                 <div class="realisations__gallery-wrapper">
@@ -34,9 +25,12 @@
             </div>
         </section>
         <RealisationsFilterModal 
-            :selected="selectedFilter"
+            :toogleState="toogleFilterModalState"
+            :selected="selectedFilterKey"
             :filters="filters"
             @updateFilter="uptadeSelectedFilter"
+            @animation-open-complete="filterModalOpenAnimationComplete"
+            @animation-close-complete="filterModalCloseAnimationComplete"
             ></RealisationsFilterModal>
     </div>
 </template>
@@ -50,25 +44,40 @@
         transform: (_works) => _works.data.data
     })
 
-    const selectedFilter = ref("")
+    const toogleFilterModalState = ref("")
+    const selectedFilterKey = ref("")
+    const selectedFilterValue = ref("")
     const filters = content.value.services.data.reduce((res, item) => {
         res.push({ key: item.attributes.serviceSlug, value: item.attributes.serviceTitle });
         return res;
     }, []);
     filters.unshift({ key: "", value: "Tous" })
 
-    const uptadeSelectedFilter = (key) => {
-        selectedFilter.value = key
+    const uptadeSelectedFilter = (selectedFilter) => {
+        selectedFilterKey.value = selectedFilter.key
+        selectedFilterValue.value = selectedFilter.text
     }
 
     const filteredImages = computed(() => {
-        if(selectedFilter.value == ""){
+        if(selectedFilterKey.value == ""){
             return works.value
         }
         else {
-            return works.value.filter((work) => work.attributes.service.data.attributes.serviceSlug == selectedFilter.value)
+            return works.value.filter((work) => work.attributes.service.data.attributes.serviceSlug == selectedFilterKey.value)
         }
-    })    
+    })   
+    
+    const openFilterModal = () => {
+        toogleFilterModalState.value = "opening"
+    }
+
+    const filterModalOpenAnimationComplete = () => {
+        // Do something on open
+    }
+
+    const filterModalCloseAnimationComplete = () => {
+        toogleFilterModalState.value = ""
+    }
 
     onMounted(() => {
         headerExclusion.value = true
@@ -107,7 +116,7 @@
     }
     &__filter-wrapper {
         cursor: pointer;
-        margin-top: var(--r-space-lg);
+        margin-top: var(--r-space-md);
         padding-bottom: var(--r-space-xs);
         display: flex;
         justify-content: space-between;
@@ -130,7 +139,7 @@
         height: 1px;
         background-color: var(--color-neutral-50);
         transform-origin: left;
-        transition: transform 1.3s var(--alias-default-ease) .1s;
+        transition: transform 1.3s var(--alias-default-ease);
 
         &::before {
             content: "";
@@ -140,7 +149,7 @@
             width: 100%;
             height: 1px;
             background-color: var(--color-neutral-50);
-            transition: transform 1.3s var(--alias-default-ease) .1s;
+            transition: transform 1.3s var(--alias-default-ease);
             transform: translateX(-115%);
         }
     }

@@ -1,9 +1,14 @@
 <template>
-    <div class="realisations-modal">
-        <div class="realisations-modal__overlay"></div>
+    <div 
+        :class="{
+            'realisations-modal': true, 
+            'realisations-modal--open': isOpen,
+            'realisations-modal--close': !isOpen,
+        }">
+        <div class="realisations-modal__backdrop" @click="closeMenu"></div>
         <div class="realisations-modal__wrapper">
             <div class="realisations-modal__top-wrapper">
-                <div class="realisations-modal__icon-wrapper" @click="closeModal">
+                <div class="realisations-modal__icon-wrapper" @click="closeMenu">
                     <svg class="realisations-modal__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.7 24.7">
                         <polygon points="22.4 24.7 12.4 14.7 2.4 24.7 0 22.4 10 12.4 0 2.4 2.4 0 12.4 10 22.4 0 24.7 2.4 14.7 12.4 24.7 22.4 22.4 24.7"/>
                     </svg>
@@ -17,7 +22,7 @@
                         :key="filter.key"
                         :data-value="filter.key"
                         :class="{'realisations-modal__option title-h6': true, 'realisations-modal__option--selected': isSelected(filter.key)}"
-                        @click="updateSelected(filter.key)"
+                        @click="updateSelected({key: filter.key, text: filter.value})"
                     >
                         {{ filter.value }}
                     </li>
@@ -29,23 +34,89 @@
 </template>
 
 <script setup>
+    const { gsap } = useGsap();
+    const isClickable = ref(true)
+    const isOpen = ref(false)
+
     const props = defineProps({
+        toogleState: String,
         selected: String,
         filters: Array,
     })
     const emit = defineEmits([
         'updateFilter', 
+        'animationOpenComplete', 
+        'animationCloseComplete'
     ])
-    const updateSelected = (key) => {
-        emit('updateFilter', key)
-    }
 
+    watch(() => props.toogleState, (newVal) => {
+        if(newVal == "opening"){
+            openMenu();
+        }
+    });
+
+    const updateSelected = (selectedFilter) => {
+        emit('updateFilter', selectedFilter)
+        closeMenu()
+    }
     const isSelected = (key) => {
         return key == props.selected
     }
+    
+    // Toogle animations
+    const openMenu = () => {
+        isClickable.value = false
 
-    const closeModal = () => {
-        
+        // start open animation
+        gsap.timeline({
+            onComplete: () => {
+                isClickable.value = true
+                isOpen.value = true
+                emit('animationOpenComplete')
+            },
+            defaults: {
+                duration: 0.8,
+                ease: "power2.inOut"
+            },
+        })
+        .set('.realisations-modal', { display: 'flex'})
+        .set('.realisations-modal__backdrop', { display: 'flex', opacity: 0, pointerEvents: 'all'})
+        .set('.realisations-modal__wrapper', { xPercent: -100 })
+        .to('.realisations-modal__backdrop', { 
+            opacity: 0.8,
+            duration: 0.6,
+        })
+        .to('.realisations-modal__wrapper', { 
+            xPercent: 0
+        }, 0)
+    }
+
+    const closeMenu = () => {
+        if(isClickable.value == true) {
+            isClickable.value = false
+
+            // start close animation
+            gsap.timeline({
+                onComplete: () => {
+                    isClickable.value = true
+                    isOpen.value = false
+                    emit('animationCloseComplete')
+                },
+                defaults: {
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                },
+            })
+            .to('.realisations-modal__wrapper', { 
+                xPercent: -100,
+                duration: 0.6,
+            })
+            .to('.realisations-modal__backdrop', { 
+                opacity: 0,      
+            }, 0)
+            .set('.realisations-modal__backdrop', { display: 'none', pointerEvents: 'none'})
+            .set('.realisations-modal', { display: 'none'})
+        }
     }
 </script>
 
@@ -57,8 +128,9 @@
     width: 100%;
     height: 100%;
     z-index: calc(var(--z-index-nav) + 1);
+    display: none;
 
-    &__overlay {
+    &__backdrop {
         position: absolute;
         top: 0;
         left: 0;
@@ -105,7 +177,7 @@
     }
     &__option {
         cursor: pointer;
-        margin-bottom: var(--r-space-md);
+        margin-bottom: var(--r-space-sm);
         transition: transform 0.6s var(--alias-default-ease) .1s,
                     color 0.6s var(--alias-default-ease);
 
@@ -123,6 +195,7 @@
         flex-direction: column;
         align-items: center;
         max-width: var(--r-space-md);
+        cursor: pointer;
     }
     &__icon{
         width: 100%;

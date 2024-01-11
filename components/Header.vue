@@ -1,58 +1,3 @@
-<script setup>
-    const isBeyondFold = useScrollBeyondFold()
-    const isScrollingDown = useScrollingDown()
-    const isClickable = useHeaderClickable()
-    const headerState = useHeaderState()
-    const startHidePosition = ref(0)
-    const currentScrollPosition = ref(0)
-
-    const props = defineProps({
-        isExclusionOnStart: Boolean,
-    })
-    
-    onMounted(() => {
-        startHidePosition.value = window.innerHeight/2;
-        window.addEventListener("scroll", onScroll)
-    })
-    onBeforeUnmount(() => {
-        window.removeEventListener("scroll", onScroll)
-    })
-
-    function onScroll(){
-        isScrollingDown.value = (currentScrollPosition.value < window.scrollY);
-        isBeyondFold.value = (window.scrollY > startHidePosition.value);
-        currentScrollPosition.value = window.scrollY;
-    }
-    function toogleServicesDropdown(){
-        
-        if(isClickable.value && headerState.value == "open"){
-            openHeader()
-        }
-        else if(isClickable.value && headerState.value == "close"){
-            closeHeader()
-        }
-    }
-    function openHeader(){
-        isClickable.value = false;
-        headerState.value = "opening";
-    }
-    function closeHeader(){
-        isClickable.value = false;
-        headerState.value = "closing";
-    }
-    function dropdownOpenAnimationComplete(){
-        isClickable.value = true;
-        headerState.value = "close";
-    }
-    function dropdownCloseAnimationComplete(){
-        isClickable.value = true;
-        headerState.value = "open";
-    }
-
-    const isServicesDropdownOpen = computed(() => headerState.value == 'close')
-    const isServicesDropdownClose = computed(() => headerState.value == 'open')
-</script>
-    
 <template>
     <header 
     :class="{
@@ -110,6 +55,61 @@
         @animation-close-complete="dropdownCloseAnimationComplete">
     </HeaderServicesDropdown>
 </template>
+
+<script setup>
+    const isBeyondFold = useScrollBeyondFold()
+    const isScrollingDown = useScrollingDown()
+    const isClickable = useHeaderClickable()
+    const headerState = useHeaderState()
+    const startHidePosition = ref(0)
+    const currentScrollPosition = ref(0)
+
+    const props = defineProps({
+        isExclusionOnStart: Boolean,
+    })
+    
+    onMounted(() => {
+        startHidePosition.value = window.innerHeight/2;
+        window.addEventListener("scroll", onScroll)
+    })
+    onBeforeUnmount(() => {
+        window.removeEventListener("scroll", onScroll)
+    })
+
+    function onScroll(){
+        isScrollingDown.value = (currentScrollPosition.value < window.scrollY);
+        isBeyondFold.value = (window.scrollY > startHidePosition.value);
+        currentScrollPosition.value = window.scrollY;
+    }
+    function toogleServicesDropdown(){
+        
+        if(isClickable.value && headerState.value == "open"){
+            openHeader()
+        }
+        else if(isClickable.value && headerState.value == "close"){
+            closeHeader()
+        }
+    }
+    function openHeader(){
+        isClickable.value = false;
+        headerState.value = "opening";
+    }
+    function closeHeader(){
+        isClickable.value = false;
+        headerState.value = "closing";
+    }
+    function dropdownOpenAnimationComplete(){
+        isClickable.value = true;
+        headerState.value = "close";
+    }
+    function dropdownCloseAnimationComplete(){
+        isClickable.value = true;
+        headerState.value = "open";
+    }
+
+    const isServicesDropdownOpen = computed(() => headerState.value == 'close')
+    const isServicesDropdownClose = computed(() => headerState.value == 'open')
+</script>
 
 <style scoped lang="scss">
 .header {
