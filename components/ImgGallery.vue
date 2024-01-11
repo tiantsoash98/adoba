@@ -15,12 +15,15 @@
                 'gallery__img--tall': (image.attributes.realisationImg.data.attributes.height > image.attributes.realisationImg.data.attributes.width)
             }"
         >
-            <NuxtImg 
-                :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
-                sizes="80vw sm:80vw md:80vw" 
-                :alt="image.attributes.realisationTitle"
-                loading="lazy"
-            />
+            <div class="gallery__img-wrapper">
+                <NuxtImg
+                    :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
+                    sizes="80vw sm:80vw md:80vw" 
+                    :alt="image.attributes.realisationTitle"
+                    loading="lazy"
+                />
+            </div>
+            
         </a>
     </div>
 </template>
@@ -62,12 +65,13 @@ onUnmounted(() => {
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
     grid-auto-flow: dense;
-    gap: 20px;
+    gap: var(--r-space-sm);;
 
     &__img-wrapper {
         width: 100%;
         height: 100%;
         overflow: hidden;
+        background-color: var(--color-neutral-20);
     }
     &__img {
         &--tall {
@@ -85,6 +89,10 @@ onUnmounted(() => {
         height: 100%;
         object-fit: cover;
         transition: transform 1s cubic-bezier(.43,.195,.02,1);
+        
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 }
 </style>
