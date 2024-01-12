@@ -1,7 +1,7 @@
 <template>
     <div class="page__cursor" data-cursor="-exclusion">
         <PageLoader :loaded="loaded"></PageLoader>
-        <Header/>
+        <Header :isExclusionOnStart="headerExclusion"/>
 
         <!-- output the page content -->
         <main class="page__wrapper">
@@ -14,6 +14,7 @@
 
 <script setup>
 const loaded = ref(false)
+const headerExclusion = useHeaderExclusion()
 
 onMounted(() => {
     loaded.value = true

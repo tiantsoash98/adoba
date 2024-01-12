@@ -10,13 +10,20 @@
             target="_blank"
             rel="noreferrer"
             data-cropped="true"
+            :class="{
+                'gallery__img': true,
+                'gallery__img--tall': (image.attributes.realisationImg.data.attributes.height > image.attributes.realisationImg.data.attributes.width)
+            }"
         >
-            <NuxtImg 
-                :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
-                sizes="80vw sm:80vw md:80vw" 
-                :alt="image.attributes.realisationTitle"
-                loading="lazy"
-            />
+            <div class="gallery__img-wrapper">
+                <NuxtImg
+                    :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
+                    sizes="80vw sm:80vw md:80vw" 
+                    :alt="image.attributes.realisationTitle"
+                    loading="lazy"
+                />
+            </div>
+            
         </a>
     </div>
 </template>
@@ -55,40 +62,37 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .gallery {
-    padding-top: var(--r-space-lg);
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
-    gap: 20px;
+    grid-auto-flow: dense;
+    gap: var(--r-space-sm);;
 
     &__img-wrapper {
         width: 100%;
         height: 100%;
         overflow: hidden;
+        background-color: var(--color-neutral-20);
     }
-    & img {
+    &__img {
+        &--tall {
+            grid-row: span 2;
+        }
+        &:nth-child(5n-2) {
+            grid-row: span 2;
+        }
+        &:nth-child(5n) {
+            grid-column: span 2;
+        }
+    }
+    & img{
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 1s cubic-bezier(.43,.195,.02,1);
-
+        
         &:hover {
-            transform: scale(1.1);
-            transform: scale(1);
+            transform: scale(1.05);
         }
     }
 }
-// .container {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-//   gap: 20px;
-//   background: teal;
-//   padding: 15px;
-// }
-// .container img {
-//   width: 100%;
-//   display: block;
-//   -webkit-filter: grayscale(1);
-//   filter: grayscale(1);
-//   transition: all 100ms ease-out;
-// }
 </style>

@@ -4,3 +4,4 @@ export const useScrollBeyondFold = () => useState("isScrollBeyondFold", () => fa
 export const useScrollingDown = () => useState("isScrollingDown", () => false)
 export const useHeaderClickable = () => useState("headerClickable", () => true)
 export const useHeaderState = () => useState("headerState", () => "open")
+export const useHeaderExclusion = () => useState("headerExclusion", () => false)

@@ -4,10 +4,9 @@
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
-                    <NuxtImg
+                    <nuxt-picture
                         class="home-hero__img" 
-                        densities="x1 x2" 
-                        sizes="100vw sm:100vw md:100vw" 
+                        sizes="sm:100vw md:100vw lg:100vw 100vw"
                         :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                         :alt="content.homeHeaderImg.data.attributes.alternativeText"
                         preload
@@ -64,8 +63,9 @@
 </template>
 
 <script setup>
-import SplitType from 'split-type';
+    import SplitType from 'split-type';
     const { gsap } = useGsap();
+    const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
@@ -90,6 +90,7 @@ import SplitType from 'split-type';
     })
 
     onMounted(() => {
+        headerExclusion.value = false
         animatePageEnter()
         presentationEnter()
     });
@@ -162,13 +163,6 @@ import SplitType from 'split-type';
             height: 100%;
             z-index: -1;
             overflow: hidden;
-        }
-        &__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
         }
         &__content-wrapper {
             width: 100%;

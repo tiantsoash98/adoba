@@ -1,3 +1,32 @@
+<template>
+    <aside :class="{'menu': true, 'menu--open': isOpen }" aria-expanded="false">
+        <div class="menu__backdrop" @click="closeHeaderMenu"></div>
+        <div class="menu__main-wrapper">
+            <div class="menu__frame"></div>
+            <div class="container menu__content-wrapper">
+                <ul class="menu__links-wrapper">
+                    <li v-for="service in services" :key="service.title">
+                        <NuxtLink :to="service.slug" @click="closeHeaderMenu">
+                            <div class="menu__link title-h6">
+                                <div class="menu__label">{{ service.title }}</div>
+                            </div>
+                        </NuxtLink>
+                    </li>
+                </ul>
+                <div class="menu__img-content">
+                    <div class="menu__img-wrapper">
+                        <!-- <img v-for="service in services" 
+                            :key="service.title" 
+                            :src="`/${service.img}`" 
+                            class="menu__img" 
+                            loading="lazy"/> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</template>
+
 <script setup>
     const { gsap } = useGsap();
 
@@ -77,35 +106,6 @@
         })
     }
 </script>
-    
-<template>
-    <aside :class="{'menu': true, 'menu--open': isOpen }" aria-expanded="false">
-        <div class="menu__backdrop" @click="closeHeaderMenu"></div>
-        <div class="menu__main-wrapper">
-            <div class="menu__frame"></div>
-            <div class="container menu__content-wrapper">
-                <ul class="menu__links-wrapper">
-                    <li v-for="service in services" :key="service.title">
-                        <NuxtLink :to="service.slug">
-                            <div class="menu__link title-h6">
-                                <div class="menu__label">{{ service.title }}</div>
-                            </div>
-                        </NuxtLink>
-                    </li>
-                </ul>
-                <div class="menu__img-content">
-                    <div class="menu__img-wrapper">
-                        <!-- <img v-for="service in services" 
-                            :key="service.title" 
-                            :src="`/${service.img}`" 
-                            class="menu__img" 
-                            loading="lazy"/> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </aside>
-</template>
 
 <style scoped lang="scss">
 .menu {
