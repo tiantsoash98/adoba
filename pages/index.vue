@@ -1,11 +1,11 @@
 <template>
     <div>
-        <section class="section section--no-padding-top section--no-padding-bottom home-hero">
+        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
                     <nuxt-picture
-                        class="home-hero__img" 
+                        class="home-hero__img imgLoaded" 
                         sizes="sm:100vw md:100vw lg:100vw 100vw"
                         :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                         :alt="content.homeHeaderImg.data.attributes.alternativeText"
@@ -69,31 +69,25 @@
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
-
-    useHead({
-        title: content.value.metadata.metaTitle,
-        meta: [
-            { name: 'description', content: content.value.metadata.metaDescription }
-        ]
-    })
-
-    useSeoMeta({
-        description: content.value.metadata.metaDescription,
-        ogTitle: content.value.metadata.metaTitle,
-        ogDescription: content.value.metadata.metaDescription,
-        ogImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
-        ogUrl: useRoute().fullPath,
-        twitterTitle: content.value.metadata.metaTitle,
-        twitterDescription: content.value.metadata.metaDescription,
-        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
-        twitterCard: 'summary'
-    })
+    const imgLoad = ref(null)
 
     onMounted(() => {
         headerExclusion.value = false
+        if(imgLoad.value == null){
+            imgLoad.value = useImgLoaded();
+            imgLoad.value.init()
+        }
+
         animatePageEnter()
         presentationEnter()
-    });
+    })
+
+    onUnmounted(() => {
+        if(imgLoad.value != null){
+            imgLoad.value.destroy()
+            imgLoad.value = null
+        }
+    })
 
     const animatePageEnter = () => {
         SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
@@ -105,8 +99,7 @@
             opacity: 0,
             yPercent: 100,
             stagger: 0.05,
-            duration: 1.1,
-            delay: 0.5
+            duration: 1.1
         })
         .from('.home-hero__img', {
             scale: 1.2,
@@ -133,6 +126,25 @@
             ease: "none"
         })
     }
+
+    useHead({
+        title: content.value.metadata.metaTitle,
+        meta: [
+            { name: 'description', content: content.value.metadata.metaDescription }
+        ]
+    })
+
+    useSeoMeta({
+        description: content.value.metadata.metaDescription,
+        ogTitle: content.value.metadata.metaTitle,
+        ogDescription: content.value.metadata.metaDescription,
+        ogImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
+        ogUrl: useRoute().fullPath,
+        twitterTitle: content.value.metadata.metaTitle,
+        twitterDescription: content.value.metadata.metaDescription,
+        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
+        twitterCard: 'summary'
+    })
 </script>
 
 <style lang="scss" scoped>

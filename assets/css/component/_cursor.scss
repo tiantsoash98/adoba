@@ -103,6 +103,10 @@ $mf-color-text:#fff !default;
             opacity:1;
             transform:scale(1);
         }
+
+        #{$root}.-inverse & {
+            color:invert($mf-color-text);
+        }
     }
 
     &-media {

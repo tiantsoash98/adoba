@@ -17,13 +17,13 @@
         >
             <div class="gallery__img-wrapper">
                 <NuxtImg
+                    class="gallery__img-item imgLoaded"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
                     sizes="80vw sm:80vw md:80vw" 
                     :alt="image.attributes.realisationTitle"
                     loading="lazy"
                 />
             </div>
-            
         </a>
     </div>
 </template>
@@ -32,6 +32,8 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import PhotoSwipe from 'photoswipe';
 import 'photoswipe/style.css';
+const imgLoad = ref(null)
+
 
 const props = defineProps({
     gallery: String,
@@ -51,13 +53,25 @@ const lightbox = new PhotoSwipeLightbox({
     pswpModule: PhotoSwipe
 });
 
+
 onMounted(() => {
+    if(imgLoad.value == null){
+        imgLoad.value = useImgLoaded();
+        imgLoad.value.init()
+    }
     lightbox.init()
 })
 
 onUnmounted(() => {
     lightbox.destroy()
+    
+    if(imgLoad.value != null){
+        imgLoad.value.destroy()
+        imgLoad.value = null
+    }
 })
+
+
 </script>
 
 <style lang="scss" scoped>

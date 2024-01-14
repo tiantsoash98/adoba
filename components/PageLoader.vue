@@ -27,7 +27,7 @@ function animateLoaderOut(){
 
 
 <template>
-    <div class="page-loader" v-if="isVisible">
+    <div class="page-loader" v-if="isVisible"  data-cursor="-inverse">
         <div class="page-loader__frame"></div>
         <div class="page-loader__wrapper">
             <div class="page-loader__logo-wrapper">

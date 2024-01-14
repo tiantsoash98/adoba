@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       title: 'Adoba',
       htmlAttrs: {
@@ -24,7 +25,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-lenis',
     '@nuxt/image',
-    '@nuxtjs/strapi'
+    '@nuxtjs/strapi',
   ],
   strapi: {
     url: process.env.CMS_BASE_URL

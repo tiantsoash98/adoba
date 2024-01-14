@@ -13,15 +13,16 @@
     
     onMounted(() => {
         const { cursor } = useCursor();  
-        
-        document.querySelectorAll('[data-cursor="-neutral"]').forEach(item => {
-            
-            item.addEventListener('mouseenter', () => {
-                cursor.removeState('-exclusion');
-            });
-            item.addEventListener('mouseleave', () => {
-                cursor.addState('-exclusion');
-            });
-        }) 
     });
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 1s var(--alias-default-ease);
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+</style>
