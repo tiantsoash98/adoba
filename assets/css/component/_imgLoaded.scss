@@ -1,4 +1,8 @@
-.imgLoaded {
+.img-loaded {
     opacity: 0;
-    transform: opacity 1s var(--alias-default-ease);
+    transition: opacity 1s var(--alias-default-ease);
+    
+    &--loaded {
+        opacity: 1;
+    }
 }

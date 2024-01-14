@@ -40,7 +40,7 @@
     const { data: content }  = await useFetch('/api/realisations-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const { data: works }  = await useFetch('/api/realisations', {
+    const { data: works, pending }  = await useLazyFetch('/api/realisations', {
         transform: (_works) => _works.data.data
     })
 
@@ -51,7 +51,7 @@
         res.push({ key: item.attributes.serviceSlug, value: item.attributes.serviceTitle });
         return res;
     }, []);
-    filters.unshift({ key: "", value: "Tous" })
+    filters.unshift({ key: "", value: "Toutes les réalisations" })
 
     const uptadeSelectedFilter = (selectedFilter) => {
         selectedFilterKey.value = selectedFilter.key

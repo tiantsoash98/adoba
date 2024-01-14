@@ -4,13 +4,17 @@
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
-                    <nuxt-picture
-                        class="home-hero__img imgLoaded" 
-                        sizes="sm:100vw md:100vw lg:100vw 100vw"
-                        :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
-                        :alt="content.homeHeaderImg.data.attributes.alternativeText"
-                        preload
-                        />
+                    <div class="home-hero__img-wrapper">
+                        <nuxt-img
+                            :class="{'home-hero__img img-loaded': true, 'img-loaded--loaded': isHeaderLoaded}" 
+                            sizes="sm:100vw md:100vw lg:100vw 100vw"
+                            :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
+                            :alt="content.homeHeaderImg.data.attributes.alternativeText"
+                            loading="lazy"
+                            @load="onImgLoaded"
+                            />
+                    </div>
+                    
                 </div>
                 <div class="container home-hero__content-wrapper">
                     <div class="home-hero__title-wrapper">
@@ -66,27 +70,20 @@
     import SplitType from 'split-type';
     const { gsap } = useGsap();
     const headerExclusion = useHeaderExclusion()
+    const isHeaderLoaded = ref(false)
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const imgLoad = ref(null)
+
+    const onImgLoaded = (event) => {
+        console.log('Header loaded')
+        isHeaderLoaded.value = true
+    }
 
     onMounted(() => {
         headerExclusion.value = false
-        if(imgLoad.value == null){
-            imgLoad.value = useImgLoaded();
-            imgLoad.value.init()
-        }
-
         animatePageEnter()
         presentationEnter()
-    })
-
-    onUnmounted(() => {
-        if(imgLoad.value != null){
-            imgLoad.value.destroy()
-            imgLoad.value = null
-        }
     })
 
     const animatePageEnter = () => {
@@ -99,7 +96,8 @@
             opacity: 0,
             yPercent: 100,
             stagger: 0.05,
-            duration: 1.1
+            duration: 1.1,
+            delay: 0.4
         })
         .from('.home-hero__img', {
             scale: 1.2,
@@ -175,6 +173,15 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
         &__content-wrapper {
             width: 100%;
