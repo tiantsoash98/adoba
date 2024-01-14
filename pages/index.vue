@@ -6,12 +6,12 @@
                     <div class="home-hero__overlay"></div>
                     <div class="home-hero__img-wrapper">
                         <nuxt-img
-                            :class="{'home-hero__img img-loaded': true, 'img-loaded--loaded': isHeaderLoaded}" 
+                            :placeholder="[50, 25, 75, 5]"
+                            class="home-hero__img" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                             :alt="content.homeHeaderImg.data.attributes.alternativeText"
                             loading="lazy"
-                            @load="onImgLoaded"
                             />
                     </div>
                     
@@ -39,11 +39,12 @@
                 </div>
             </div>
         </section>
-        <section class="section home-presentation">
+        <section class="section home-presentation" ref="presentationSection">
             <div class="container">
                 <div class="home-presentation__content-wrapper">
                     <div class="home-presentation__title-wrapper">
-                        <h2 class="home-presentation__title title-h3"> {{ content.homePresentation }}</h2>
+                        <h2 class="text-visually-hidden"> {{ content.homePresentation }}</h2>
+                        <div class="home-presentation__title title-h3"> {{ content.homePresentation }}</div>
                     </div>
                     <div class="home-presentation__button-wrapper">
                         <NuxtLink to="/contact">
@@ -70,20 +71,16 @@
     import SplitType from 'split-type';
     const { gsap } = useGsap();
     const headerExclusion = useHeaderExclusion()
-    const isHeaderLoaded = ref(false)
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
-
-    const onImgLoaded = (event) => {
-        console.log('Header loaded')
-        isHeaderLoaded.value = true
-    }
+    const { presentationSection } = ref(null)
 
     onMounted(() => {
         headerExclusion.value = false
         animatePageEnter()
         presentationEnter()
+        pageScroll()
     })
 
     const animatePageEnter = () => {
@@ -125,6 +122,40 @@
         })
     }
 
+    const pageScroll = () => {
+        
+        SplitType.create('.home-presentation__title', 
+        {
+            types: 'lines', 
+            lineClass: 'home-presentation__title--line-wrapper'
+        })
+
+        document.querySelectorAll('.home-presentation__title--line-wrapper')
+            .forEach(function(line){
+                var wrapperDiv = document.createElement('div');
+                wrapperDiv.classList.add('home-presentation__title--line')
+                wrapperDiv.innerHTML = line.innerHTML
+                line.innerHTML = ""
+                line.appendChild(wrapperDiv)
+            })
+
+        gsap.timeline({
+            defaults: { duration: 1, ease: "power3.out" },
+            scrollTrigger: {
+                trigger: ".home-presentation",
+                //trigger element - viewport
+                start: "top 80%",
+                end: "top center"
+            }
+        })
+        .from('.home-presentation__title--line', 
+        {
+            opacity: 0,
+            yPercent: 100,
+            stagger: 0.1,
+        })
+    }
+
     useHead({
         title: content.value.metadata.metaTitle,
         meta: [
@@ -145,7 +176,7 @@
     })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home {
     &-hero {
         &__wrapper {
@@ -240,6 +271,11 @@
         &__title-wrapper {
             grid-column: span 8;
         }
+        &__title {
+            &--line-wrapper {
+                overflow: hidden;
+            }
+        } 
         &__button-wrapper {
             grid-column: 10/-1;
             display: flex;

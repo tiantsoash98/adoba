@@ -22,12 +22,11 @@
                 <NuxtLink :to="slug">
                     <nuxt-img
                         :src="imgPath(img)"
-                        class="service__img img-loaded" 
+                        class="service__img" 
                         sizes="80vw sm:80vw md:80vw" 
                         :alt="title"
                         loading="lazy"
                         quality="80"
-                        @load="onImgLoaded"
                         />
                 </NuxtLink>
             </div>
@@ -45,10 +44,6 @@
     })
 
     const serviceId = computed(() => `0${props.index}.`)
-
-    const onImgLoaded = (event) => {
-        event.target.classList.add('img-loaded--loaded')
-    }
 </script>
 
 

@@ -4,7 +4,8 @@
             <div class="container">
                 <div class="realisations__content-wrapper">
                     <div class="realisations__header-wrapper">
-                        <h1>{{ content.realisationTitle }}</h1>
+                        <h1 class="text-visually-hidden">{{ content.realisationTitle }}</h1>
+                        <div class="realisations__title title-h1">{{ content.realisationTitle }}</div>
                     </div>
                 </div>
                 <div class="realisations__filter-wrapper" @click="openFilterModal">
@@ -36,6 +37,8 @@
 </template>
 
 <script setup>
+    import SplitType from 'split-type';
+    const { gsap } = useGsap();
     const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/realisations-page', {
         transform: (_content) => _content.data.data.attributes
@@ -81,7 +84,37 @@
 
     onMounted(() => {
         headerExclusion.value = true
+        animatePageEnter()
     })
+
+    const animatePageEnter = () => {
+
+        SplitType.create('.realisations__title', 
+        {
+            types: 'lines', 
+            lineClass: 'realisations__title--line-wrapper'
+        })
+
+        document.querySelectorAll('.realisations__title--line-wrapper')
+            .forEach(function(line){
+                var wrapperDiv = document.createElement('div');
+                wrapperDiv.classList.add('realisations__title--line')
+                wrapperDiv.innerHTML = line.innerHTML
+                line.innerHTML = ""
+                line.appendChild(wrapperDiv)
+            })
+
+        gsap.timeline({
+            defaults: { duration: 1.1, ease: "power3.out" },
+        })
+        .from('.realisations__title--line', 
+        {
+            opacity: 0,
+            yPercent: 100,
+            stagger: 0.1,
+            delay: 0.4
+        })
+    }
 
     useHead({
         title: content.value.metadata.metaTitle,
@@ -103,7 +136,7 @@
     })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .realisations {
     $root: &;
     &__content-wrapper {
@@ -111,6 +144,11 @@
         grid-template-columns: repeat(12, minmax(0, 1fr));
         column-gap: var(--r-space-sm);
     }
+    &__title {
+        &--line-wrapper {
+            overflow: hidden;
+        }
+    } 
     &__header-wrapper {
         grid-column: span 7;
     }

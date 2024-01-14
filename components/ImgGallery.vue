@@ -17,12 +17,12 @@
         >
             <div class="gallery__img-wrapper">
                 <nuxt-img
-                    class="gallery__img-item img-loaded"
+                    :placeholder="[50, 25, 75, 5]"
+                    class="gallery__img-item"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
                     sizes="80vw sm:80vw md:80vw" 
                     :alt="image.attributes.realisationTitle"
                     loading="lazy"
-                    @load="onImgLoad"
                 />
             </div>
         </a>
@@ -33,7 +33,6 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import PhotoSwipe from 'photoswipe';
 import 'photoswipe/style.css';
-// const imgLoad = ref(null)
 
 const props = defineProps({
     gallery: String,
@@ -53,34 +52,13 @@ const lightbox = new PhotoSwipeLightbox({
     pswpModule: PhotoSwipe
 });
 
-const onImgLoad = (event) => {
-    event.target.classList.add('img-loaded--loaded')
-}
-
 onMounted(() => {
-    // if(imgLoad.value == null){
-    //     imgLoad.value = useImgLoaded()
-    // }
     lightbox.init()
 })
 
 onUnmounted(() => {
     lightbox.destroy()
-    
-    // if(imgLoad.value != null){
-    //     imgLoad.value.destroy()
-    //     imgLoad.value = null
-    // }
 })
-
-// watch(() => props.images, (newVal) => {
-//     if(imgLoad.value != null){
-//         console.log('Here')
-//         imgLoad.value.destroy()
-//         imgLoad.value.init()
-//     }
-// });
-
 
 </script>
 
