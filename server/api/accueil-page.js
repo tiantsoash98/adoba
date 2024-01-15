@@ -1,11 +1,51 @@
-export default defineEventHandler(async (event) => {
-    const runtimeConfig  = useRuntimeConfig()
+import qs from "qs"
 
-    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/accueil-page`;
+export default defineEventHandler(async (event) => {
+    const query = qs.stringify(
+    {
+        populate: {
+            homeHeaderImg: {
+                fields: ["name", "alternativeText", "url"],
+            },
+            services: {
+                fields: ["serviceSlug", "serviceTitle", "serviceDescription"],
+                populate: {
+                    serviceImg: {
+                        fields: ["name", "alternativeText", "url"],
+                    }  
+                }
+            },
+            realisations: {
+                fields: ["realisationTitle", "realisationDescription"],
+                populate: {
+                    realisationImg: {
+                        fields: ["name", "alternativeText", "url", "width", "height", "formats"],
+                    }  
+                }
+            },
+            avantages: {
+                fields: ["avantageTitle", "avantageDescription", "avantageIcon"],
+            },
+            metadata: {
+                fields: ["metaTitle", "metaDescription"],
+                populate: {
+                    metaImage: {
+                        fields: ["name", "alternativeText", "url"],
+                    }
+                }
+            }
+        }
+    },
+    {
+        encodeValuesOnly: true, // prettify URL
+    }
+    );
  
+    const runtimeConfig  = useRuntimeConfig()
+    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/accueil-page?${query}`;
     const data = await $fetch(uri)
 
     return {
         data,
     }
-  })
+})
