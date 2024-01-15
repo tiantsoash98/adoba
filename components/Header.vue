@@ -57,10 +57,10 @@
 </template>
 
 <script setup>
-    const isBeyondFold = useScrollBeyondFold()
-    const isScrollingDown = useScrollingDown()
-    const isClickable = useHeaderClickable()
-    const headerState = useHeaderState()
+    const isBeyondFold = ref(false)
+    const isScrollingDown = ref(false)
+    const isClickable = ref(true)
+    const headerState = ref("open")
     const startHidePosition = ref(0)
     const currentScrollPosition = ref(0)
 
