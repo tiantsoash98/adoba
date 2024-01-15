@@ -2,25 +2,21 @@
 <template>
     <div :id="gallery" class="gallery">
         <a
-            v-for="(image, key) in images"
-            :key="key"
+            v-for="(image, index) in images"
+            :key="index"
             :href="imgPath(image.attributes.realisationImg.data.attributes.url)"
             :data-pswp-width="image.attributes.realisationImg.data.attributes.width"
             :data-pswp-height="image.attributes.realisationImg.data.attributes.height"
             target="_blank"
             rel="noreferrer"
             data-cropped="true"
-            :class="{
-                'gallery__img': true,
-                'gallery__img--tall': (image.attributes.realisationImg.data.attributes.height > image.attributes.realisationImg.data.attributes.width)
-            }"
+            :class="getImgClass(index, image.attributes.realisationImg.data.attributes.width, image.attributes.realisationImg.data.attributes.height)"
         >
             <div class="gallery__img-wrapper">
                 <nuxt-img
-                    :placeholder="[50, 25, 75, 5]"
                     class="gallery__img-item"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
-                    sizes="80vw sm:80vw md:80vw" 
+                    sizes="sm:80vw md:80vw 80vw" 
                     :alt="image.attributes.realisationTitle"
                     loading="lazy"
                 />
@@ -60,6 +56,15 @@ onUnmounted(() => {
     lightbox.destroy()
 })
 
+const getImgClass = (index, width, height) => {
+    const baseClass = "gallery__img"
+    if(height > width) return `${baseClass} gallery__img--tall`
+    if(index == 0) return baseClass
+    if((index + 3) % 5 == 0) return `${baseClass} gallery__img--tall`
+    if((index + 0) % 5 == 0) return `${baseClass} gallery__img--wide`
+    return baseClass
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -73,16 +78,12 @@ onUnmounted(() => {
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background-color: var(--color-neutral-20);
     }
     &__img {
         &--tall {
             grid-row: span 2;
         }
-        &:nth-child(5n-2) {
-            grid-row: span 2;
-        }
-        &:nth-child(5n) {
+        &--wide {
             grid-column: span 2;
         }
     }
