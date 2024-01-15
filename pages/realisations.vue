@@ -127,7 +127,7 @@
         description: content.value.metadata.metaDescription,
         ogTitle: content.value.metadata.metaTitle,
         ogDescription: content.value.metadata.metaDescription,
-        ogImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
+        ogImage: imgPath(content.value.metadata?.metaImage?.data.attributes?.url),
         ogUrl: useRoute().fullPath,
         twitterTitle: content.value.metadata.metaTitle,
         twitterDescription: content.value.metadata.metaDescription,

@@ -10,7 +10,8 @@
             target="_blank"
             rel="noreferrer"
             data-cropped="true"
-            :class="getImgClass(index, image.attributes.realisationImg.data.attributes.width, image.attributes.realisationImg.data.attributes.height)"
+            :data-index="index"
+            :class="getImgClass(index)"
         >
             <div class="gallery__img-wrapper">
                 <nuxt-img
@@ -33,7 +34,8 @@ import 'photoswipe/style.css';
 const props = defineProps({
     gallery: String,
     filter: String,
-    images: Array
+    images: Array,
+    startWide: Boolean
 })
 
 const lightbox = new PhotoSwipeLightbox({
@@ -56,12 +58,10 @@ onUnmounted(() => {
     lightbox.destroy()
 })
 
-const getImgClass = (index, width, height) => {
+const getImgClass = (index) => {
+    const baseIndex = props.startWide ? index : index + 1
     const baseClass = "gallery__img"
-    if(height > width) return `${baseClass} gallery__img--tall`
-    if(index == 0) return baseClass
-    if((index + 3) % 5 == 0) return `${baseClass} gallery__img--tall`
-    if((index + 0) % 5 == 0) return `${baseClass} gallery__img--wide`
+    if(baseIndex % 3 == 0) return `${baseClass} gallery__img--wide`
     return baseClass
 }
 
@@ -71,7 +71,6 @@ const getImgClass = (index, width, height) => {
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
-    grid-auto-flow: dense;
     gap: var(--r-space-sm);;
 
     &__img-wrapper {

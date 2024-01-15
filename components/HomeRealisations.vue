@@ -13,6 +13,7 @@
                 <ImgGallery
                     gallery="home-gallery"
                     :images="realisations"
+                    :start-wide="true"
                 ></ImgGallery>
             </div>
             <div class="works__button-wrapper">
