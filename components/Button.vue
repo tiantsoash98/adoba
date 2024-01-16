@@ -23,16 +23,18 @@ export default {
 
 <style scoped lang="scss">
 .button {
+    --button-color: var(--brand-secondary);
+    --button-color-opposite: var(--brand-primary);
     $root:&;
     font-family: var(--font-family-primary), 'Arial', serif; 
     letter-spacing: 0;
     line-height: 1.4;
     font-weight: 350;
 
-    color: var(--brand-secondary);
+    color: var(--button-color);
     padding: calc(0.75 * var(--r-base-unit));
     padding-right: var(--r-space-sm);
-    border: 1px solid var(--brand-secondary);
+    border: 1px solid var(--button-color);
     border-radius: 50px;
     overflow: hidden;
 
@@ -42,7 +44,8 @@ export default {
     align-items: flex-start;
     transition: color 0.3s var(--alias-default-ease);
     cursor: pointer; 
-    transition: color 0.6s var(--alias-default-ease),
+    transition: color 0.5s var(--alias-default-ease) .2s,
+                border 0.5s var(--alias-default-ease) .2s,
                 background-color 0.6s var(--alias-default-ease) .1s; 
 
     &:hover {
@@ -52,7 +55,7 @@ export default {
     }
 
     &--small {
-        border: 1px solid var(--brand-primary);
+        border: 1px solid var(--button-color);
         padding: calc(0.3 * var(--r-base-unit)) calc(0.5 * var(--r-base-unit));
 
         #{$root}__icon-wrapper {
@@ -60,8 +63,8 @@ export default {
         }
 
         &:hover {
-            background-color: var(--brand-primary);
-            color: var(--brand-secondary);
+            background-color: var(--button-color);
+            color: var(--button-color-opposite);
         }
     }
 
@@ -76,6 +79,7 @@ export default {
     
     &--tertiary {
         padding: 0;
+        border: none;
 
         #{$root}__icon {
             width: calc(0.5 * var(--r-base-unit));
@@ -83,7 +87,8 @@ export default {
         }
     }
     &--white {
-        color: var(--brand-primary);
+        --button-color: var(--brand-primary);
+        --button-color-opposite: var(--brand-secondary);
     }
 
     &__frame {

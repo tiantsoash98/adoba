@@ -51,6 +51,7 @@
 .service {
     --service-img-height: 70vh;
     $root:&;
+    cursor: pointer;
     overflow: hidden;
 
     &:not(.service--active):hover {

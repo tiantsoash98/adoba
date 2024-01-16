@@ -27,9 +27,11 @@ $min-font-size : 1.25rem;
     // Spacing
     --space-xxs: calc(0.25 * var(--base-unit));
     --space-xs: calc(0.5 * var(--base-unit));
+    --space-xs-2: calc(0.75 * var(--base-unit));
     --space-sm: var(--base-unit);
     --space-md: calc(2 * var(--base-unit));
-    --space-lg: calc(4.5 * var(--base-unit));
+    --space-md-2: calc(3 * var(--base-unit));
+    --space-lg: calc(4 * var(--base-unit));
     --space-xl: calc(7 * var(--base-unit));
     --space-xxl: calc(9 * var(--base-unit));
 
@@ -37,8 +39,10 @@ $min-font-size : 1.25rem;
     --r-grid-x-margin: calc( var(--base-unit-x-margin) * var(--unit-fx));
     --r-space-xxs: calc( var(--space-xxs) * var(--unit-fx));
     --r-space-xs: calc( var(--space-xs) * var(--unit-fx));
+    --r-space-xs-2: calc( var(--space-xs-2) * var(--unit-fx));
     --r-space-sm: calc( var(--space-sm) * var(--unit-fx));
     --r-space-md: calc( var(--space-md) * var(--unit-fx));
+    --r-space-md-2: calc( var(--space-md-2) * var(--unit-fx));
     --r-space-lg: calc( var(--space-lg) * var(--unit-fx));
     --r-space-xl: calc( var(--space-xl) * var(--unit-fx));
     --r-space-xxl: calc( var(--space-xxl) * var(--unit-fx));
@@ -107,8 +111,6 @@ $min-font-size : 1.25rem;
     --alias-default-ease: cubic-bezier(.43,.195,.02,1);
 
     // Navbar 
-    --header-blend-mode: normal;
-    --header-color: var(--brand-primary);
     --default-show-nav-menu-breakpoint: var(--br-sm);
 }
 

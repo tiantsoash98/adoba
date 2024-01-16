@@ -1,5 +1,5 @@
 <template>
-    <section class="section works">
+    <section class="section works" data-header-state="default">
         <div class="container">
             <div class="works__content-wrapper">
                 <div class="works__title-wrapper">

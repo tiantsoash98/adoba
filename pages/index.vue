@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse">
+        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse" data-header-state="white">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </section>
-        <section class="section home-presentation" ref="presentationSection">
+        <section class="section home-presentation" data-header-state="default">
             <div class="container">
                 <div class="home-presentation__content-wrapper">
                     <div class="home-presentation__title-wrapper">
@@ -74,10 +74,9 @@
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const { presentationSection } = ref(null)
 
     onMounted(() => {
-        headerExclusion.value = false
+        headerExclusion.value = true
         animatePageEnter()
         presentationEnter()
         pageScroll()
@@ -178,7 +177,7 @@
 
 <style lang="scss">
 .home {
-    &-hero {
+    &-hero {    
         &__wrapper {
             position: relative;
             width: 100%;
@@ -207,6 +206,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: var(--brand-secondary);
         }
         &__img {
             width: 100%;

@@ -1,7 +1,6 @@
 <template>
     <div class="page__cursor">
         <PageLoader :loaded="loaded" ></PageLoader>
-        <!-- <PageTransition></PageTransition> -->
         <Header :isExclusionOnStart="headerExclusion"/>
 
         <!-- output the page content -->
