@@ -30,7 +30,7 @@
                 </div>
             </div>
         </section>
-        <div class="studio__banner-wrapper">
+        <section class="section section--no-padding-top studio__banner-wrapper">
             <div class="container container--no-padding-right">
                 <BannerImg
                     :placeholder="[50, 25, 75, 5]"
@@ -39,8 +39,12 @@
                     :alt="content.studioImgTwo.data.attributes.alternativeText"
                     />
             </div>
-        </div>
-        
+        </section>
+        <JoinUs
+            :title="content.joinUs.joinUsTitle"
+            :description="content.joinUs.joinUsDescription"
+            :button-label="content.joinUs.joinUsButtonLabel"
+        ></JoinUs>
     </div>
 </template>
 
