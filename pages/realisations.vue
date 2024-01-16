@@ -2,7 +2,7 @@
     <div>
         <section class="section section--margin-top-md realisations">
             <div class="container">
-                <div class="realisations__content-wrapper">
+                <div class="row realisations__content-wrapper">
                     <div class="realisations__header-wrapper">
                         <h1 class="text-visually-hidden">{{ content.realisationTitle }}</h1>
                         <div class="realisations__title title-h1">{{ content.realisationTitle }}</div>
@@ -139,11 +139,6 @@
 <style lang="scss">
 .realisations {
     $root: &;
-    &__content-wrapper {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        column-gap: var(--r-space-sm);
-    }
     &__title {
         &--line-wrapper {
             overflow: hidden;

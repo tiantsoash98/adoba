@@ -1,7 +1,7 @@
 <template>
     <section class="section works" data-header-state="default">
         <div class="container">
-            <div class="works__content-wrapper">
+            <div class="row works__content-wrapper">
                 <div class="works__title-wrapper">
                     <h2 class="works__title">{{ title }}</h2>
                 </div>
@@ -35,11 +35,6 @@
 
 <style lang="scss" scoped>
 .works {
-    &__content-wrapper {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        column-gap: var(--r-space-sm);
-    }
     &__title-wrapper {
         grid-column: span 7;
     }

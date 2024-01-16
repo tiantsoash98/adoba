@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse" data-header-state="white">
+        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
@@ -39,9 +39,9 @@
                 </div>
             </div>
         </section>
-        <section class="section home-presentation" data-header-state="default">
+        <section class="section home-presentation">
             <div class="container">
-                <div class="home-presentation__content-wrapper">
+                <div class="row home-presentation__content-wrapper">
                     <div class="home-presentation__title-wrapper">
                         <h2 class="text-visually-hidden"> {{ content.homePresentation }}</h2>
                         <div class="home-presentation__title title-h3"> {{ content.homePresentation }}</div>
@@ -68,12 +68,12 @@
 </template>
 
 <script setup>
-    import SplitType from 'split-type';
-    const { gsap } = useGsap();
-    const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    import SplitType from 'split-type';
+    const { gsap } = useGsap();
+    const headerExclusion = useHeaderExclusion()
 
     onMounted(() => {
         headerExclusion.value = true
@@ -263,11 +263,6 @@
     }
     }
     &-presentation {
-        &__content-wrapper {
-            display: grid;
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-            column-gap: var(--r-space-sm);
-        }
         &__title-wrapper {
             grid-column: span 8;
         }
@@ -281,27 +276,6 @@
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
-        }
-    }
-    &-works {
-        &__content-wrapper {
-            display: grid;
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-            column-gap: var(--r-space-sm);
-        }
-        &__title-wrapper {
-            grid-column: span 7;
-        }
-        &__text-wrapper {
-            grid-column: span 5;
-        }
-        &__grid {
-            margin-top: var(--r-space-lg);
-        }
-        &__button-wrapper {
-            margin-top: var(--r-space-md);
-            display: flex;
-            justify-content: center;
         }
     }
 }
