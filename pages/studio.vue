@@ -56,38 +56,6 @@
         headerExclusion.value = false
     })
 
-    const animatePageEnter = () => {
-        SplitType.create('.home-presentation__title', 
-        {
-            types: 'lines', 
-            lineClass: 'home-presentation__title--line-wrapper'
-        })
-
-        document.querySelectorAll('.home-presentation__title--line-wrapper')
-            .forEach(function(line){
-                var wrapperDiv = document.createElement('div');
-                wrapperDiv.classList.add('home-presentation__title--line')
-                wrapperDiv.innerHTML = line.innerHTML
-                line.innerHTML = ""
-                line.appendChild(wrapperDiv)
-            })
-
-        gsap.timeline({
-            defaults: { duration: 1, ease: "power3.out" },
-            scrollTrigger: {
-                trigger: ".home-presentation",
-                //trigger element - viewport
-                start: "top 80%",
-                end: "top center"
-            }
-        })
-        .from('.home-presentation__title--line', 
-        {
-            opacity: 0,
-            yPercent: 100,
-            stagger: 0.1,
-        })
-    }
 
     useHead({
         title: content.value.metadata.metaTitle,
