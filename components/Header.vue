@@ -2,7 +2,7 @@
     <header 
     :class="{
         'header': true, 
-        'header--exclusion': isBeyondFold || isExclusionOnStart, 
+        'header--exclusion': headerStyleState == 'white', 
         'header--page-scrolling-down': isBeyondFold && !isScrollingDown,
         'header--hide': isBeyondFold && isScrollingDown,
         'header--open': isServicesDropdownOpen,
@@ -40,7 +40,7 @@
                         <li><NuxtLink to="/jobs">Jobs</NuxtLink></li>
                         <li>
                             <NuxtLink to="/contact">
-                                <Button text="Contact" class="button--small button--white"></Button>
+                                <Button text="Contact" :class="{'button--small': true, 'button--white': headerStyleState == 'white'}"></Button>
                             </NuxtLink>
                         </li>
                     </ul>
@@ -61,6 +61,7 @@
     const isScrollingDown = ref(false)
     const isClickable = ref(true)
     const headerState = ref("open")
+    const headerStyleState = useHeaderStyleState()
     const startHidePosition = ref(0)
     const currentScrollPosition = ref(0)
 
@@ -81,6 +82,8 @@
         isBeyondFold.value = (window.scrollY > startHidePosition.value);
         currentScrollPosition.value = window.scrollY;
     }
+
+
     function toogleServicesDropdown(){
         
         if(isClickable.value && headerState.value == "open"){
@@ -113,13 +116,13 @@
 
 <style scoped lang="scss">
 .header {
+    --header-color: var(--brand-secondary);
     $root:&;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: var( --z-index-nav);
-    mix-blend-mode: var(--header-blend-mode);
     color:  var(--header-color);
     padding-top: var(--r-space-md);
     transition: padding .5s var(--alias-default-ease) .2s, 
@@ -127,7 +130,7 @@
                 color .5s var(--alias-default-ease) .2s;
 
     &--exclusion {
-        --header-blend-mode: difference;
+        --header-color: var(--brand-primary);
     }
     &--negative {
         --header-blend-mode: normal;

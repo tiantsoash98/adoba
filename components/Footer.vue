@@ -1,5 +1,5 @@
 <template>
-    <section class="pre-footer">
+    <section class="pre-footer" data-header-state="default">
         <div class="container pre-footer__main-wrapper">
             <NuxtLink to="/contact">
                 <div class="pre-footer__label title-h6">{{ content.footerCtaLabel }}</div>

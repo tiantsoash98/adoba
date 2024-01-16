@@ -23,13 +23,14 @@ export default {
 
 <style scoped lang="scss">
 .button {
+    --button-color: var(--brand-secondary);
     $root:&;
     font-family: var(--font-family-primary), 'Arial', serif; 
     letter-spacing: 0;
     line-height: 1.4;
     font-weight: 350;
 
-    color: var(--brand-secondary);
+    color: var(--button-color);
     padding: calc(0.75 * var(--r-base-unit));
     padding-right: var(--r-space-sm);
     border: 1px solid var(--brand-secondary);
@@ -52,7 +53,7 @@ export default {
     }
 
     &--small {
-        border: 1px solid var(--brand-primary);
+        border: 1px solid var(--button-color);
         padding: calc(0.3 * var(--r-base-unit)) calc(0.5 * var(--r-base-unit));
 
         #{$root}__icon-wrapper {
@@ -76,6 +77,7 @@ export default {
     
     &--tertiary {
         padding: 0;
+        border: none;
 
         #{$root}__icon {
             width: calc(0.5 * var(--r-base-unit));
@@ -83,7 +85,7 @@ export default {
         }
     }
     &--white {
-        color: var(--brand-primary);
+        --button-color: var(--brand-primary)
     }
 
     &__frame {

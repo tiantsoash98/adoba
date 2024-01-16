@@ -1,5 +1,5 @@
 <template>
-    <section class="section services" data-cursor="-inverse">
+    <section class="section services" data-cursor="-inverse" data-header-state="white">
         <div class="container">
             <div class="services__label-wrapper">
                 <h6>Nos Services</h6>
