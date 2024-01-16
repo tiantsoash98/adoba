@@ -2,11 +2,11 @@
     <header 
     :class="{
         'header': true, 
+        'header--exclusion': !isBeyondFold && headerExclusion,
         'header--beyond-fold': isBeyondFold,
         'header--page-scrolling-up': isBeyondFold && !isScrollingDown,
         'header--hide': isBeyondFold && isScrollingDown,
-        'header--open': isServicesDropdownOpen,
-        'header--close': isServicesDropdownClose
+        'header--default': headerIsForcedDefault
         }"
     >
         <div class="container">
@@ -40,7 +40,7 @@
                         <li><NuxtLink to="/jobs">Jobs</NuxtLink></li>
                         <li>
                             <NuxtLink to="/contact">
-                                <Button text="Contact" :class="{'button--small': true, 'button--white': headerStyleState == 'white'}"></Button>
+                                <Button text="Contact" :class="{'button--small': true }"></Button>
                             </NuxtLink>
                         </li>
                     </ul>
@@ -61,7 +61,8 @@
     const isScrollingDown = ref(false)
     const isClickable = ref(true)
     const headerState = ref("open")
-    const headerStyleState = useHeaderStyleState()
+    const headerIsForcedDefault = ref(false)
+    const headerExclusion = useHeaderExclusion()
     const startHidePosition = ref(0)
     const currentScrollPosition = ref(0)
 
@@ -83,12 +84,13 @@
         currentScrollPosition.value = window.scrollY;
     }
 
-
     function toogleServicesDropdown(){
         if(isClickable.value && headerState.value == "open"){
+            headerIsForcedDefault.value = true
             openHeader()
         }
         else if(isClickable.value && headerState.value == "close"){
+            headerIsForcedDefault.value = false
             closeHeader()
         }
     }
@@ -108,6 +110,7 @@
         isClickable.value = true;
         headerState.value = "open";
     }
+
 
     const isServicesDropdownOpen = computed(() => headerState.value == 'close')
     const isServicesDropdownClose = computed(() => headerState.value == 'open')
@@ -130,6 +133,12 @@
                 background-color .5s var(--alias-default-ease) .2s,
                 transform .5s var(--alias-default-ease) .2s;
 
+    &--exclusion {
+        --header-color: var(--brand-primary)
+    }
+    &--default {
+        --header-color: var(--brand-secondary);
+    }
     &--beyond-fold {
         padding-top: var(--r-space-xs);
         padding-bottom: var(--r-space-xs);
@@ -144,9 +153,7 @@
     &--hide {
         transform: translateY(-100%);
     }
-    &--open {
-        --header-color: var(--brand-secondary);
-    }
+    
 
     & a {
         color: var(--header-color);
