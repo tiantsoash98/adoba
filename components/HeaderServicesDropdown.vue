@@ -13,15 +13,6 @@
                         </NuxtLink>
                     </li>
                 </ul>
-                <div class="menu__img-content">
-                    <div class="menu__img-wrapper">
-                        <!-- <img v-for="service in services" 
-                            :key="service.title" 
-                            :src="`/${service.img}`" 
-                            class="menu__img" 
-                            loading="lazy"/> -->
-                    </div>
-                </div>
             </div>
         </div>
     </aside>
@@ -71,11 +62,10 @@
             .set('.menu', { display: 'block'})
             .set('.menu__links-wrapper', { display: 'block' })
             .set('.menu__backdrop', { display: 'block' })
-            // .set('.menu__img-content', { display: 'block', opacity: 0})
             .set('.menu__label', { yPercent: 100, opacity: 0 }, 0)
             .to('.menu__backdrop', { opacity: 0.5, pointerEvents: 'all' })
             .to('.menu__frame', { scaleY: 1 }, '<')
-            .to('.header', { '--header-color': 'var(--brand-secondary)' }, '<')
+            // .to('.header', { '--header-color': 'var(--brand-secondary)' }, '<')
             .to('.menu__links-wrapper', { opacity: 1 }, '<+0.3s')
             .to('.menu__label', { yPercent: 0, opacity: 1, stagger: 0.15 }, 0)
 
@@ -96,9 +86,8 @@
                 },
             })
             .to('.menu__label', { yPercent: 100, opacity: 0, stagger: {each: 0.08, from: "end",}, duration: 0.5 })
-            // .to('.menu__img-content', { opacity: 0}, '<')
             .to('.menu__frame', { scaleY: 0 }, '-=0.8s')
-            .to('.header', { '--header-color': 'var(--brand-primary)' }, '<')
+            // .to('.header', { '--header-color': 'var(--brand-primary)' }, '<')
             .to('.menu__backdrop', { opacity: 0, pointerEvents: 'none' }, '<')
             .set('.menu__links-wrapper', { opacity: 0, display: 'none' })
             .set('.menu__backdrop', { display: 'none' })
@@ -145,7 +134,7 @@
         transform-origin: top;
     }
     &__content-wrapper {
-        padding-top: var(--r-space-lg);
+        padding-top: var(--r-space-md-2);
         padding-bottom: var(--r-space-md);
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));

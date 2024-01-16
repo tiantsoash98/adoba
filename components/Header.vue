@@ -2,8 +2,8 @@
     <header 
     :class="{
         'header': true, 
-        'header--exclusion': headerStyleState == 'white', 
-        'header--page-scrolling-down': isBeyondFold && !isScrollingDown,
+        'header--beyond-fold': isBeyondFold,
+        'header--page-scrolling-up': isBeyondFold && !isScrollingDown,
         'header--hide': isBeyondFold && isScrollingDown,
         'header--open': isServicesDropdownOpen,
         'header--close': isServicesDropdownClose
@@ -85,7 +85,6 @@
 
 
     function toogleServicesDropdown(){
-        
         if(isClickable.value && headerState.value == "open"){
             openHeader()
         }
@@ -124,23 +123,29 @@
     width: 100%;
     z-index: var( --z-index-nav);
     color:  var(--header-color);
-    padding-top: var(--r-space-md);
+    padding-top: var(--r-space-sm);
     transition: padding .5s var(--alias-default-ease) .2s, 
                 opacity .5s var(--alias-default-ease) .2s,
-                color .5s var(--alias-default-ease) .2s;
+                color .5s var(--alias-default-ease) .2s,
+                background-color .5s var(--alias-default-ease) .2s,
+                transform .5s var(--alias-default-ease) .2s;
 
-    &--exclusion {
-        --header-color: var(--brand-primary);
+    &--beyond-fold {
+        padding-top: var(--r-space-xs);
+        padding-bottom: var(--r-space-xs);
+
+        #{$root}__logo-wrapper {
+            max-height: var(--r-space-xs-2);
+        }
     }
-    &--negative {
-        --header-blend-mode: normal;
-        --header-color: var(--brand-secondary);
-    }
-    &--page-scrolling-down {
-        padding-top: var(--r-space-sm);
+    &--page-scrolling-up {
+        background-color: var(--brand-primary);
     }
     &--hide {
-        opacity: 0;
+        transform: translateY(-100%);
+    }
+    &--open {
+        --header-color: var(--brand-secondary);
     }
 
     & a {
@@ -148,15 +153,17 @@
         transition: color .5s var(--alias-default-ease) .2s;
     }
     &__main-wrapper {
-        padding-bottom: var(--r-space-sm);
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         column-gap: var(--r-space-sm);
     }
     &__logo-wrapper {
         grid-column: span 4;
+        margin-top: auto;
+        margin-bottom: auto;
         height: 100%;
         max-height: var(--r-space-sm);
+        transition: max-height .5s var(--alias-default-ease) .2s;
     }
     &__logo {
         height: 100%;

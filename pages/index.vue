@@ -39,7 +39,7 @@
                 </div>
             </div>
         </section>
-        <section class="section home-presentation" ref="presentationSection" data-header-state="default">
+        <section class="section home-presentation" data-header-state="default">
             <div class="container">
                 <div class="home-presentation__content-wrapper">
                     <div class="home-presentation__title-wrapper">
@@ -70,19 +70,11 @@
 <script setup>
     import SplitType from 'split-type';
     const { gsap } = useGsap();
-    const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const { presentationSection } = ref(null)
 
     onMounted(() => {
-        headerExclusion.value = true
-        const { observerDefault } = useHeader()
-        
-        document.querySelectorAll('[data-header-state="white"]')
-            .forEach((item) => observerDefault.observe(item))
-
         animatePageEnter()
         presentationEnter()
         pageScroll()
