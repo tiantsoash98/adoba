@@ -40,7 +40,7 @@
                         <li><NuxtLink to="/jobs">Jobs</NuxtLink></li>
                         <li>
                             <NuxtLink to="/contact">
-                                <Button text="Contact" :class="{'button--small': true }"></Button>
+                                <Button text="Contact" :class="headerCTAButtonClass"></Button>
                             </NuxtLink>
                         </li>
                     </ul>
@@ -111,6 +111,14 @@
         headerState.value = "open";
     }
 
+    const headerCTAButtonClass = computed(() => {
+        const baseClass = `button--small`;
+
+        if(headerIsForcedDefault.value) return `${baseClass}`;
+        if(!isBeyondFold.value && headerExclusion.value) return `${baseClass} button--white`;
+
+        return baseClass;
+    })
 
     const isServicesDropdownOpen = computed(() => headerState.value == 'close')
     const isServicesDropdownClose = computed(() => headerState.value == 'open')
