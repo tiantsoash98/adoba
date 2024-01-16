@@ -27,7 +27,7 @@
 @mixin h4 {
     font-family: var(--font-family-primary), 'Arial', serif;
     @include font-size(var(--title-4));
-    letter-spacing: 0;
+    letter-spacing: -0.03vw;
     line-height: 1.4;
     font-weight: 350;
 }
