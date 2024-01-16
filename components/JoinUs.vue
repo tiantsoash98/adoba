@@ -1,20 +1,23 @@
 <template>
-    <section class="section join-us">
-        <div class="container">
-            <div class="row">
-                <div class="join-us__title-wrapper">
-                    <h3 class="text-visually-hidden">{{ title }}</h3>
-                    <div class="join-us____title title-h1">{{ title }}</div>
-                </div>
-                <div class="join-us__content-wrapper">
-                    <h6 class="join-us__description">{{ description }}</h6>
-                    <NuxtLink to="/contact">
-                        <Button :text="buttonLabel"></Button>
-                    </NuxtLink>
+    <div>
+        <section class="section join-us">
+            <div class="container">
+                <div class="row">
+                    <div class="join-us__title-wrapper">
+                        <h3 class="text-visually-hidden">{{ title }}</h3>
+                        <div class="join-us____title title-h1">{{ title }}</div>
+                    </div>
+                    <div class="join-us__content-wrapper">
+                        <h6 class="join-us__description">{{ description }}</h6>
+                        <NuxtLink to="/jobs">
+                            <Button :text="buttonLabel"></Button>
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+    
 </template>
 
 <script setup>

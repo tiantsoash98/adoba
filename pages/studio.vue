@@ -1,49 +1,52 @@
 <template>
-    <section class="section section--margin-top-md studio">
-        <div class="container">
-            <div class="row studio-description__wrapper">
-                <h1 class="title-h6 studio-description__label">{{ content.studioLabel }}</h1>
-                <div class="studio-description__title-wrapper">
-                    <h2 class="text-visually-hidden">{{ content.studioDescription }}</h2>
-                    <div class="studio__description title-h4">{{ content.studioDescription }}</div>
+    <div>
+        <section class="section section--margin-top-md studio">
+            <div class="container">
+                <div class="row studio-description__wrapper">
+                    <h1 class="title-h6 studio-description__label">{{ content.studioLabel }}</h1>
+                    <div class="studio-description__title-wrapper">
+                        <h2 class="text-visually-hidden">{{ content.studioDescription }}</h2>
+                        <div class="studio__description title-h4">{{ content.studioDescription }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <BannerImg
-        :placeholder="[50, 25, 75, 5]"
-        imgClass="studio__banner--first" 
-        :src="imgPath(content.studioImgOne.data.attributes.url)" 
-        :alt="content.studioImgOne.data.attributes.alternativeText"
-        />
-    <section class="section">
-        <div class="container">
-            <div class="row studio-solutions__wrapper">
-                <div class="studio-solutions__title-wrapper">
-                    <h3 class="text-visually-hidden">{{ content.studioSolutionTitle }}</h3>
-                    <div class="studio-solutions__title title-h2">{{ content.studioSolutionTitle }}</div>
-                </div>
-                <div class="studio-solutions__text-wrapper">
-                    <p class="studio-solutions__text">{{ content.studioSolutionText }}</p>
+        </section>
+        <BannerImg
+            :placeholder="[50, 25, 75, 5]"
+            imgClass="studio__banner--first" 
+            :src="imgPath(content.studioImgOne.data.attributes.url)" 
+            :alt="content.studioImgOne.data.attributes.alternativeText"
+            />
+        <section class="section">
+            <div class="container">
+                <div class="row studio-solutions__wrapper">
+                    <div class="studio-solutions__title-wrapper">
+                        <h3 class="text-visually-hidden">{{ content.studioSolutionTitle }}</h3>
+                        <div class="studio-solutions__title title-h2">{{ content.studioSolutionTitle }}</div>
+                    </div>
+                    <div class="studio-solutions__text-wrapper">
+                        <p class="studio-solutions__text">{{ content.studioSolutionText }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="section section--no-padding-top studio__banner-wrapper">
-        <div class="container container--no-padding-right">
-            <BannerImg
-                :placeholder="[50, 25, 75, 5]"
-                imgClass="studio__banner--second" 
-                :src="imgPath(content.studioImgTwo.data.attributes.url)" 
-                :alt="content.studioImgTwo.data.attributes.alternativeText"
-                />
-        </div>
-    </section>
-    <JoinUs
-        :title="content.joinUs.joinUsTitle"
-        :description="content.joinUs.joinUsDescription"
-        :button-label="content.joinUs.joinUsButtonLabel"
-    ></JoinUs>
+        </section>
+        <section class="section section--no-padding-top studio__banner-wrapper">
+            <div class="container container--no-padding-right">
+                <BannerImg
+                    :placeholder="[50, 25, 75, 5]"
+                    imgClass="studio__banner--second" 
+                    :src="imgPath(content.studioImgTwo.data.attributes.url)" 
+                    :alt="content.studioImgTwo.data.attributes.alternativeText"
+                    />
+            </div>
+        </section>
+        <JoinUs
+            :title="content.joinUs.joinUsTitle"
+            :description="content.joinUs.joinUsDescription"
+            :button-label="content.joinUs.joinUsButtonLabel"
+        ></JoinUs>
+    </div>
+    
 </template>
 
 <script setup>
