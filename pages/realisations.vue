@@ -83,7 +83,7 @@
     }
 
     onMounted(() => {
-        headerExclusion.value = true
+        headerExclusion.value = false
         animatePageEnter()
     })
 

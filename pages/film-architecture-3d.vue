@@ -12,7 +12,7 @@
     const headerExclusion = useHeaderExclusion()
 
     onMounted(() => {
-        headerExclusion.value = true
+        headerExclusion.value = false
     })
 </script>
 
