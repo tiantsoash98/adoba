@@ -33,11 +33,11 @@
                                 </svg>
                             </div>
                         </li>
-                        <li><NuxtLink to="/studio">Le studio</NuxtLink></li>
-                        <li><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
-                        <li><NuxtLink to="/blog">Blog</NuxtLink></li>
-                        <li><NuxtLink to="/faq">FAQ</NuxtLink></li>
-                        <li><NuxtLink to="/jobs">Jobs</NuxtLink></li>
+                        <li class="header__link"><NuxtLink to="/studio">Le studio</NuxtLink></li>
+                        <li class="header__link"><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
+                        <li class="header__link"><NuxtLink to="/blog">Blog</NuxtLink></li>
+                        <li class="header__link"><NuxtLink to="/faq">FAQ</NuxtLink></li>
+                        <li class="header__link"><NuxtLink to="/jobs">Jobs</NuxtLink></li>
                         <li>
                             <NuxtLink to="/contact">
                                 <Button text="Contact" :class="headerCTAButtonClass"></Button>
@@ -162,7 +162,6 @@
         transform: translateY(-100%);
     }
     
-
     & a {
         color: var(--header-color);
         transition: color .5s var(--alias-default-ease) .2s;
@@ -200,6 +199,11 @@
         justify-content: flex-start;
         align-items: center;
         cursor: pointer;
+        transition: opacity .3s var(--alias-default-ease); 
+
+        &:hover {
+            opacity: 0.6;
+        }
 
         &--open {
             #{$root}__icon-wrapper {
@@ -214,7 +218,7 @@
         width: 100%;
         max-width: var(--r-space-xs);
         margin-left: var(--r-space-xs);
-        transition: transform 1s var(--alias-default-ease) .1s; 
+        transition: transform 1s var(--alias-default-ease); 
     }
     &__dropdown-icon{
         width: 100%;

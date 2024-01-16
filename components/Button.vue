@@ -24,6 +24,7 @@ export default {
 <style scoped lang="scss">
 .button {
     --button-color: var(--brand-secondary);
+    --button-color-opposite: var(--brand-primary);
     $root:&;
     font-family: var(--font-family-primary), 'Arial', serif; 
     letter-spacing: 0;
@@ -33,7 +34,7 @@ export default {
     color: var(--button-color);
     padding: calc(0.75 * var(--r-base-unit));
     padding-right: var(--r-space-sm);
-    border: 1px solid var(--brand-secondary);
+    border: 1px solid var(--button-color);
     border-radius: 50px;
     overflow: hidden;
 
@@ -43,7 +44,8 @@ export default {
     align-items: flex-start;
     transition: color 0.3s var(--alias-default-ease);
     cursor: pointer; 
-    transition: color 0.6s var(--alias-default-ease),
+    transition: color 0.5s var(--alias-default-ease) .2s,
+                border 0.5s var(--alias-default-ease) .2s,
                 background-color 0.6s var(--alias-default-ease) .1s; 
 
     &:hover {
@@ -61,8 +63,8 @@ export default {
         }
 
         &:hover {
-            background-color: var(--brand-primary);
-            color: var(--brand-secondary);
+            background-color: var(--button-color);
+            color: var(--button-color-opposite);
         }
     }
 
@@ -85,7 +87,8 @@ export default {
         }
     }
     &--white {
-        --button-color: var(--brand-primary)
+        --button-color: var(--brand-primary);
+        --button-color-opposite: var(--brand-secondary);
     }
 
     &__frame {
