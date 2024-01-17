@@ -1,6 +1,6 @@
 <template>
-    <svg :class="iconClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.2 13.4">
-        <polygon points="17.2 6.7 10.5 13.4 9.8 12.7 15.3 7.2 0 7.2 0 6.2 15.3 6.2 9.8 .7 10.5 0 17.2 6.7"/>
+    <svg :class="iconClass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <polygon points="2.4 24 0 21.7 18.3 3.3 7.4 3.3 7.4 0 24 0 24 16.7 20.7 16.7 20.7 5.7 2.4 24"/>
     </svg>
 </template>
 

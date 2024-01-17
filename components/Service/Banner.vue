@@ -1,7 +1,7 @@
 <template>
     <div>
-        <section class="section" v-if="index == 1">
-            <div class="container" >
+        <section class="section section--padding-top-md" v-if="index == 1">
+            <div class="container container--wide" >
                 <BannerImg 
                     :placeholder="[50, 25, 75, 5]"
                     imgClass="service-banner__first" 

@@ -13,5 +13,8 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-
+svg {
+    width: 100%;
+    fill: currentColor;
+}
 </style>

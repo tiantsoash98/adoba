@@ -15,7 +15,7 @@
                 <div class="row service-info__content-wrapper">
                     <div class="service-info__description-wrapper">
                         <h3 class="text-visually-hidden">{{ content.serviceInfo.serviceInfoDescription }}</h3>
-                        <div class="service-info__description title-h6">{{ content.serviceInfo.serviceInfoDescription }}</div>
+                        <div class="service-info__description title-h5">{{ content.serviceInfo.serviceInfoDescription }}</div>
                     </div>
                     <div class="service-info__text-wrapper">
                         <p class="service-info__text">{{ content.serviceInfo.serviceInfoText }}</p>
@@ -41,7 +41,7 @@ const props = defineProps({
         padding-bottom: var(--r-space-md);
     }
     &__headline-wrapper {
-        max-width: 50ch;
+        max-width: 75ch;
     }
     &__icon-wrapper {
         display: flex;
@@ -61,13 +61,13 @@ const props = defineProps({
         background-color: var(--brand-secondary);
     }
     &__content-wrapper {
-        margin-top: var(--r-space-md);
+        margin-top: var(--r-space-lg);
     }
     &__description-wrapper {
-        grid-column: span 5;
+        grid-column: span 6;
     }
     &__text-wrapper {
-        grid-column: 8/span 5;
+        grid-column: 9/span 4;
         margin-top: auto;
     }
 }

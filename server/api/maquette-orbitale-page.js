@@ -25,6 +25,19 @@ export default defineEventHandler(async (event) => {
             serviceCTA: {
                 fields: ["serviceCTAText", "serviceCTAButtonLabel"],
             },
+            serviceOthers: {
+                fields: ["serviceOthersLabel"],
+                populate: {
+                    serviceOthersList: {
+                        fields: ["serviceTitle", "serviceSlug"],
+                        populate: {
+                            serviceImg: {
+                                fields: ["name", "alternativeText", "url"],
+                            }  
+                        }
+                    }  
+                }
+            },
             metadata: {
                 fields: ["metaTitle", "metaDescription"],
                 populate: {

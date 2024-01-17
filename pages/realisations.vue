@@ -17,12 +17,12 @@
                     </div>
                     <div class="realisations__bottom-border"></div>
                 </div>
-                <div class="realisations__gallery-wrapper">
-                    <ImgGallery
-                        gallery="realisations-gallery"
-                        :images="filteredImages"
-                    ></ImgGallery>
-                </div>
+            </div>
+            <div class="container container--wide realisations__gallery-wrapper">
+                <ImgGallery
+                    gallery="realisations-gallery"
+                    :images="filteredImages"
+                ></ImgGallery>
             </div>
         </section>
         <RealisationsFilterModal 
@@ -188,7 +188,7 @@
         }
     }
     &__gallery-wrapper {
-        padding-top: var(--r-space-md);
+        padding-top: var(--r-space-lg);
     }
     &__icon-wrapper {
         display: flex;
