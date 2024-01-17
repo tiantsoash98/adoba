@@ -37,12 +37,13 @@
 </template>
 
 <script setup>
-    import SplitType from 'split-type';
-    const { gsap } = useGsap();
-    const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/realisations-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    import SplitType from 'split-type';
+    const { gsap } = useGsap();
+    const headerExclusion = useHeaderExclusion()
+    
     const { data: works, pending }  = await useLazyFetch('/api/realisations', {
         transform: (_works) => _works.data.data
     })
