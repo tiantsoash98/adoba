@@ -2,6 +2,9 @@
     <div>
         <ServiceHero :content="content"></ServiceHero>
         <ServiceInfo :content="content"></ServiceInfo>
+        <ServiceBanner :content="content" index="1"></ServiceBanner>
+        <ServiceBanner :content="content" index="2"></ServiceBanner>
+        <ServiceCTA :content="content"></ServiceCTA>
     </div>
 </template>
 

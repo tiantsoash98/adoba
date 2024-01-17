@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
                 }
             },
             serviceCTA: {
-                fields: ["serviceCTAText", "serviceCTAButtonLabe"],
+                fields: ["serviceCTAText", "serviceCTAButtonLabel"],
             },
             metadata: {
                 fields: ["metaTitle", "metaDescription"],
