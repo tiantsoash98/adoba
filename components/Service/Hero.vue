@@ -30,9 +30,7 @@
                 <div class="service-hero__scroll-wrapper">
                     <div class="service-hero__label-wrapper">Scroll</div>
                     <div class="service-hero__icon-wrapper">
-                        <svg class="service-hero__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.4 17.2">
-                            <polygon points="6.7 17.2 0 10.5 .7 9.8 6.2 15.3 6.2 0 7.2 0 7.2 15.3 12.7 9.8 13.4 10.5 6.7 17.2"/>
-                        </svg>
+                        <IconArrowDown icon-class="service-hero__icon"></IconArrowDown>
                     </div>
                 </div>
             </div>

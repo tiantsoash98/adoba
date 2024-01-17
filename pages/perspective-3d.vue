@@ -1,6 +1,7 @@
 <template>
     <div>
         <ServiceHero :content="content"></ServiceHero>
+        <ServiceInfo :content="content"></ServiceInfo>
     </div>
 </template>
 

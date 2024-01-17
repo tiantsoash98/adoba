@@ -9,9 +9,7 @@
         <div class="realisations-modal__wrapper">
             <div class="realisations-modal__top-wrapper">
                 <div class="realisations-modal__icon-wrapper " @click="closeMenu">
-                    <svg class="realisations-modal__icon realisations-modal__close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.7 24.7">
-                        <polygon points="22.4 24.7 12.4 14.7 2.4 24.7 0 22.4 10 12.4 0 2.4 2.4 0 12.4 10 22.4 0 24.7 2.4 14.7 12.4 24.7 22.4 22.4 24.7"/>
-                    </svg>
+                    <IconXClose icon-class="realisations-modal__icon realisations-modal__close-icon"></IconXClose>
                 </div>
             </div>
             <div class="realisations-modal__content-wrapper">
@@ -25,9 +23,7 @@
                         @click="updateSelected({key: filter.key, text: filter.value})"
                     >
                         <div class="realisations-modal__active-icon-wrapper">
-                            <svg class="realisations-modal__active-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.2 13.4">
-                                <polygon points="17.2 6.7 10.5 13.4 9.8 12.7 15.3 7.2 0 7.2 0 6.2 15.3 6.2 9.8 .7 10.5 0 17.2 6.7"/>
-                            </svg>
+                            <IconArrowLeft icon-class="realisations-modal__active-icon"></IconArrowLeft>
                         </div>
                         {{ filter.value }}
                     </li>
