@@ -1,12 +1,3 @@
-<script setup>
-const props = defineProps({
-    title: String,
-    description: String,
-    icon: String
-})
-
-</script>
-
 <template>
     <div class="advantage">
         <div class="advantage__border"></div>
@@ -24,6 +15,14 @@ const props = defineProps({
         </div>
     </div>
 </template>
+
+<script setup>
+const props = defineProps({
+    title: String,
+    description: String,
+    icon: String
+})
+</script>
 
 <style scoped lang="scss">
     .advantage {

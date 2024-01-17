@@ -35,7 +35,7 @@
 @mixin h5 {
     font-family: var(--font-family-primary), 'Arial', serif;
     @include font-size(var(--title-5));
-    letter-spacing: 0;
+    letter-spacing: -0.02vw;
     line-height: 1.4;
     font-weight: 350;
 }
@@ -43,7 +43,7 @@
 @mixin h6 {
     font-family: var(--font-family-primary), 'Arial', serif;
     @include font-size(var(--title-6));
-    letter-spacing: -0.03vw;
+    letter-spacing: -0.01vw;
     line-height: 1.4;
     font-weight: 350;
 }
