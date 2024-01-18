@@ -21,7 +21,7 @@
 
 <script setup>
     const props = defineProps({
-        content: Array
+        content: Object
     })
 </script>
 

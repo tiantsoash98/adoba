@@ -61,7 +61,7 @@
             </div>
             <div class="footer__end-wrapper">
                 <div class="footer__launched-wrapper">
-                    <span class="footnote-text">{{ content.footerCopyrights[0].children[0].text }}</span>
+                    <span class="footnote-text" v-html="content.footerCopyrights[0].children[0].text"></span>
                 </div>
                 <ul class="footer__socials-wrapper">
                     <li class="footer__social footer__social--facebook">

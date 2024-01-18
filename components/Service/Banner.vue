@@ -1,16 +1,15 @@
 <template>
     <div>
-        <section class="section section--padding-top-md" v-if="index == 1">
+        <section class="section section--padding-top-md" v-if="index == '1'">
             <div class="container container--wide" >
                 <BannerImg 
-                    :placeholder="[50, 25, 75, 5]"
                     imgClass="service-banner__first" 
                     :src="imgPath(content.serviceBannerOne.serviceBannerMedia.data.attributes.url)" 
                     :alt="content.serviceBannerOne.serviceBannerMedia.data.attributes.alternativeText"
                     />
             </div>
         </section>
-        <section class="section" v-if="index == 2">
+        <section class="section" v-if="index == '2'">
             <BannerImg 
                 :placeholder="[50, 25, 75, 5]"
                 imgClass="service-banner__first" 
@@ -24,7 +23,7 @@
 <script setup>
 const props = defineProps({
     content: Object,
-    index : Number
+    index : String
 })
 </script>
 
