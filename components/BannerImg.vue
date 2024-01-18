@@ -1,11 +1,11 @@
 <template>
     <div class="banner-img__wrapper" ref="img">
         <nuxt-img
+            :placeholder="[50, 25, 75, 5]"
             :class="imgFullClass" 
             :sizes="sizes"
             :src="src" 
             :alt="alt"
-            densities="1x 2x"
             :loading="loading"
             />
     </div>

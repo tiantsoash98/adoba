@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section section--padding-top-md" v-if="index == '1'">
+        <section :class="sectionClass" v-if="index == '1'">
             <div class="container container--wide" >
                 <BannerImg 
                     imgClass="service-banner__first" 
@@ -9,9 +9,8 @@
                     />
             </div>
         </section>
-        <section class="section" v-if="index == '2'">
+        <section :class="sectionClass" v-if="index == '2'">
             <BannerImg 
-                :placeholder="[50, 25, 75, 5]"
                 imgClass="service-banner__first" 
                 :src="imgPath(content.serviceBannerTwo.serviceBannerMedia.data.attributes.url)" 
                 :alt="content.serviceBannerTwo.serviceBannerMedia.data.attributes.alternativeText"
@@ -23,8 +22,18 @@
 <script setup>
 const props = defineProps({
     content: Object,
-    index : String
+    index : String,
+    paddingTop: {
+        type: String,
+        default: 'md'
+    },
+    paddingBottom: {
+        type: String,
+        default: 'md'
+    }
 })
+
+const sectionClass = computed(() => `section section--padding-top-${props.paddingTop} section--padding-bottom-${props.paddingBottom}`)
 </script>
 
 <style lang="scss" scoped>

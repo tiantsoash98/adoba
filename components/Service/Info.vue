@@ -41,7 +41,7 @@ const props = defineProps({
         padding-bottom: var(--r-space-md);
     }
     &__headline-wrapper {
-        max-width: 75ch;
+        max-width: 50ch;
     }
     &__icon-wrapper {
         display: flex;

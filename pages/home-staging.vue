@@ -1,18 +1,42 @@
 <template>
     <div>
-        <section class="section section--margin-top-md">
-            <div class="container">
-                <h1>Home staging</h1>
-            </div>
-        </section>
+        <ServiceHero :content="content"></ServiceHero>
+        <ServiceInfo :content="content"></ServiceInfo>
+        <ServiceBanner :content="content" index="1" padding-bottom="sm"></ServiceBanner>
+        <ServiceGallery :content="content"></ServiceGallery>
+        <ServiceBanner :content="content" index="2"></ServiceBanner>
+        <ServiceCTA :content="content"></ServiceCTA>
+        <ServiceOthers :content="content"></ServiceOthers>
     </div>
 </template>
 
 <script setup>
+    const { data: content }  = await useFetch('/api/home-staging-page', {
+        transform: (_content) => _content.data.data.attributes
+    })
     const headerExclusion = useHeaderExclusion()
 
     onMounted(() => {
-        headerExclusion.value = false
+        headerExclusion.value = true
+    })
+    
+    useHead({
+        title: content.value.metadata.metaTitle,
+        meta: [
+            { name: 'description', content: content.value.metadata.metaDescription }
+        ]
+    })
+
+    useSeoMeta({
+        description: content.value.metadata.metaDescription,
+        ogTitle: content.value.metadata.metaTitle,
+        ogDescription: content.value.metadata.metaDescription,
+        ogImage: imgPath(content.value.metadata?.metaImage?.data.attributes?.url),
+        ogUrl: useRoute().fullPath,
+        twitterTitle: content.value.metadata.metaTitle,
+        twitterDescription: content.value.metadata.metaDescription,
+        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
+        twitterCard: 'summary'
     })
 </script>
 

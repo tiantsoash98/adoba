@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-const { gsap, ScrollTrigger } = useGsap();
+const { gsap } = useGsap();
 const triggerRef = ref(null)
 const img1 = ref(null)
 const img2 = ref(null)
