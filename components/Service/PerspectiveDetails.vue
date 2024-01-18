@@ -12,27 +12,29 @@
                             <p class="service-perspective__text">{{ content.serviceDetails.servicePerspectiveIntText }}</p>
                         </div>
                     </div>
-                    <div class="section-perspective__canvas">
-                        <div class="section-perspective__img-wrapper section-perspective__img-wrapper--1 section-perspective__img-wrapper--absolute">
-                            <nuxt-img
-                                :src="imgPath(content.serviceDetails.servicePerspectiveIntImg.data.attributes.url)"
-                                class="section-perspective__img" 
-                                sizes="sm:100vw md:50vw 50vw" 
-                                :alt="content.serviceDetails.servicePerspectiveIntTitle"
-                                loading="lazy"
-                                />
-                        </div>
-                        <div class="section-perspective__img-wrapper section-perspective__img-wrapper--2  section-perspective__img-wrapper--absolute">
-                            <nuxt-img
-                                :src="imgPath(content.serviceDetails.servicePerspectiveExtImg.data.attributes.url)"
-                                class="section-perspective__img" 
-                                sizes="sm:100vw md:50vw 50vw" 
-                                :alt="content.serviceDetails.servicePerspectiveExtTitle"
-                                loading="lazy"
-                                />
+                    <div class="section-perspective__canvas-container">
+                        <div class="section-perspective__canvas">
+                            <div ref="img1" class="section-perspective__img-wrapper section-perspective__img-wrapper--1 section-perspective__img-wrapper--absolute">
+                                <nuxt-img
+                                    :src="imgPath(content.serviceDetails.servicePerspectiveIntImg.data.attributes.url)"
+                                    class="section-perspective__img" 
+                                    sizes="sm:100vw md:50vw 50vw" 
+                                    :alt="content.serviceDetails.servicePerspectiveIntTitle"
+                                    loading="lazy"
+                                    />
+                            </div>
+                            <div ref="img2" class="section-perspective__img-wrapper section-perspective__img-wrapper--2  section-perspective__img-wrapper--absolute">
+                                <nuxt-img
+                                    :src="imgPath(content.serviceDetails.servicePerspectiveExtImg.data.attributes.url)"
+                                    class="section-perspective__img" 
+                                    sizes="sm:100vw md:50vw 50vw" 
+                                    :alt="content.serviceDetails.servicePerspectiveExtTitle"
+                                    loading="lazy"
+                                    />
+                            </div>
                         </div>
                     </div>
-                    <div class="section-perspective__content-wrapper section-perspective__content-wrapper--2">
+                    <div ref="triggerRef" class="section-perspective__content-wrapper section-perspective__content-wrapper--2">
                         <div class="section-perspective__title-wrapper">
                             <h2 class="text-visually-hidden">{{ content.serviceDetails.servicePerspectiveExtTitle }}</h2>
                             <div class="service-perspective__title title-h1">{{ content.serviceDetails.servicePerspectiveExtTitle }}</div>
@@ -57,9 +59,43 @@
 </template>
 
 <script setup>
+const { gsap, ScrollTrigger } = useGsap();
+const triggerRef = ref(null)
+const img1 = ref(null)
+const img2 = ref(null)
+
 const props = defineProps({
     content: Object
 })
+
+onMounted(() => {
+    animateOnScroll()
+})
+
+const animateOnScroll = () => {
+    gsap.timeline({
+        defaults: { duration: 1 },
+        scrollTrigger: {
+            trigger: triggerRef.value,
+            //trigger element - viewport
+            start: "top 90%",
+            end: "top top",
+            scrub: true,
+        }
+    })
+    .fromTo(img1.value, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        scale: 1
+    },{
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        scale: 1.2
+    })
+    .from(img2.value, {
+        scale: 1.2
+    }, '<')
+}
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -69,20 +105,32 @@ const props = defineProps({
     }
     &__content-wrapper {
         grid-column: span 4;
-        height: 100vh;
+        height: 85vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
+        padding-bottom: var(--r-space-lg);
+        padding-top: var(--r-space-lg);
+
+        &--2 {
+            justify-content: flex-start;
+        }
     }
     &__title-wrapper {
         margin-bottom: var(--r-space-sm);
     }
-    &__canvas {
+    &__canvas-container {
+        grid-column: 7/span 6;
         position: sticky;
         top: 0;
         height: 100vh;
-        
-        grid-column: 7/span 6;
+       
+        padding-top: var(--r-space-md);
+        padding-bottom: var(--r-space-md);
+    }
+    &__canvas {
+        height: 100%;
+        width: 100%;
         overflow: hidden;
     }
     &__img-wrapper {
@@ -94,8 +142,6 @@ const props = defineProps({
             left: 0;
             height: 100%;
             z-index: 1;
-            padding-top: var(--r-space-md);
-            padding-bottom: var(--r-space-md);
         }
         &--1 {
             z-index: 2;
