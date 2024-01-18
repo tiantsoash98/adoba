@@ -1,13 +1,12 @@
 <template>
     <div class="banner-video__wrapper">
         <video 
-            videoClass="banner-video__video"
+            :class="videoFullClass"
             :src="src"
             :poster="poster"
             controls
             muted
             playsinline
-            autoplay
         ></video>
     </div>
 </template>
@@ -18,6 +17,8 @@ const props = defineProps({
     poster: String,
     videoClass: String
 })
+
+const videoFullClass = computed(() => `banner-video__video ${props.videoClass}`)
 </script>
 
 <style lang="scss" scoped>
