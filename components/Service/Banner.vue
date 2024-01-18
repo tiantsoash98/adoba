@@ -2,11 +2,16 @@
     <div>
         <section :class="sectionClass" v-if="index == '1'">
             <div class="container container--wide" >
-                <BannerImg 
+                <BannerImg  v-if="content.serviceBannerOne.serviceBannerMedia.data.attributes.mime.includes('image')"
                     imgClass="service-banner__first" 
                     :src="imgPath(content.serviceBannerOne.serviceBannerMedia.data.attributes.url)" 
                     :alt="content.serviceBannerOne.serviceBannerMedia.data.attributes.alternativeText"
-                    />
+                />
+                <BannerVideo
+                    v-else-if="content.serviceBannerOne.serviceBannerMedia.data.attributes.mime.includes('video')"
+                    videoClass="service-banner__video"
+                    :src="imgPath(content.serviceBannerOne.serviceBannerMedia.data.attributes.url)"
+                />
             </div>
         </section>
         <section :class="sectionClass" v-if="index == '2'">
@@ -14,7 +19,7 @@
                 imgClass="service-banner__first" 
                 :src="imgPath(content.serviceBannerTwo.serviceBannerMedia.data.attributes.url)" 
                 :alt="content.serviceBannerTwo.serviceBannerMedia.data.attributes.alternativeText"
-                />
+            />
         </section>
     </div>
 </template>

@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
     );
  
     const runtimeConfig  = useRuntimeConfig()
-    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/maquette-orbitale-page?${query}`;
+    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/film-architecture-3d-page?${query}`;
     const data = await $fetch(uri)
 
     return {
