@@ -17,12 +17,12 @@
                     </div>
                     <div class="realisations__bottom-border"></div>
                 </div>
-                <div class="realisations__gallery-wrapper">
-                    <ImgGallery
-                        gallery="realisations-gallery"
-                        :images="filteredImages"
-                    ></ImgGallery>
-                </div>
+            </div>
+            <div class="container container--wide realisations__gallery-wrapper">
+                <ImgGallery
+                    gallery="realisations-gallery"
+                    :images="filteredImages"
+                ></ImgGallery>
             </div>
         </section>
         <RealisationsFilterModal 
@@ -37,12 +37,13 @@
 </template>
 
 <script setup>
-    import SplitType from 'split-type';
-    const { gsap } = useGsap();
-    const headerExclusion = useHeaderExclusion()
     const { data: content }  = await useFetch('/api/realisations-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    import SplitType from 'split-type';
+    const { gsap } = useGsap();
+    const headerExclusion = useHeaderExclusion()
+    
     const { data: works, pending }  = await useLazyFetch('/api/realisations', {
         transform: (_works) => _works.data.data
     })
@@ -187,7 +188,7 @@
         }
     }
     &__gallery-wrapper {
-        padding-top: var(--r-space-md);
+        padding-top: var(--r-space-lg);
     }
     &__icon-wrapper {
         display: flex;

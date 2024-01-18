@@ -9,13 +9,13 @@
                     <p>{{ description }}</p>
                 </div>
             </div>
-            <div class="works__gallery-wrapper">
-                <ImgGallery
-                    gallery="home-gallery"
-                    :images="realisations"
-                    :start-wide="true"
-                ></ImgGallery>
-            </div>
+        </div>
+        <div class="container container--wide works__gallery-wrapper">
+            <ImgGallery
+                gallery="home-gallery"
+                :images="realisations"
+                :start-wide="true"
+            ></ImgGallery>
             <div class="works__button-wrapper">
                 <NuxtLink to="/realisations">
                     <Button text="Voir toutes nos réalisations"></Button>

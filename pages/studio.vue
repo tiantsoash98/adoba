@@ -59,7 +59,6 @@
         headerExclusion.value = false
     })
 
-
     useHead({
         title: content.value.metadata.metaTitle,
         meta: [
