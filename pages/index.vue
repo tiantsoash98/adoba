@@ -1,13 +1,13 @@
 <template>
     <div>
-        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse">
+        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse" ref="hero">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
                     <div class="home-hero__img-wrapper">
                         <nuxt-img
                             :placeholder="[50, 25, 75, 5]"
-                            class="home-hero__img" 
+                            class="home-hero__img hero-img" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                             :alt="content.homeHeaderImg.data.attributes.alternativeText"
@@ -19,9 +19,7 @@
                 <div class="container home-hero__content-wrapper">
                     <div class="home-hero__title-wrapper">
                         <h1 class="text-visually-hidden">{{ content.homeHeadline }}</h1>
-                        <div class="home-hero__title home-hero__title--1 title-h1">Avec la 3D</div>
-                        <div class="home-hero__title home-hero__title--2 title-h1">dessinons ensemble</div>
-                        <div class="home-hero__title home-hero__title--3 title-h1">l'architecture de demain</div>
+                        <div class="home-hero__title title-h1 hero-title">{{ content.homeHeadline }}</div>
                     </div>
                     <div class="home-hero__button-wrapper">
                         <NuxtLink to="/contact">
@@ -66,39 +64,26 @@
 </template>
 
 <script setup>
+    const hero = ref(null)
+    const { gsap } = useGsap()
+    import SplitType from 'split-type';
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    import SplitType from 'split-type';
-    const { gsap } = useGsap();
+    const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const headerExclusion = useHeaderExclusion()
 
     onMounted(() => {
         headerExclusion.value = true
-        animatePageEnter()
+        animateHero(hero)
         presentationEnter()
         pageScroll()
     })
 
-    const animatePageEnter = () => {
-        SplitType.create('.home-hero__title', {types: 'words', wordClass: "home-hero__title--word"});
+    onBeforeUnmount(() => {
+        beforeUnmountHero(hero)
+    })
 
-        gsap.timeline({
-            defaults: { ease: "power3.out" }
-        })
-        .from('.home-hero__title--word', {
-            opacity: 0,
-            yPercent: 100,
-            stagger: 0.05,
-            duration: 1.1,
-            delay: 0.4
-        })
-        .from('.home-hero__img', {
-            scale: 1.2,
-            duration: 1.6,
-        }, '<')
-        
-    }
     const presentationEnter = () => {
         let triggerEl = '.home-presentation';
         let targetEl = '.home-hero__img';
@@ -222,6 +207,9 @@
             color: var(--brand-primary);
             padding-top: var(--r-space-lg);
             padding-bottom: var(--r-space-lg);
+        }
+        &__title-wrapper {
+            max-width: 65ch;
         }
         &__title {
             overflow: hidden;

@@ -6,7 +6,7 @@
                     <h1 class="title-h6 studio-description__label">{{ content.studioLabel }}</h1>
                     <div class="studio-description__title-wrapper">
                         <h2 class="text-visually-hidden">{{ content.studioDescription }}</h2>
-                        <div class="studio__description title-h4">{{ content.studioDescription }}</div>
+                        <div class="studio-description__title title-h4" ref="textReveal">{{ content.studioDescription }}</div>
                     </div>
                 </div>
             </div>
@@ -50,6 +50,9 @@
 </template>
 
 <script setup>
+    const textReveal = ref(null)
+    const { gsap } = useGsap()
+    import SplitType from 'split-type';
     const { data: content }  = await useFetch('/api/studio-page', {
         transform: (_content) => _content.data.data.attributes
     })
@@ -57,7 +60,37 @@
 
     onMounted(() => {
         headerExclusion.value = false
+        animatePageEnter()
     })
+
+    const animatePageEnter = () => {
+        SplitType.create(textReveal.value, 
+        {
+            types: 'lines', 
+            lineClass: 'text-reveal--line-wrapper'
+        })
+
+        document.querySelectorAll('.text-reveal--line-wrapper')
+            .forEach(function(line){
+                var wrapperDiv = document.createElement('div');
+                wrapperDiv.classList.add('text-reveal--line')
+                wrapperDiv.innerHTML = line.innerHTML
+                line.innerHTML = ""
+                line.appendChild(wrapperDiv)
+            })
+
+        gsap.timeline({
+            defaults: { duration: 1, ease: "power3.out" },
+        })
+        .from('.text-reveal--line', 
+        {
+            opacity: 0,
+            yPercent: 100,
+            stagger: 0.1,
+            delay: 0.4
+        })
+    }
+    
 
     useHead({
         title: content.value.metadata.metaTitle,
@@ -79,7 +112,7 @@
     })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .studio {
     &-description {
         &__wrapper {
@@ -100,6 +133,11 @@
         &__text-wrapper  {
             grid-column: 8/span 5;
         }
+    }
+}
+.text-reveal {
+    &--line-wrapper {
+        overflow: hidden;
     }
 }
 </style>
