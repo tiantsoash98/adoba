@@ -1,13 +1,13 @@
 <template>
     <div>
-        <section class="section section--no-padding-top section--no-padding-bottom service-hero" data-cursor="-inverse">
+        <section class="section section--no-padding-top section--no-padding-bottom service-hero" data-cursor="-inverse" ref="hero">
             <div class="service-hero__wrapper">
                 <div class="service-hero__img-wrapper">
                     <div class="service-hero__overlay"></div>
                     <div class="service-hero__img-wrapper">
                         <nuxt-img
                             :placeholder="[50, 25, 75, 5]"
-                            class="service-hero__img" 
+                            class="service-hero__img hero-img" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.serviceHero.serviceHeroImg.data.attributes.url)" 
                             :alt="content.serviceHero.serviceHeroImg.data.attributes.alternativeText"
@@ -20,10 +20,10 @@
                         <div class="service-hero__title-wrapper">
                             <span class="service-hero__label title-h6">{{ content.serviceHero.serviceHeroLabel }}</span>
                             <h1 class="text-visually-hidden">{{ content.serviceHero.serviceHeroTitle }}</h1>
-                            <div class="service-hero__title title-h1">{{ content.serviceHero.serviceHeroTitle }}</div>
+                            <div class="service-hero__title title-h1 hero-title">{{ content.serviceHero.serviceHeroTitle }}</div>
                         </div>
                         <div class="service-hero__description-wrapper">
-                            <h6 class="service-hero__description">{{ content.serviceHero.serviceHeroDescription }}</h6>
+                            <h6 class="service-hero__description hero-description">{{ content.serviceHero.serviceHeroDescription }}</h6>
                         </div>
                     </div>
                 </div>
@@ -39,9 +39,50 @@
 </template>
 
 <script setup>
+const { animateHero, beforeUnmountHero } = useSectionAnimation()
+const hero = ref(null)
 const props = defineProps({
     content: Object
 })
+
+onMounted(() => {
+    animateHero(hero)
+})
+
+onBeforeUnmount(() => {
+    beforeUnmountHero(hero)
+})
+
+const animatePageEnter = () => {
+    SplitType.create(hero.value.querySelector('.hero-title'), 
+    {
+        types: 'words', 
+        wordClass: "hero-title--word"
+    });
+
+    const tL = gsap.timeline({
+        defaults: { ease: "power3.out" }
+    })
+    .from('.hero-title--word', {
+        opacity: 0,
+        yPercent: 100,
+        stagger: 0.05,
+        duration: 1.1,
+        delay: 0.4
+    })
+    .from(hero.value.querySelector('.hero-img'), {
+        scale: 1.2,
+        duration: 1.6,
+    }, '<') 
+
+    if(hero.value.querySelector('.hero-description')){
+        tL.from(hero.value.querySelector('.hero-description'), {
+            opacity: 0,
+            yPercent: 25,
+            duration: 1.5,
+        }, '<+0.6s') 
+    }
+}
 </script>
 
 <style lang="scss" scoped>
