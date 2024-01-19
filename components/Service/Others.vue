@@ -2,11 +2,11 @@
     <section class="section service-others" data-cursor="-inverse">
         <div class="container">
             <div class="service-others__label-wrapper">
-                <h6>{{ content.serviceOthers.serviceOthersLabel }}</h6>
+                <h6>Autres services</h6>
             </div>
             <div class="service-others__list-wrapper">
                 <ul>
-                    <li v-for="(service) in content.serviceOthers.serviceOthersList.data" :key="service.attributes.serviceSlug">
+                    <li v-for="(service) in content.serviceOthers.data" :key="service.attributes.serviceSlug">
                         <ServiceOthersItem
                             :title="service.attributes.serviceTitle"
                             :slug="service.attributes.serviceSlug"
