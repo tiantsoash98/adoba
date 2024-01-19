@@ -6,7 +6,7 @@
         <ServiceGallery :content="content"></ServiceGallery>
         <ServiceBanner :content="content" index="2"></ServiceBanner>
         <ServiceCTA :content="content"></ServiceCTA>
-        <ServiceOthers :content="content"></ServiceOthers>
+        <!-- <ServiceOthers :content="content"></ServiceOthers> -->
     </div>
 </template>
 

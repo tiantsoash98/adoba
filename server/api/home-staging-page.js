@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
             serviceBannerOne: {
                 populate: {
                     serviceBannerMedia: {
-                        fields: ["name", "alternativeText", "url"],
+                        fields: ["name", "alternativeText", "url", "mime"],
                     }  
                 }
             },
@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
             serviceBannerTwo: {
                 populate: {
                     serviceBannerMedia: {
-                        fields: ["name", "alternativeText", "url"],
+                        fields: ["name", "alternativeText", "url", "mime"],
                     }  
                 }
             },
