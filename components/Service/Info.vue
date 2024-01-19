@@ -31,7 +31,7 @@ const sectionEl = ref(null)
 const textEl = ref(null)
 const isScrollingDown = ref(false)
 const currentScrollPosition = ref(0)
-const { gsap } = useGsap()
+const { gsap, ScrollTrigger } = useGsap()
 import SplitType from 'split-type';
 const props = defineProps({
     content: Object
@@ -104,6 +104,10 @@ const pageScroll = (triggerEl, textReveal) => {
         stagger: 0.1,
         delay: 0.4
     })
+    .from('.service-info__border-bottom', {
+        scaleX: 0,
+        duration: 1.5
+    }, '<+0.1s')
 }
 </script>
 
@@ -133,6 +137,7 @@ const pageScroll = (triggerEl, textReveal) => {
         bottom: 0;
         width: 100%;
         height: 1px;
+        transform-origin: left;
         background-color: var(--brand-secondary);
     }
     &__content-wrapper {
