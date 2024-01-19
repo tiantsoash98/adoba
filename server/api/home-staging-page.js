@@ -40,15 +40,10 @@ export default defineEventHandler(async (event) => {
                 fields: ["serviceCTAText", "serviceCTAButtonLabel"],
             },
             serviceOthers: {
-                fields: ["serviceOthersLabel"],
+                fields: ["serviceTitle", "serviceSlug"],
                 populate: {
-                    serviceOthersList: {
-                        fields: ["serviceTitle", "serviceSlug"],
-                        populate: {
-                            serviceImg: {
-                                fields: ["name", "alternativeText", "url"],
-                            }  
-                        }
+                    serviceImg: {
+                        fields: ["name", "alternativeText", "url"],
                     }  
                 }
             },

@@ -4,6 +4,7 @@
         <ServiceInfo :content="content"></ServiceInfo>
         <ServiceBanner :content="content" index="1"></ServiceBanner>
         <ServiceCTA :content="content"></ServiceCTA>
+        <ServiceOthers :content="content"></ServiceOthers>
     </div>
 </template>
 
