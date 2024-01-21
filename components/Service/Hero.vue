@@ -52,37 +52,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
     beforeUnmountHero(hero)
 })
-
-const animatePageEnter = () => {
-    SplitType.create(hero.value.querySelector('.hero-title'), 
-    {
-        types: 'words', 
-        wordClass: "hero-title--word"
-    });
-
-    const tL = gsap.timeline({
-        defaults: { ease: "power3.out" }
-    })
-    .from('.hero-title--word', {
-        opacity: 0,
-        yPercent: 100,
-        stagger: 0.05,
-        duration: 1.1,
-        delay: 0.4
-    })
-    .from(hero.value.querySelector('.hero-img'), {
-        scale: 1.2,
-        duration: 1.6,
-    }, '<') 
-
-    if(hero.value.querySelector('.hero-description')){
-        tL.from(hero.value.querySelector('.hero-description'), {
-            opacity: 0,
-            yPercent: 25,
-            duration: 1.5,
-        }, '<+0.6s') 
-    }
-}
 </script>
 
 <style lang="scss" scoped>
