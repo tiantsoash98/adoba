@@ -40,11 +40,12 @@
                     />
             </div>
         </section>
-        <JoinUs
-            :title="content.joinUs.joinUsTitle"
-            :description="content.joinUs.joinUsDescription"
-            :button-label="content.joinUs.joinUsButtonLabel"
-        ></JoinUs>
+        <MoreInfo
+            :title="content.joinUs.infoTitle"
+            :description="content.joinUs.infoDescription"
+            :button-label="content.joinUs.infoButtonLabel"
+            :button-redirect="content.joinUs.infoButtonRedirect"
+        ></MoreInfo>
     </div>
     
 </template>

@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
                 fields: ["name", "alternativeText", "url"],
             },
             joinUs: {
-                fields: ["joinUsTitle", "joinUsDescription", "joinUsButtonLabel"],
+                fields: ["infoTitle", "infoDescription", "infoButtonLabel", "infoButtonRedirect"],
             },
             metadata: {
                 fields: ["metaTitle", "metaDescription"],

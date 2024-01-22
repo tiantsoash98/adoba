@@ -1,15 +1,15 @@
 <template>
     <div>
-        <section class="section join-us">
+        <section class="section more">
             <div class="container">
                 <div class="row">
-                    <div class="join-us__title-wrapper">
+                    <div class="more__title-wrapper">
                         <h3 class="text-visually-hidden">{{ title }}</h3>
-                        <div class="join-us____title title-h1">{{ title }}</div>
+                        <div class="more__title title-h1">{{ title }}</div>
                     </div>
-                    <div class="join-us__content-wrapper">
-                        <h6 class="join-us__description">{{ description }}</h6>
-                        <NuxtLink to="/jobs">
+                    <div class="more__content-wrapper">
+                        <h6 class="more__description">{{ description }}</h6>
+                        <NuxtLink :to="buttonRedirect">
                             <Button :text="buttonLabel"></Button>
                         </NuxtLink>
                     </div>
@@ -17,19 +17,19 @@
             </div>
         </section>
     </div>
-    
 </template>
 
 <script setup>
 const props = defineProps({
     title: String,
     description: String,
-    buttonLabel: String
+    buttonLabel: String,
+    buttonRedirect: String
 })
 </script>
 
 <style lang="scss" scoped>
-.join-us {
+.more {
     background-color: var(--color-neutral-10);
 
     &__title-wrapper {
