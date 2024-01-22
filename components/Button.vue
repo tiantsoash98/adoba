@@ -3,9 +3,7 @@
     <div class="button__frame"></div>
     <span class="button__label">{{ text }}</span>
     <div class="button__icon-wrapper">
-        <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.41 14.83">
-            <polygon points="11 14.83 9.59 13.41 14.59 8.41 0 8.41 0 6.41 14.59 6.41 9.59 1.41 11 0 18.41 7.41 11 14.83"/>
-        </svg>
+        <IconArrowRight icon-class="button__icon" v-if="icon == 'arrow-right'"/>
     </div>
   </button>
 </template>
@@ -15,6 +13,10 @@
 export default {
     props: {
         text: String,
+        icon: {
+            type: String,
+            default: 'arrow-right'
+        }
     },
 }
 

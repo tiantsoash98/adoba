@@ -23,7 +23,7 @@
                         @click="updateSelected({key: filter.key, text: filter.value})"
                     >
                         <div class="realisations-modal__active-icon-wrapper">
-                            <IconArrowLeft icon-class="realisations-modal__active-icon"></IconArrowLeft>
+                            <IconArrowRight icon-class="realisations-modal__active-icon"></IconArrowRight>
                         </div>
                         {{ filter.value }}
                     </li>
