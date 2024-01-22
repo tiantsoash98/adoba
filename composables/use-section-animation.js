@@ -19,11 +19,14 @@ export default () => {
             duration: 1.1,
             delay: 0.4
         })
-        .from(refEl.value.querySelector('.hero-img'), {
-            scale: 1.2,
-            duration: 1.6,
-        }, '<') 
-    
+        
+        if(refEl.value.querySelector('.hero-img')){
+            tL.from(refEl.value.querySelector('.hero-img'), {
+                scale: 1.2,
+                duration: 1.6,
+            }, '<') 
+        }
+
         if(refEl.value.querySelector('.hero-description')){
             tL.from(refEl.value.querySelector('.hero-description'), {
                 opacity: 0,

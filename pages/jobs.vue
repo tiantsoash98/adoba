@@ -1,14 +1,14 @@
 <template>
     <div>
-        <section class="section section--margin-top-md jobs">
+        <section class="section section--margin-top-md jobs" ref="hero">
             <div class="container">
                 <div class="row jobs__content-wrapper">
                     <div class="col-7 jobs__header-wrapper">
                         <h1 class="text-visually-hidden">{{ content.jobsTitle }}</h1>
-                        <div class="jobs__title title-h1" >{{ content.jobsTitle }}</div>
+                        <div class="jobs__title title-h1 hero-title" >{{ content.jobsTitle }}</div>
                     </div>
                     <div class="col-7 jobs__description-wrapper">
-                        <h2 class="jobs__description title-h5" ref="textReveal">{{ content.jobsDescription }}</h2>
+                        <h2 class="jobs__description title-h5 hero-description" >{{ content.jobsDescription }}</h2>
                     </div>
                 </div>
             </div>
@@ -55,19 +55,19 @@
 </template>
 
 <script setup>
-    const textReveal = ref(null)
+    const hero = ref(null)
     const { data: content }  = await useFetch('/api/jobs-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
+    const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const headerExclusion = useHeaderExclusion()
 
     onMounted(() => {
         headerExclusion.value = false
-        animateTextReveal(textReveal)
+        animateHero(hero)
     })
     onBeforeUnmount(() => {
-        beforeUnmountTextReveal(textReveal)
+        beforeUnmountHero(hero)
     }) 
 
     useHead({
