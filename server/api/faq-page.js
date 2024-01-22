@@ -4,13 +4,10 @@ export default defineEventHandler(async (event) => {
     const query = qs.stringify(
     {
         populate: {
-            studioImgOne: {
-                fields: ["name", "alternativeText", "url"],
+            faqQuestions: {
+                fields: ["accordionHeader", "accordionContent"],
             },
-            studioImgTwo: {
-                fields: ["name", "alternativeText", "url"],
-            },
-            joinUs: {
+            faqOthers: {
                 fields: ["infoTitle", "infoDescription", "infoButtonLabel", "infoButtonRedirect"],
             },
             metadata: {
@@ -29,7 +26,7 @@ export default defineEventHandler(async (event) => {
     );
  
     const runtimeConfig  = useRuntimeConfig()
-    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/studio-page?${query}`;
+    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/faq-page?${query}`;
     const data = await $fetch(uri)
 
     return {

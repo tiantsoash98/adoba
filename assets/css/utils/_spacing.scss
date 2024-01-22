@@ -89,3 +89,29 @@
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: var(--r-space-sm);
 }
+
+
+
+.col {
+    display: flex;
+    grid-column-start: 1;
+    grid-column-end: -1;
+
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            display: flex;
+            flex-direction: column;
+            gap: var(--r-space-sm);
+            grid-column-start: 1;
+            grid-column-end: span $i;
+        }
+    }
+}
+
+.offset {
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            grid-column-start: $i + 1;
+        }
+    }
+}
