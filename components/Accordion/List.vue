@@ -4,12 +4,12 @@ import type ItemVue from './Item.vue';
     <div>
         <div class="accordion-list__main-wrapper">
             <ul class="accordion-list__wrapper">
-                <li v-for="(item, index) in dataList" :key="index">
+                <li v-for="(item) in dataList" :key="item.id">
                     <AccordionItem
-                        :id="index"
-                        :header="item.header"
-                        :content="item.content"
-                        :isActive="isActiveItem(index)"
+                        :id="item.id"
+                        :header="item.accordionHeader"
+                        :content="item.accordionContent"
+                        :isActive="isActiveItem(item.id)"
                         content-class="col-8"
                         @toogle-item="toogleActiveItem"
                     ></AccordionItem>

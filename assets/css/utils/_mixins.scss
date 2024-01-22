@@ -13,7 +13,7 @@
 @mixin h2 {
     font-family: var(--font-family-primary), 'Arial', serif;
     @include font-size(var(--title-2));
-    letter-spacing:  -0.06vw;
+    letter-spacing: -0.06vw;
     line-height: 1.2;
     font-weight: 350;
 }

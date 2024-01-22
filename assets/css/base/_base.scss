@@ -11,10 +11,10 @@ html {
     position: relative;
 }
 
-// ::selection{
-//     background-color: var(--brand-secondary);
-//     color: var(--brand-primary);
-// }
+::selection{
+    background-color: var(--brand-secondary);
+    color: var(--brand-primary);
+}
 
 body {
     background-color: var(--background-color);
