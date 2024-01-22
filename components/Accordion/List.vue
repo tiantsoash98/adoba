@@ -10,6 +10,7 @@ import type ItemVue from './Item.vue';
                         :header="item.header"
                         :content="item.content"
                         :isActive="isActiveItem(index)"
+                        content-class="col-8"
                         @toogle-item="toogleActiveItem"
                     ></AccordionItem>
                 </li>
