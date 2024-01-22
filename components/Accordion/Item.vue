@@ -21,7 +21,8 @@
 </template>
 
 <script setup>
-const { gsap } = useGsap();
+const { gsap } = useGsap()
+const isClickable = ref(true)
 const wrapperEl = ref(null)
 const contentEl = ref(null)
 const contentHeight = ref(0)
@@ -41,7 +42,9 @@ const emit = defineEmits([
 ])
 
 const toogleItem = () => {
-    emit('toogleItem', props.id)
+    if(isClickable.value == true){
+        emit('toogleItem', props.id)
+    }
 }
 
 onMounted(() => {
@@ -65,11 +68,16 @@ watch(() => props.isActive, (newVal) => {
 })
 
 const open = () => {
+    isClickable.value = false
+
     gsap.timeline({
         defaults: {
             duration: 0.6,
             ease: "power2.inOut"
         },
+        onComplete: () => {
+            isClickable.value = true
+        }
     })
     .to(wrapperEl.value, { 
         height: contentHeight.value 
@@ -85,6 +93,9 @@ const close = () => {
             duration: 0.6,
             ease: "power2.inOut"
         },
+        onComplete: () => {
+            isClickable.value = true
+        }
     })
     .to(wrapperEl.value, { 
         height: 0 
