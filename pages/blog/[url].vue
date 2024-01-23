@@ -13,12 +13,12 @@
                             <ul class="article__share-options">
                                 <li class="article__share article__share--facebook">
                                     <a href="#">
-                                        <IconFacebook/>
+                                        <IconFacebook :icon-class="'article__social'"/>
                                     </a>
                                 </li>
                                 <li class="article__share article__share--linkedin">
                                     <a href="#">
-                                        <IconLinkedin/>
+                                        <IconLinkedin :icon-class="'article__social'"/>
                                     </a>
                                 </li>
                             </ul>
@@ -107,14 +107,18 @@
     }
     &__share-wrapper {
         display: flex;
+        flex-direction: column;
     }
     &__share-options {
         display: flex;
         flex-direction: row;
+        margin-top: var(--r-space-xs);
     }
     &__social {
+        width: 100%;
+        fill: currentColor;
         max-width: var(--r-space-sm);
-        margin-left: var(--r-space-xs);
+        margin-right: var(--r-space-xs-2);
     }
 }
 </style>
