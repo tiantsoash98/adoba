@@ -23,6 +23,12 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="article__back-wrapper">
+                            <NuxtLink to="/blog">
+                                <span class="title-h6">Revenir au blog</span>
+                            </NuxtLink>
+                            
+                        </div>
                     </div>
                     <div class="article__content-wrapper col-7">
                         <div class="article__content rich-text col-7" ref="blogContent" v-html="$mdRenderer.render(content.blogContent)"></div>
@@ -52,12 +58,13 @@
 
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = false
+        initCursor()
 
         textReveal.value = blogContent.value.querySelector('h1')
-
         if(textReveal.value){
             animateTextReveal(textReveal)
         }
@@ -67,6 +74,7 @@
         if(textReveal.value){
             beforeUnmountTextReveal(textReveal)
         }
+        destroyCursor()
     })    
 
     useHead({
@@ -119,6 +127,14 @@
         fill: currentColor;
         max-width: var(--r-space-sm);
         margin-right: var(--r-space-xs-2);
+    }
+    &__back-wrapper {
+        margin-top: var(--r-space-sm);
+        transition: opacity 0.6s var(--alias-default-ease);
+        
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
 </style>

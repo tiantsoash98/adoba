@@ -36,7 +36,7 @@
                     <div class="footer__section-title paragraph-text--medium">Liens</div>
                     <ul class="footer__links">
                         <li><NuxtLink to="/">Accueil</NuxtLink></li>
-                        <li><NuxtLink to="/studio">Le Studio</NuxtLink></li>
+                        <li><NuxtLink to="/studio">Le studio</NuxtLink></li>
                         <li><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
                         <li><NuxtLink to="/blog">Blog</NuxtLink></li>
                         <li><NuxtLink to="/faq">FAQ</NuxtLink></li>

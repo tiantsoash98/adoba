@@ -5,20 +5,31 @@ export default () => {
     // Init Cuberto Mouse Follower
     MouseFollower.registerGSAP(gsap);
 
-    const cursor = new MouseFollower({
-        container: document.body,
-        speed: 1,
-        ease: 'expo.out',
-        skewingText: 0,
-    });
+    const cursor = ref(null)
 
-            
-    let matchMedia = gsap.matchMedia();
+    const initCursor = () => {
+        cursor.value = new MouseFollower({
+            container: document.body,
+            speed: 1,
+            ease: 'expo.out',
+            skewingText: 0,
+        });
+    
+                
+        let matchMedia = gsap.matchMedia();
+    
+        matchMedia.add("(hover: none)", () => {
+            console.log('Touchscreen detected')
+            cursor.destroy()
+        });
+    }
 
-    matchMedia.add("(hover: none)", () => {
-        console.log('Touchscreen detected')
-        cursor.destroy()
-    });
+    const destroyCursor = () => {
+        cursor.value.destroy()
+    }
 
-    return { cursor }
+    return { 
+        initCursor,
+        destroyCursor
+    }
 }

@@ -10,9 +10,15 @@
 
 <script setup>
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = false
+        initCursor()
+    })
+
+    onBeforeUnmount(() => {
+        destroyCursor()
     })
 </script>
 

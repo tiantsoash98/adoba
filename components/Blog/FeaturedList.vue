@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section featured-articles">
+        <section class="section section--padding-top-sm featured-articles">
             <div class="container container--wide">
                 <BlogFeaturedCard
                     v-for="(article, index) in dataList" 
