@@ -6,7 +6,7 @@
             <div class="container menu__content-wrapper">
                 <ul class="menu__links-wrapper">
                     <li v-for="service in services" :key="service.title">
-                        <NuxtLink :to="service.slug" @click="closeHeaderMenu">
+                        <NuxtLink :to="`/${service.slug}`" @click="closeHeaderMenu">
                             <div class="menu__link title-h6">
                                 <div class="menu__label">{{ service.title }}</div>
                             </div>
