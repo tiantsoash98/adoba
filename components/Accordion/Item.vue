@@ -143,6 +143,13 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         align-items: center;
         padding-top: var(--accordion-default-padding);
     }
+    &__header {
+        transition: opacity .3s var(--alias-default-ease);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
     &__icon-wrapper {
         display: flex;
         flex-direction: column;
@@ -158,7 +165,6 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         transform: translateY(-50%);
         width: 100%;
         opacity: 0;
-
         transition: opacity .6s var(--alias-default-ease) .1s;
                     
         &--active {

@@ -4,6 +4,7 @@
     <span class="button__label">{{ text }}</span>
     <div class="button__icon-wrapper">
         <IconArrowRight icon-class="button__icon" v-if="icon == 'arrow-right'"/>
+        <IconArrowUpRight icon-class="button__icon" v-else-if="icon == 'arrow-up-right'"/>
     </div>
   </button>
 </template>
@@ -82,6 +83,7 @@ export default {
     &--tertiary {
         padding: 0;
         border: none;
+        overflow: visible;
 
         #{$root}__icon {
             width: calc(0.5 * var(--r-base-unit));

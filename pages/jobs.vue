@@ -92,6 +92,9 @@
 
 <style lang="scss" scoped>
 .jobs {
+    &__title {
+        overflow: hidden;
+    }
     &__description-wrapper {
         margin-top: var(--r-space-md);
     }

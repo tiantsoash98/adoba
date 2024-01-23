@@ -13,7 +13,7 @@
                             <Button :text="buttonLabel" ></Button>
                         </NuxtLink>
                         <a :href="`mailto:${ buttonRedirect }`" target="_blank" v-else-if="buttonRedirectType == 'mail'">
-                            <Button :text="buttonLabel" class="button--tertiary button--white title-h5"></Button>
+                            <Button :text="buttonLabel" icon="arrow-up-right" class="button--tertiary button--white title-h5"></Button>
                         </a>
                     </div>
                 </div>
