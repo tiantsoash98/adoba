@@ -1,4 +1,13 @@
 .rich-text {
+    & h1 {
+        margin-bottom: var(--r-space-sm);
+    }
+    & h2, h3 {
+        margin-top: var(--r-space-sm);
+    }
+    & h4 {
+        margin-top: var(--r-space-xs-2);
+    }
     & ul, li {
         list-style: inside;
     }

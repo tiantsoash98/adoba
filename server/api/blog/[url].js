@@ -5,6 +5,12 @@ export default defineEventHandler(async (event) => {
     
     const query = qs.stringify(
     {
+        filters: {
+            blogUrl: {
+                $eq: url,
+            },
+        },
+        fields: ["blogTitle", "createdAt", "blogUrl", "blogContent"],
         populate: {
             metadata: {
                 fields: ["metaTitle", "metaDescription"],
@@ -20,9 +26,9 @@ export default defineEventHandler(async (event) => {
         encodeValuesOnly: true, // prettify URL
     }
     );
- 
+    
     const runtimeConfig  = useRuntimeConfig()
-    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/blog-page?${query}`;
+    const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/blogs?${query}`;
     const data = await $fetch(uri)
 
     return {

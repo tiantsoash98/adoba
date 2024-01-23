@@ -1,21 +1,120 @@
 <template>
     <div>
-        <section class="section section--margin-top-md">
+        <section class="section section--margin-top-md article">
             <div class="container">
-                <h1>Blog article</h1>
+                <div class="row">
+                    <div class="article__options-wrapper col-4">
+                        <div class="article__date-wrapper">
+                            <span class="title-h6">Posté le </span>
+                            <span class="article__date title-h6">{{ dateFormat(content.createdAt) }}</span>
+                        </div>
+                        <div class="article__share-wrapper">
+                            <span class="title-h6">Partager l'article</span>
+                            <ul class="article__share-options">
+                                <li class="article__share article__share--facebook">
+                                    <a href="#">
+                                        <IconFacebook/>
+                                    </a>
+                                </li>
+                                <li class="article__share article__share--linkedin">
+                                    <a href="#">
+                                        <IconLinkedin/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="article__content-wrapper col-7">
+                        <div class="article__content rich-text col-7" ref="blogContent" v-html="$mdRenderer.render(content.blogContent)"></div>
+                    </div>
+                </div>     
             </div>
         </section>
     </div>
 </template>
 
 <script setup>
+    const blogContent = ref(null)
+    const textReveal = ref(null)
+    const { url } = useRoute().params
+    const content = ref(null)
+    const { data: article }  = await useFetch(`/api/blog/${ url }`, {
+        transform: (_article) => _article.data.data
+    })
+
+    if(article.value.length == 0){
+        throw createError({
+            statusCode: 404,
+            fatal: true
+        })
+    }
+    content.value = article.value[0].attributes
+
+    const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
 
     onMounted(() => {
         headerExclusion.value = false
+
+        textReveal.value = blogContent.value.querySelector('h1')
+
+        if(textReveal.value){
+            animateTextReveal(textReveal)
+        }
+    })
+
+    onBeforeUnmount(() => {
+        if(textReveal.value){
+            beforeUnmountTextReveal(textReveal)
+        }
+    })    
+
+    useHead({
+        title: content.value.metadata.metaTitle,
+        meta: [
+            { name: 'description', content: content.value.metadata.metaDescription }
+        ]
+    })
+
+    useSeoMeta({
+        description: content.value.metadata.metaDescription,
+        ogTitle: content.value.metadata.metaTitle,
+        ogDescription: content.value.metadata.metaDescription,
+        ogImage: imgPath(content.value.metadata?.metaImage?.data.attributes?.url),
+        ogUrl: useRoute().fullPath,
+        twitterTitle: content.value.metadata.metaTitle,
+        twitterDescription: content.value.metadata.metaDescription,
+        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
+        twitterCard: 'summary'
     })
 </script>
 
 <style lang="scss" scoped>
-
+.article {
+    &__options-wrapper {
+        height: fit-content;
+        position: sticky;
+        top: var(--r-space-lg);
+        display: flex;
+        flex-direction: column;
+    }
+    &__date-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    &__date {
+        opacity: 0.5;
+    }
+    &__share-wrapper {
+        display: flex;
+    }
+    &__share-options {
+        display: flex;
+        flex-direction: row;
+    }
+    &__social {
+        max-width: var(--r-space-sm);
+        margin-left: var(--r-space-xs);
+    }
+}
 </style>

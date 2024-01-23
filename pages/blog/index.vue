@@ -25,13 +25,17 @@
 
 <script setup>
     const textReveal = ref(null)
+    const featuredArticles = ref([])
     
     const { data: content }  = await useFetch('/api/blog-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const { data: articles, pending }  = await useLazyFetch('/api/blog', {
-        transform: (_articles) => _articles.data.data
+    const { pending, data: articles }  = await useLazyFetch('/api/blog', {server: false})
+
+    watch(articles, (newArticles) => {
+        featuredArticles.value = newArticles.data.data.slice(0, 2)
     })
+    
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
 
@@ -43,8 +47,6 @@
     onBeforeUnmount(() => {
         beforeUnmountTextReveal(textReveal)
     })    
-
-    const featuredArticles = computed(() => articles.value.slice(0, 2))
 
     useHead({
         title: content.value.metadata.metaTitle,
@@ -77,6 +79,12 @@
         }
     }
     &-content {
+        &__spinner-wrapper {
+            max-height: var(--r-space-lg);
+        }
+        &__spinner {
+            height: 100%;
+        }
         &__main-wrapper {
             margin-top: var(--r-space-sm);
         }

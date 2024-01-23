@@ -94,7 +94,6 @@
 
 .col {
     display: flex;
-    grid-column-start: 1;
     grid-column-end: -1;
 
     @for $i from 1 through 12 {
@@ -102,7 +101,6 @@
             display: flex;
             flex-direction: column;
             gap: var(--r-space-sm);
-            grid-column-start: 1;
             grid-column-end: span $i;
         }
     }
