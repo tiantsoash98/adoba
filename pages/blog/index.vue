@@ -18,7 +18,10 @@
             :buttonLabel="content.blogReadArticleButtonLabel"
         ></BlogFeaturedList>
         <BlogList
-            :title="content.blogListTitle"
+            v-if="allArticles.length"
+            :dataList="allArticles"
+            :title="content.allArticles"
+            :buttonLabel="content.blogReadArticleButtonLabel"
         ></BlogList>
     </div>
 </template>
@@ -26,6 +29,7 @@
 <script setup>
     const textReveal = ref(null)
     const featuredArticles = ref([])
+    const allArticles = ref([])
     
     const { data: content }  = await useFetch('/api/blog-page', {
         transform: (_content) => _content.data.data.attributes
@@ -34,6 +38,7 @@
 
     watch(articles, (newArticles) => {
         featuredArticles.value = newArticles.data.data.slice(0, 2)
+        allArticles.value = newArticles.data.data.slice(2)
     })
     
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
