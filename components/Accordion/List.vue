@@ -1,8 +1,6 @@
-
-import type ItemVue from './Item.vue';
 <template>
     <div>
-        <div class="accordion-list__main-wrapper">
+        <div :class="['accordion-list__main-wrapper', {'accordion-list--dark': theme == 'dark'}]">
             <ul class="accordion-list__wrapper">
                 <li v-for="(item) in dataList" :key="item.id">
                     <AccordionItem
@@ -10,7 +8,8 @@ import type ItemVue from './Item.vue';
                         :header="item.accordionHeader"
                         :content="item.accordionContent"
                         :isActive="isActiveItem(item.id)"
-                        content-class="col-8"
+                        :content-class="contentClass"
+                        :theme="theme"
                         @toogle-item="toogleActiveItem"
                     ></AccordionItem>
                 </li>
@@ -22,7 +21,15 @@ import type ItemVue from './Item.vue';
 <script setup>
 const activeItemIndex = ref(-1)
 const props = defineProps({
-    dataList: Array
+    dataList: Array,
+    contentClass: {
+        type: String,
+        default: "col-8"
+    },
+    theme: {
+        type: String,
+        default: "light"
+    }
 })
 
 const toogleActiveItem = (id) => {

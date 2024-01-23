@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="accordion-item accordion-item__main-wrapper" @click="toogleItem">
+        <div :class="['accordion-item accordion-item__main-wrapper', {'accordion-item--dark': theme == 'dark'}]" @click="toogleItem">
             <div class="accordion-item__border"></div>
             <div class="accordion-item__header-wrapper">
                 <p class="accordion-item__header title-h6">{{ header }}</p>
@@ -32,7 +32,8 @@ const props = defineProps({
     contentClass: {
         type: String,
         default: 'col'
-    }
+    },
+    theme: String
 })
 
 const emit = defineEmits([
@@ -109,10 +110,19 @@ const getIconClass = (isItemActive) => {
 const contentFullClass = computed(() => `rich-text accordion-item__content ${props.contentClass}`)
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .accordion-item {
     --accordion-default-padding: var(--r-space-sm-2);
+    $root:&;
 
+    &--dark {
+        #{$root}__border {
+            background-color: var(--color-neutral-70);
+        }
+        & p {
+            color: var(--color-neutral-10);
+        }
+    }
     &__main-wrapper {
         width: 100%;
         display: flex;
@@ -133,6 +143,13 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         align-items: center;
         padding-top: var(--accordion-default-padding);
     }
+    &__header {
+        transition: opacity .3s var(--alias-default-ease);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
     &__icon-wrapper {
         display: flex;
         flex-direction: column;
@@ -148,7 +165,6 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         transform: translateY(-50%);
         width: 100%;
         opacity: 0;
-
         transition: opacity .6s var(--alias-default-ease) .1s;
                     
         &--active {
