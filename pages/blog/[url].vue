@@ -89,6 +89,8 @@
         ogTitle: content.value.metadata.metaTitle,
         ogDescription: content.value.metadata.metaDescription,
         ogImage: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.url),
+        ogImageWidth: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.width),
+        ogImageHeight: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.height),
         ogUrl: currentUrl(),
         twitterTitle: content.value.metadata.metaTitle,
         twitterDescription: content.value.metadata.metaDescription,
