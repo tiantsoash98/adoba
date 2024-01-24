@@ -42,7 +42,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
-      cmsBaseUrl: process.env.CMS_BASE_URL
+      cmsBaseUrl: process.env.CMS_BASE_URL,
+      facebookAppId: process.env.FACEBOOK_APP_ID
     }
   }
 })
