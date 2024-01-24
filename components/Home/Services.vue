@@ -2,7 +2,7 @@
     <section class="section services" data-cursor="-inverse">
         <div class="container">
             <div class="services__label-wrapper">
-                <h6>Nos Services</h6>
+                <span class="title-h6">Nos Services</span>
             </div>
             <div class="services__list-wrapper">
                 <ul>

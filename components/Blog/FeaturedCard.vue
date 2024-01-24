@@ -14,10 +14,12 @@
                 <figure class="featured-article__figure" role="presentation"  data-cursor-text="Lire">
                     <nuxt-img
                         format="webp"
-                        class="featured-article__img"
+                        :class="['featured-article__img img', {'img--loaded':imgIsLoaded}]"
                         :src="imgPath(img.data.attributes.url)"
-                        :sizes="'sm:100vw md:50vw lg:50vw 100vw'"
+                        :sizes="'sm:90vw md:40vw lg:40vw 90vw'"
                         :loading="'lazy'"
+                        quality="70"
+                        @load="imgIsLoaded = true"
                     />
                 </figure>
             </NuxtLink>
@@ -26,6 +28,7 @@
 </template>
 
 <script setup>
+const imgIsLoaded = ref(false)
 const props = defineProps({
     title: String,
     date: String,

@@ -8,11 +8,12 @@
                         <nuxt-img
                             :placeholder="[50, 25, 75, 5]"
                             format="webp"
-                            class="home-hero__img hero-img" 
+                            :class="['home-hero__img hero-img img', {'img--loaded':imgIsLoaded}]" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                             :alt="content.homeHeaderImg.data.attributes.alternativeText"
                             loading="lazy"
+                            @load="imgIsLoaded = true"
                             />
                     </div>
                 </div>
@@ -64,6 +65,7 @@
 </template>
 
 <script setup>
+    const imgIsLoaded = ref(false)
     const hero = ref(null)
     const { gsap } = useGsap()
     

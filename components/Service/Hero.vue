@@ -8,11 +8,12 @@
                         <nuxt-img
                             :placeholder="[50, 25, 75, 5]"
                             format="webp"
-                            class="service-hero__img hero-img" 
+                            :class="['service-hero__img hero-img img', {'img--loaded': imgIsLoaded}]" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.serviceHero.serviceHeroImg.data.attributes.url)" 
                             :alt="content.serviceHero.serviceHeroImg.data.attributes.alternativeText"
                             loading="lazy"
+                            @load="imgIsLoaded = true"
                             />
                     </div>
                 </div>
@@ -40,6 +41,7 @@
 </template>
 
 <script setup>
+const imgIsLoaded = ref(false)
 const { animateHero, beforeUnmountHero } = useSectionAnimation()
 const hero = ref(null)
 const props = defineProps({
