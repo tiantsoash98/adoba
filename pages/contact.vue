@@ -24,6 +24,13 @@
                         <div class="contact-content__description-wrapper">
                             <h2 class="contact-content__description title-h6">{{ content.contactDescription }}</h2>
                         </div>
+                        <div class="contact-content__form-wrapper">
+                            <ContactForm 
+                                :form-inputs="content.contactForm" 
+                                :form-submit-label="content.contactConfig.configSubmitLabel"
+                                :form-submit-action="content.contactConfig.configSubmitAction"
+                            ></ContactForm>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,6 +116,9 @@
     &-content {
         &__description-wrapper {
             margin-top: var(--r-space-sm);
+        }
+        &__form-wrapper {
+            margin-top: var(--r-space-md);
         }
     }
 }
