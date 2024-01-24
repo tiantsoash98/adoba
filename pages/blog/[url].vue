@@ -89,7 +89,7 @@
         ogTitle: content.value.metadata.metaTitle,
         ogDescription: content.value.metadata.metaDescription,
         ogImage: imgPath(content.value.metadata?.metaImage?.data.attributes?.url),
-        ogUrl: useRoute().fullPath,
+        ogUrl: currentUrl(),
         twitterTitle: content.value.metadata.metaTitle,
         twitterDescription: content.value.metadata.metaDescription,
         twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
