@@ -8,7 +8,7 @@
                         <div class="service-info__headline title-h2" ref="textEl">{{ content.serviceInfo.serviceInfoHeadline }}</div>
                     </div>
                     <div class="service-info__icon-wrapper">
-                        <IconAsterisk :icon-class="{'service-info__icon': true, 'spin-clockwise': isScrollingDown}"></IconAsterisk>
+                        <IconAsterisk :icon-class="iconFullClass"></IconAsterisk>
                     </div>
                     <div class="service-info__border-bottom"></div>
                 </div>
@@ -109,6 +109,8 @@ const pageScroll = (triggerEl, textReveal) => {
         duration: 1.5
     }, '<+0.1s')
 }
+
+const iconFullClass = computed(() => `service-info__icon ${isScrollingDown.value == true ? 'spin-clockwise' : ''}`)
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
     <div>
         <ServiceHero :content="content"></ServiceHero>
         <ServiceInfo :content="content"></ServiceInfo>
-        <ServiceBanner :content="content" index="1"></ServiceBanner>
+        <ServiceVideo :content="content"></ServiceVideo>
         <ServiceCTA :content="content"></ServiceCTA>
         <ServiceOthers :content="content"></ServiceOthers>
     </div>
