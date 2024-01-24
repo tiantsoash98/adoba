@@ -22,11 +22,13 @@
                 <NuxtLink :to="slug">
                     <nuxt-img
                         :src="imgPath(img)"
-                        class="service__img" 
+                        format="webp"
+                        :class="['service__img img', {'img--loaded':imgIsLoaded}]" 
                         sizes="80vw sm:80vw md:80vw" 
                         :alt="title"
                         loading="lazy"
-                        quality="80"
+                        quality="70"
+                        @load="imgIsLoaded = true"
                         />
                 </NuxtLink>
             </div>
@@ -35,6 +37,7 @@
 </template>
 
 <script setup>
+    const imgIsLoaded = ref(false)
     const props = defineProps({
         index: Number,
         slug: String,

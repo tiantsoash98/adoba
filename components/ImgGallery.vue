@@ -18,7 +18,7 @@
                     class="gallery__img-item"
                     format="webp"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
-                    sizes="sm:80vw md:80vw 80vw" 
+                    sizes="sm:80vw md:80vw 50vw" 
                     :alt="image.attributes.realisationTitle"
                     loading="lazy"
                 />

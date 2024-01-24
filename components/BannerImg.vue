@@ -3,17 +3,19 @@
         <nuxt-img
             format="webp"
             :placeholder="[50, 25, 75, 5]"
-            :class="imgFullClass" 
+            :class="[imgFullClass, {'img--loaded': isLoaded}]" 
             :sizes="sizes"
             :src="src" 
             :alt="alt"
             :loading="loading"
+            @load="isLoaded = true"
             />
     </div>
 </template>
 
 <script setup>
 const img = ref(null)
+const isLoaded = ref(false)
 const props = defineProps({
     src: String,
     alt: String,
@@ -33,7 +35,7 @@ onMounted(() => {
     imgScrollAnimation(img)
 })
 
-const imgFullClass = computed(() => `banner-img__img ${props.imgClass}`)
+const imgFullClass = computed(() => `banner-img__img img ${props.imgClass} `)
 </script>
 
 <style lang="scss" scoped>
