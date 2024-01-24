@@ -9,7 +9,7 @@
                     </div>
                     <div class="more__content-wrapper">
                         <h6 class="more__description">{{ description }}</h6>
-                        <NuxtLink :to="buttonRedirect" v-if="buttonRedirectType == 'internal'">
+                        <NuxtLink :to="`/${buttonRedirect}`" v-if="buttonRedirectType == 'internal'">
                             <Button :text="buttonLabel" ></Button>
                         </NuxtLink>
                         <a :href="`mailto:${ buttonRedirect }`" target="_blank" v-else-if="buttonRedirectType == 'mail'">
