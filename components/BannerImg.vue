@@ -1,6 +1,7 @@
 <template>
     <div class="banner-img__wrapper" ref="img">
         <nuxt-img
+            format="webp"
             :placeholder="[50, 25, 75, 5]"
             :class="imgFullClass" 
             :sizes="sizes"
@@ -12,7 +13,6 @@
 </template>
 
 <script setup>
-const { gsap, ScrollTrigger } = useGsap();
 const img = ref(null)
 const props = defineProps({
     src: String,
@@ -27,30 +27,11 @@ const props = defineProps({
         default: "lazy"
     },
 })
+const { imgScrollAnimation } = useImgScrollAnimation();
 
 onMounted(() => {
-    imgScrollAnimation()
+    imgScrollAnimation(img)
 })
-
-const imgScrollAnimation = () => {
-    let triggerEl = img.value;
-    let targetEl = img.value.children[0];
-
-    gsap.timeline({
-        defaults: { duration: 1 },
-        scrollTrigger: {
-            trigger: triggerEl,
-            //trigger element - viewport
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        }
-    })
-    .to(targetEl, {
-        y: '10vh',
-        ease: "none"
-    })
-}
 
 const imgFullClass = computed(() => `banner-img__img ${props.imgClass}`)
 </script>
@@ -67,7 +48,7 @@ const imgFullClass = computed(() => `banner-img__img ${props.imgClass}`)
     }
     &__img {
         width: 100%;
-        height: 100vh;
+        height: 100%;
         object-fit: cover;
     }
 }

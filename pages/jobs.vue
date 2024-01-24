@@ -61,13 +61,16 @@
     })
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = false
+        initCursor()
         animateHero(hero)
     })
     onBeforeUnmount(() => {
         beforeUnmountHero(hero)
+        destroyCursor()
     }) 
 
     useHead({

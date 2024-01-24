@@ -10,10 +10,6 @@
   
 <script setup>
     const lenisOptions = useLenis()  
-    
-    onMounted(() => {
-        const { cursor } = useCursor();  
-    });
 </script>
 
 <style>

@@ -13,9 +13,15 @@
         transform: (_content) => _content.data.data.attributes
     })
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = true
+        initCursor()
+    })
+
+    onBeforeUnmount(() => {
+        destroyCursor()
     })
     
     useHead({

@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
             blogImg: {
                 fields: ["name", "alternativeText", "url", "mime"],
             },
-        }
+        },
     },
     {
         encodeValuesOnly: true, // prettify URL

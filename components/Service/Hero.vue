@@ -7,6 +7,7 @@
                     <div class="service-hero__img-wrapper">
                         <nuxt-img
                             :placeholder="[50, 25, 75, 5]"
+                            format="webp"
                             class="service-hero__img hero-img" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.serviceHero.serviceHeroImg.data.attributes.url)" 

@@ -34,14 +34,17 @@
     })
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = false
+        initCursor()
         animateTextReveal(textReveal)
     })
 
     onBeforeUnmount(() => {
         beforeUnmountTextReveal(textReveal)
+        destroyCursor()
     })    
 
     useHead({

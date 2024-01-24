@@ -7,6 +7,7 @@
                     <div class="home-hero__img-wrapper">
                         <nuxt-img
                             :placeholder="[50, 25, 75, 5]"
+                            format="webp"
                             class="home-hero__img hero-img" 
                             sizes="sm:100vw md:100vw lg:100vw 100vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
@@ -14,7 +15,6 @@
                             loading="lazy"
                             />
                     </div>
-                    
                 </div>
                 <div class="container home-hero__content-wrapper">
                     <div class="home-hero__title-wrapper">
@@ -66,15 +66,18 @@
 <script setup>
     const hero = ref(null)
     const { gsap } = useGsap()
+    
     import SplitType from 'split-type';
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = true
+        initCursor()
         animateHero(hero)
         presentationEnter()
         pageScroll()
@@ -82,6 +85,7 @@
 
     onBeforeUnmount(() => {
         beforeUnmountHero(hero)
+        destroyCursor()
     })
 
     const presentationEnter = () => {

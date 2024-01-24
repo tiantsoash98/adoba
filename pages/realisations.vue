@@ -43,6 +43,7 @@
     import SplitType from 'split-type';
     const { gsap } = useGsap();
     const headerExclusion = useHeaderExclusion()
+    const { initCursor, destroyCursor } = useCursor()
     
     const { data: works, pending }  = await useLazyFetch('/api/realisations', {
         transform: (_works) => _works.data.data
@@ -85,7 +86,12 @@
 
     onMounted(() => {
         headerExclusion.value = false
+        initCursor()
         animatePageEnter()
+    })
+
+    onBeforeUnmount(() => {
+        destroyCursor()
     })
 
     const animatePageEnter = () => {

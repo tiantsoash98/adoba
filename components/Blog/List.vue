@@ -15,7 +15,9 @@
 
 <script setup>
     const props = defineProps({
-        title: String
+        title: String,
+        dataList: Array,
+        buttonLabel: String
     })
 </script>
 
