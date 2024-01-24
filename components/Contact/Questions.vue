@@ -21,10 +21,11 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
                         <nuxt-img
                             format="webp"
                             :src="imgPath(img.data.attributes.url)"
-                            class="contact-questions__img" 
+                            :class="['contact-questions__img img', {'img--loaded':imgIsLoaded}]" 
                             sizes="sm:100vw md:40vw lg:40vw 40vw" 
                             role="presentation"
                             loading="lazy"
+                            @load="imgIsLoaded = true"
                         />
                     </div>
                 </div>
@@ -34,6 +35,7 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
 </template>
 
 <script setup>
+const imgIsLoaded = ref(false)
 const imgEl = ref(null)
 const props = defineProps({
     title: String,
