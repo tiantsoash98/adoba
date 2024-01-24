@@ -39,6 +39,7 @@
     const blogContent = ref(null)
     const textReveal = ref(null)
     const { url } = useRoute().params
+    const config = useRuntimeConfig()
     const content = ref(null)
     const { data: article }  = await useFetch(`/api/blog/${ url }`, {
         transform: (_article) => _article.data.data
@@ -64,8 +65,6 @@
         if(textReveal.value){
             animateTextReveal(textReveal)
         }
-        initFBSdk()
-        
     })
 
     onBeforeUnmount(() => {
@@ -76,35 +75,11 @@
     })
 
     const facebookShare = () => {
-        FB.ui({
-            display: 'popup',
-            method: 'share',
-            href: currentUrl(),
-        }, function(response){});
+        window.open(`https://www.facebook.com/dialog/share?app_id=${ config.public.facebookAppId }&display=popup&href=${ currentUrl() }&redirect_uri=${ currentUrl() }`, "Facebook", "width=500,height=500");    
     }
 
     const linkedinShare = () => {
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${ currentUrl() }`, "linkedinPopup", "width=500,height=500");
-    }
-
-    const initFBSdk = () => {
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '362226786555137',
-                xfbml            : true,
-                version          : 'v19.0'
-            });
-            
-            FB.AppEvents.logPageView();       
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${ currentUrl() }`, "Linkedin", "width=500,height=500");
     }
 
     useHead({
