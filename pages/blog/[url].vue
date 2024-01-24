@@ -12,9 +12,8 @@
                             <span class="title-h6">Partager l'article</span>
                             <ul class="article__share-options">
                                 <li class="article__share article__share--facebook">
-                                    <a :href="`https://www.facebook.com/dialog/share?app_id=362226786555137&display=popup&href=${ currentUrl()}&redirect_uri=${ currentUrl()}`">
-                                        <IconFacebook :icon-class="'article__social'"/>
-                                    </a>
+                                    <!-- <a :href="`https://www.facebook.com/dialog/share?app_id=362226786555137&display=popup&href=${ currentUrl()}&redirect_uri=${ currentUrl()}`"> -->
+                                        <IconFacebook :icon-class="'article__social'" @click="facebookShare"/>
                                 </li>
                                 <li class="article__share article__share--linkedin">
                                     <a href="#">
@@ -68,6 +67,8 @@
         if(textReveal.value){
             animateTextReveal(textReveal)
         }
+        initFBSdk()
+        
     })
 
     onBeforeUnmount(() => {
@@ -75,7 +76,35 @@
             beforeUnmountTextReveal(textReveal)
         }
         destroyCursor()
-    })    
+    })
+
+    const facebookShare = () => {
+        FB.ui({
+            display: 'popup',
+            method: 'share',
+            href: currentUrl(),
+        }, function(response){});
+    }
+
+    const initFBSdk = () => {
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '362226786555137',
+                xfbml            : true,
+                version          : 'v19.0'
+            });
+            
+            FB.AppEvents.logPageView();       
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    }
 
     useHead({
         title: content.value.metadata.metaTitle,
