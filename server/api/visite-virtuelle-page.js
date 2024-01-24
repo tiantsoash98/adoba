@@ -15,9 +15,9 @@ export default defineEventHandler(async (event) => {
             serviceInfo: {
                 fields: ["serviceInfoHeadline", "serviceInfoText", "serviceInfoDescription"],
             },
-            serviceBannerOne: {
+            serviceVideo: {
                 populate: {
-                    serviceBannerMedia: {
+                    serviceVideoThumbnail: {
                         fields: ["name", "alternativeText", "url", "mime"],
                     }  
                 }

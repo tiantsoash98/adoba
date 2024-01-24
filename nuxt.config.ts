@@ -26,7 +26,9 @@ export default defineNuxtConfig({
     }
   },
   build: {
-    transpile: ['gsap'],
+    transpile: [
+      'gsap'
+    ],
   },
   css: ['~/assets/css/main.scss'],
   modules: [

@@ -1010,6 +1010,14 @@
     node-gyp-build "^4.2.2"
     resolve-from "^5.0.0"
 
+"@vimeo/player@^2.16.2":
+  version "2.21.0"
+  resolved "https://registry.npmjs.org/@vimeo/player/-/player-2.21.0.tgz"
+  integrity sha512-EAwbMsI4knNQBv+IPp0ndKYaOxJjnOGz/Bfunst9RncMn/j71mzm4QfulhnmNJA8g/PQiBsOh2BsSMuWpVgvRQ==
+  dependencies:
+    native-promise-only "0.8.1"
+    weakmap-polyfill "2.0.4"
+
 "@vitejs/plugin-vue-jsx@^3.1.0":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@vitejs/plugin-vue-jsx/-/plugin-vue-jsx-3.1.0.tgz"
@@ -1075,7 +1083,7 @@
     "@vue/compiler-core" "3.4.5"
     "@vue/shared" "3.4.5"
 
-"@vue/compiler-sfc@^3.3.10", "@vue/compiler-sfc@3.4.5":
+"@vue/compiler-sfc@^3.2.23", "@vue/compiler-sfc@^3.3.10", "@vue/compiler-sfc@3.4.5":
   version "3.4.5"
   resolved "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-3.4.5.tgz"
   integrity sha512-jauvkDuSSUbP0ebhfNqljhShA90YEfX/0wZ+w40oZF43IjGyWYjqYaJbvMJwGOd+9+vODW6eSvnk28f0SGV7OQ==
@@ -3463,6 +3471,11 @@ napi-wasm@^1.1.0:
   resolved "https://registry.npmjs.org/napi-wasm/-/napi-wasm-1.1.0.tgz"
   integrity sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==
 
+native-promise-only@0.8.1:
+  version "0.8.1"
+  resolved "https://registry.npmjs.org/native-promise-only/-/native-promise-only-0.8.1.tgz"
+  integrity sha512-zkVhZUA3y8mbz652WrL5x0fB0ehrBkulWT3TomAQ9iDtyXZvzKeEA6GPxAItBYeNYl5yngKRX612qHOhvMkDeg==
+
 negotiator@^0.6.3:
   version "0.6.3"
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
@@ -5477,7 +5490,16 @@ vue-router@^4.1.0, vue-router@^4.2.5:
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
-"vue@^2.7.0 || ^3.2.25", vue@^3.0.0, vue@^3.2.0, vue@^3.2.25, vue@^3.3.13, vue@^3.3.4, vue@^3.4.5, "vue@>=2.7 || >=3", vue@3.4.5:
+vue-vimeo-player@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/vue-vimeo-player/-/vue-vimeo-player-1.1.2.tgz"
+  integrity sha512-7JTlV5xl0K69brLRJs6R8vntHHW29NrrX4vBKiS7TnIKd9mQmMdk9CKL/vXGNT9W0Y/vEuUMNIXuCvyRFT6CJw==
+  dependencies:
+    "@vimeo/player" "^2.16.2"
+    "@vue/compiler-sfc" "^3.2.23"
+    vue "^3.2.23"
+
+"vue@^2.7.0 || ^3.2.25", vue@^3.0.0, vue@^3.2.0, vue@^3.2.23, vue@^3.2.25, vue@^3.3.13, vue@^3.3.4, vue@^3.4.5, "vue@>=2.7 || >=3", vue@3.4.5:
   version "3.4.5"
   resolved "https://registry.npmjs.org/vue/-/vue-3.4.5.tgz"
   integrity sha512-VH6nHFhLPjgu2oh5vEBXoNZxsGHuZNr3qf4PHClwJWw6IDqw6B3x+4J+ABdoZ0aJuT8Zi0zf3GpGlLQCrGWHrw==
@@ -5487,6 +5509,11 @@ vue-router@^4.1.0, vue-router@^4.2.5:
     "@vue/runtime-dom" "3.4.5"
     "@vue/server-renderer" "3.4.5"
     "@vue/shared" "3.4.5"
+
+weakmap-polyfill@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/weakmap-polyfill/-/weakmap-polyfill-2.0.4.tgz"
+  integrity sha512-ZzxBf288iALJseijWelmECm/1x7ZwQn3sMYIkDr2VvZp7r6SEKuT8D0O9Wiq6L9Nl5mazrOMcmiZE/2NCenaxw==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
