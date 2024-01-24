@@ -130,6 +130,7 @@
         margin-top: var(--r-space-xs);
     }
     &__social {
+        cursor: pointer;
         width: 100%;
         fill: currentColor;
         max-width: var(--r-space-sm);
