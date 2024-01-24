@@ -12,11 +12,10 @@
                             <span class="title-h6">Partager l'article</span>
                             <ul class="article__share-options">
                                 <li class="article__share article__share--facebook">
-                                    <!-- <a :href="`https://www.facebook.com/dialog/share?app_id=362226786555137&display=popup&href=${ currentUrl()}&redirect_uri=${ currentUrl()}`"> -->
                                         <IconFacebook :icon-class="'article__social'" @click="facebookShare"/>
                                 </li>
                                 <li class="article__share article__share--linkedin">
-                                    <a href="#">
+                                    <a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${ currentUrl() }`">
                                         <IconLinkedin :icon-class="'article__social'"/>
                                     </a>
                                 </li>
