@@ -88,11 +88,11 @@
         description: content.value.metadata.metaDescription,
         ogTitle: content.value.metadata.metaTitle,
         ogDescription: content.value.metadata.metaDescription,
-        ogImage: imgPath(content.value.metadata?.metaImage?.data.attributes?.url),
+        ogImage: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.url),
         ogUrl: currentUrl(),
         twitterTitle: content.value.metadata.metaTitle,
         twitterDescription: content.value.metadata.metaDescription,
-        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.url),
+        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.url),
         twitterCard: 'summary'
     })
 </script>
