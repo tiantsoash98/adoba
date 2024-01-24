@@ -17,11 +17,12 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
                             <Button :text="buttonLabel"></Button>
                         </NuxtLink>
                     </div>
-                    <div class="contact-questions__img-wrapper col-6">
+                    <div class="contact-questions__img-wrapper col-6" ref="imgEl">
                         <nuxt-img
+                            format="webp"
                             :src="imgPath(img.data.attributes.url)"
                             class="contact-questions__img" 
-                            sizes="sm:100vw md:50vw 50vw" 
+                            sizes="sm:100vw md:40vw lg:40vw 40vw" 
                             role="presentation"
                             loading="lazy"
                         />
@@ -33,12 +34,18 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
 </template>
 
 <script setup>
+const imgEl = ref(null)
 const props = defineProps({
     title: String,
     description: String,
     buttonLabel: String,
     buttonRedirect: String,
     img: Object
+})
+const { imgScrollAnimation } = useImgScrollAnimation();
+
+onMounted(() => {
+    imgScrollAnimation(imgEl)
 })
 </script>
 
