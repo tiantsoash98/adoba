@@ -74,7 +74,6 @@ onMounted(() => {
     }
 }
 @media screen and (max-width: 991px){
-    
     .contact-questions  {
         &__content-wrapper {
             order: 2;

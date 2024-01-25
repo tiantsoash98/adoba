@@ -1,16 +1,16 @@
 <template>
     <div>
         <article :class="cardFullClass">
-            <div class="featured-article__header-wrapper">
+            <div class="featured-article__header-wrapper col-12 col-sm-7 col-md-6 mt-7 mt-sm-0">
                 <span class="featured-article__date callout-text">{{ dateFormat(date) }}</span>
                 <NuxtLink :to="`/blog/${ url }`">
-                    <h4 class="featured-article__title">{{ title }}</h4>
+                    <h4 class="featured-article__title mb-5">{{ title }}</h4>
                 </NuxtLink>
                 <NuxtLink :to="`/blog/${ url }`" class="featured-article__button">
                     <Button :text="buttonLabel" class="button--tertiary"></Button>
                 </NuxtLink>
             </div>
-            <NuxtLink :to="`/blog/${ url }`" class="featured-article__figure-wrapper">
+            <NuxtLink :to="`/blog/${ url }`" class="featured-article__figure-wrapper col-12 col-sm-5 col-md-6">
                 <figure class="featured-article__figure" role="presentation"  data-cursor-text="Lire">
                     <nuxt-img
                         :width="img.data.attributes.width"
@@ -42,7 +42,7 @@ const props = defineProps({
 })
 
 const cardFullClass = computed(() => {
-    const baseClass = "featured-article"
+    const baseClass = "row featured-article mb-9"
     if(props.isInverted) return `${baseClass} featured-article--inverted`
     return baseClass
 })
@@ -51,11 +51,6 @@ const cardFullClass = computed(() => {
 <style lang="scss" scoped>
 .featured-article {
     $root:&;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: var(--r-space-lg);
 
     &--inverted {
         #{$root}__header-wrapper {
@@ -66,19 +61,14 @@ const cardFullClass = computed(() => {
             order: 1;
         }
     }
-    
     &__header-wrapper {
-        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         padding: 0 var(--r-space-lg) 0 0;
     }
     &__date {
         color: var(--color-neutral-70);
-    }
-    &__title {
-        margin-bottom: var(--r-space-sm);
-    }
-    &__figure-wrapper {
-        width: 50%;
     }
     &__figure {
         display: flex;
@@ -94,6 +84,23 @@ const cardFullClass = computed(() => {
 
         &:hover {
             transform: scale(1.05);
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .featured-article  {
+        $root:&;
+        &__header-wrapper {
+            order: 2;
+        }   
+        &__figure {
+            order: 1;
+        }    
+        
+        &--inverted { 
+            #{$root}__header-wrapper {
+                padding: 0;
+            }
         }
     }
 }

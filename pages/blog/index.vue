@@ -1,12 +1,12 @@
 <template>
     <div>
-        <section class="section section--margin-top-md blog-header">
+        <section class="section section--margin-top-md blog-header mt-11 mt-md-7">
             <div class="container">
                 <div class="row blog-header__header-wrapper">
-                    <div class="blog-header__title-wrapper">
+                    <div class="blog-header__title-wrapper col-3  col-sm-7">
                         <h1 class="blog-header__title title-h6">{{ content.blogTitle}}</h1>
                     </div>
-                    <div class="blog-header__description-wrapper">
+                    <div class="blog-header__description-wrapper col-9 col-sm-5">
                         <h2 class="text-visually-hidden">{{ content.blogDescription }}</h2>
                         <div class="blog__title title-h1" ref="textReveal">{{ content.blogDescription }}</div>
                     </div>
@@ -61,23 +61,12 @@
 
 <style lang="scss" scoped>
 .blog {
-    &-header {
-        &__title-wrapper {
-            grid-column: span 7;
-        }
-        &__description-wrapper {
-            grid-column: span 5;
-        }
-    }
     &-content {
         &__spinner-wrapper {
             max-height: var(--r-space-lg);
         }
         &__spinner {
             height: 100%;
-        }
-        &__main-wrapper {
-            margin-top: var(--r-space-sm);
         }
     }
 }
