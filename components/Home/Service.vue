@@ -24,7 +24,7 @@
                         :src="imgPath(img)"
                         format="webp"
                         :class="'service__img'" 
-                        sizes="90vw sm:80vw md:80vw" 
+                        sizes="90vw md:870px lg:1093px" 
                         :alt="title"
                         loading="lazy"
                         quality="70"

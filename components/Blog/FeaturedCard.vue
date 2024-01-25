@@ -13,6 +13,8 @@
             <NuxtLink :to="`/blog/${ url }`" class="featured-article__figure-wrapper">
                 <figure class="featured-article__figure" role="presentation"  data-cursor-text="Lire">
                     <nuxt-img
+                        :width="img.data.attributes.width"
+                        :height="img.data.attributes.height"
                         format="webp"
                         :class="['featured-article__img img', {'img--loaded':imgIsLoaded}]"
                         :src="imgPath(img.data.attributes.url)"
@@ -88,7 +90,7 @@ const cardFullClass = computed(() => {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 1s var(--alias-default-ease);
+        transition: opacity 1s var(--alias-default-ease), transform 1s var(--alias-default-ease);
 
         &:hover {
             transform: scale(1.05);

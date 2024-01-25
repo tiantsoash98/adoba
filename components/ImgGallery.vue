@@ -14,9 +14,11 @@
             :class="getImgClass(index)"
         >
             <div class="gallery__img-wrapper">
-                <nuxt-img
+                <NuxtImg
                     class="gallery__img-item"
                     format="webp"
+                    :width="image.attributes.realisationImg.data.attributes.width"
+                    :height="image.attributes.realisationImg.data.attributes.height"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
                     sizes="sm:80vw md:80vw 50vw" 
                     :alt="image.attributes.realisationTitle"
