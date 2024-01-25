@@ -1,15 +1,14 @@
 <template>
     <div class="banner-img__wrapper" ref="img">
-        <nuxt-img
+        <NuxtPicture
             format="webp"
-            :placeholder="[50, 25, 75, 5]"
             :class="[imgFullClass, {'img--loaded': isLoaded}]" 
             :sizes="sizes"
             :src="src" 
             :alt="alt"
             :loading="loading"
             @load="isLoaded = true"
-            />
+        />
     </div>
 </template>
 
@@ -21,7 +20,7 @@ const props = defineProps({
     alt: String,
     sizes: {
         type: String,
-        default: "sm:100vw md:100vw lg:100vw 100vw"
+        default: "100vw sm:100vw md:100vw lg:100vw"
     },
     imgClass: String,
     loading: {

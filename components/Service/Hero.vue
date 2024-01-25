@@ -6,10 +6,11 @@
                     <div class="service-hero__overlay"></div>
                     <div class="service-hero__img-wrapper">
                         <nuxt-img
-                            :placeholder="[50, 25, 75, 5]"
+                            width="1920"
+                            height="1080"
                             format="webp"
                             :class="['service-hero__img hero-img img', {'img--loaded': imgIsLoaded}]" 
-                            sizes="sm:100vw md:100vw lg:100vw 100vw"
+                            sizes="100vw"
                             :src="imgPath(content.serviceHero.serviceHeroImg.data.attributes.url)" 
                             :alt="content.serviceHero.serviceHeroImg.data.attributes.alternativeText"
                             loading="lazy"

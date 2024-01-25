@@ -5,16 +5,15 @@
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
                     <div class="home-hero__img-wrapper">
-                        <nuxt-img
-                            :placeholder="[50, 25, 75, 5]"
+                        <NuxtPicture
                             format="webp"
                             :class="['home-hero__img hero-img img', {'img--loaded':imgIsLoaded}]" 
-                            sizes="sm:100vw md:100vw lg:100vw 100vw"
+                            sizes="100vw sm:50vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                             :alt="content.homeHeaderImg.data.attributes.alternativeText"
                             loading="lazy"
                             @load="imgIsLoaded = true"
-                            />
+                        />
                     </div>
                 </div>
                 <div class="container home-hero__content-wrapper">

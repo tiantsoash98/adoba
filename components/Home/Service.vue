@@ -20,11 +20,11 @@
         <div class="service__img-container">
             <div class="service__img-wrapper" data-cursor-text="Voir">
                 <NuxtLink :to="slug">
-                    <nuxt-img
+                    <NuxtPicture
                         :src="imgPath(img)"
                         format="webp"
                         :class="'service__img'" 
-                        sizes="80vw sm:80vw md:80vw" 
+                        sizes="90vw sm:80vw md:80vw" 
                         :alt="title"
                         loading="lazy"
                         quality="70"
