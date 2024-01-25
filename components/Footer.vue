@@ -57,29 +57,21 @@
                     <span class="footer__newsletter-text">{{ content.footerNewsletterText }}</span>
                 </div>
             </div>
-            <div class="footer__end-wrapper mt-9 mt-sm-5 pb-7 pb-sm-5">
+            <div class="footer__end-wrapper mt-9 mt-sm-7 pb-7 pb-sm-5">
                 <div class="footer__launched-wrapper">
-                    <span class="footnote-text" v-html="content.footerCopyrights[0].children[0].text"></span>
+                    <span class="paragraph-text" v-html="content.footerCopyrights[0].children[0].text"></span>
                 </div>
                 <ul class="footer__socials-wrapper">
-                    <li class="footer__social footer__social--facebook">
-                        <a href="#">
-                            <IconFacebook/>
-                        </a>
-                    </li>
-                    <li class="footer__social footer__social--linkedin">
-                        <a href="#">
-                            <IconLinkedin/>
-                        </a>
-                    </li>
-                    <li class="footer__social footer__social--instagram">
-                        <a href="#">
-                            <IconInstagram/>
-                        </a>
-                    </li>
-                    <li class="footer__social footer__social--pinterest">
-                        <a href="#">
-                            <IconPinterest/>
+                    <li 
+                        v-for="social in content.socials.data" 
+                        :key="social.attributes.socialLink"
+                        class="footer__social mr-5 mr-sm-5 mr-md-3 mt-5 mt-sm-5"
+                    >
+                        <a :href="social.attributes.socialLink">
+                            <IconFacebook v-if="social.attributes.socialIcon == 'icon-facebook'"/>
+                            <IconLinkedin v-else-if="social.attributes.socialIcon == 'icon-linkedin'"/>
+                            <IconInstagram v-else-if="social.attributes.socialIcon == 'icon-instagram'"/>
+                            <IconPinterest v-else-if="social.attributes.socialIcon == 'icon-pinterest'"/>
                         </a>
                     </li>
                 </ul>
@@ -166,13 +158,21 @@
     }
     &__social {
         max-width: var(--r-space-sm);
-        margin-left: var(--r-space-xs);
     }
 }
 @media screen and (max-width: 991px){
     .pre-footer {
         &__title-wrapper {
             max-width: 38ch;
+        }
+    }
+    .footer {
+        &__end-wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        &__social {
+            max-width: var(--r-space-md);
         }
     }
 }
