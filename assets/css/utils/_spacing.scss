@@ -90,18 +90,37 @@
     column-gap: var(--r-space-sm);
 }
 
-
-
 .col {
     display: flex;
     grid-column-end: -1;
 
     @for $i from 1 through 12 {
         &-#{$i} {
+            grid-column: auto/span $i;
             display: flex;
             flex-direction: column;
             gap: var(--r-space-sm);
-            grid-column-end: span $i;
+        }
+    }
+    @include media-min-width(small) {
+        @for $i from 1 through 12 {
+            &-sm-#{$i} {
+                grid-column: auto/span $i;
+            }
+        }
+    }
+    @include media-min-width(medium) {
+        @for $i from 1 through 12 {
+            &-md-#{$i} {
+                grid-column: auto/span $i;
+            }
+        }
+    }
+    @include media-min-width(large) {
+        @for $i from 1 through 12 {
+            &-lg-#{$i} {
+                grid-column: auto/span $i;
+            }
         }
     }
 }
@@ -112,4 +131,26 @@
             grid-column-start: $i + 1;
         }
     }
+    @include media-min-width(small) {
+        @for $i from 1 through 12 {
+            &-sm-#{$i} {
+                grid-column-start: $i + 1;
+            }
+        }
+    }
+    @include media-min-width(medium) {
+        @for $i from 1 through 12 {
+            &-md-#{$i} {
+                grid-column-start: $i + 1;
+            }
+        }
+    }
+    @include media-min-width(large) {
+        @for $i from 1 through 12 {
+            &-lg-#{$i} {
+                grid-column-start: $i + 1;
+            }
+        }
+    } 
 }
+

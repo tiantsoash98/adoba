@@ -113,7 +113,7 @@ $min-font-size : 1.25rem;
     --alias-default-ease: cubic-bezier(.43,.195,.02,1);
 
     // Navbar 
-    --default-show-nav-menu-breakpoint: var(--br-sm);
+    --default-show-nav-menu-breakpoint: var(--br-md);
 }
 
 
@@ -124,9 +124,10 @@ $min-font-size : 1.25rem;
 // Media orientation portrait & Screen width below 767px
 @media screen and (max-width: map-get($map: $breakpoints, $key: small))  and (orientation: portrait){
     :root{
-        --unit-fx: calc(var(--vw)/ 375);
+        --unit-fx: calc(var(--vw)/ 425);
         --unit-fy: calc(var(--vh)/ 726);
         --base-unit: 12;
+        --base-unit-x-margin: calc(2.5 * var(--base-unit));
 
         $min-font-size : 1rem;
 

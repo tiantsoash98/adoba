@@ -35,14 +35,14 @@
                 </div>
             </div>
         </section>
-        <section class="section home-presentation">
+        <section class="section home-presentation" ref="presentationEl">
             <div class="container">
                 <div class="row home-presentation__content-wrapper">
-                    <div class="home-presentation__title-wrapper">
+                    <div class="home-presentation__title-wrapper col-12 col-md-8">
                         <h2 class="text-visually-hidden"> {{ content.homePresentation }}</h2>
-                        <div class="home-presentation__title title-h3"> {{ content.homePresentation }}</div>
+                        <div class="home-presentation__title title-h3" ref="presentationTargetEl"> {{ content.homePresentation }}</div>
                     </div>
-                    <div class="home-presentation__button-wrapper">
+                    <div class="home-presentation__button-wrapper col-12 col-md-4">
                         <NuxtLink to="/contact">
                             <Button text="Contactez-nous"></Button>
                         </NuxtLink>
@@ -66,6 +66,8 @@
 <script setup>
     const imgIsLoaded = ref(false)
     const hero = ref(null)
+    const presentationEl = ref(null)
+    const presentationTargetEl = ref(null)
     const { gsap } = useGsap()
     
     import SplitType from 'split-type';
@@ -73,6 +75,7 @@
         transform: (_content) => _content.data.data.attributes
     })
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
+    const { createTextRevealScroll, revertTextRevealScroll } = useTextRevealScroll()
     const headerExclusion = useHeaderExclusion()
     const { initCursor, destroyCursor } = useCursor()
 
@@ -80,14 +83,26 @@
         headerExclusion.value = true
         initCursor()
         animateHero(hero)
-        presentationEnter()
         pageScroll()
+        presentationEnter()
+        window.addEventListener("resize", onWindowResizeEvent)
     })
 
     onBeforeUnmount(() => {
         beforeUnmountHero(hero)
+        revertTextRevealScroll(presentationTargetEl)
         destroyCursor()
     })
+
+    const onWindowResizeEvent = () => {
+        revertTextRevealScroll(presentationTargetEl)
+        createTextRevealScroll(presentationEl, presentationTargetEl, 'presentation-title')
+    }
+
+    const pageScroll = () => {
+        presentationEnter()
+        createTextRevealScroll(presentationEl, presentationTargetEl, 'presentation-title')
+    }
 
     const presentationEnter = () => {
         let triggerEl = '.home-presentation';
@@ -109,39 +124,8 @@
         })
     }
 
-    const pageScroll = () => {
-        
-        SplitType.create('.home-presentation__title', 
-        {
-            types: 'lines', 
-            lineClass: 'home-presentation__title--line-wrapper'
-        })
 
-        document.querySelectorAll('.home-presentation__title--line-wrapper')
-            .forEach(function(line){
-                var wrapperDiv = document.createElement('div');
-                wrapperDiv.classList.add('home-presentation__title--line')
-                wrapperDiv.innerHTML = line.innerHTML
-                line.innerHTML = ""
-                line.appendChild(wrapperDiv)
-            })
-
-        gsap.timeline({
-            defaults: { duration: 1, ease: "power3.out" },
-            scrollTrigger: {
-                trigger: ".home-presentation",
-                //trigger element - viewport
-                start: "top 80%",
-                end: "top center"
-            }
-        })
-        .from('.home-presentation__title--line', 
-        {
-            opacity: 0,
-            yPercent: 100,
-            stagger: 0.1,
-        })
-    }
+    
 
     useContentMetadata().generateMetadata(content)
 </script>
@@ -237,20 +221,49 @@
         }
     }
     &-presentation {
-        &__title-wrapper {
-            grid-column: span 8;
-        }
         &__title {
             &--line-wrapper {
                 overflow: hidden;
             }
         } 
         &__button-wrapper {
-            grid-column: 10/-1;
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
         }
     }
 }
+// Large
+@media screen and (max-width: 1280px){
+.home {
+    &-hero {  
+        &__title-wrapper {
+            max-width: 50ch;
+        }
+    }
+}
+}
+// Medium
+@media screen and (max-width: 991px){
+.home {
+    &-hero {  
+        &__content-wrapper {
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            row-gap: var(--r-space-md);
+            padding-bottom: var(--r-space-xl);
+        }
+    }
+    &-presentation {
+        &__content-wrapper {
+            row-gap: var(--r-space-md);
+        }
+        &__button-wrapper {
+            align-items: flex-start;
+        }
+    }
+}
+}
+
 </style>
