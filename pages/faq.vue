@@ -1,12 +1,12 @@
 <template>
     <div>
-        <section class="section section--margin-top-md faq-header">
+        <section class="section section--margin-top-md mt-11 mt-sm-7 faq-header">
             <div class="container">
                 <div class="row faq-header__header-wrapper">
-                    <div class="faq-header__title-wrapper">
+                    <div class="faq-header__title-wrapper col-3 col-xs-2 col-md-7">
                         <h1 class="faq-header__title title-h6">{{ content.faqTitle}}</h1>
                     </div>
-                    <div class="faq-header__description-wrapper">
+                    <div class="faq-header__description-wrapper col-9 col-xs-8 col-md-5">
                         <p class="faq-header__description title-h6" ref="textReveal">{{ content.faqDescription }}</p>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                 <div class="faq-content__title-wrapper">
                     <span class="faq-content__title title-h2">{{ content.faqContentTitle }}</span>
                 </div>
-                <div class="faq-content__main-wrapper">
+                <div class="faq-content__main-wrapper mt-5">
                     <AccordionList
                         :dataList="content.faqQuestions"
                     ></AccordionList>
@@ -52,18 +52,6 @@
 
 <style lang="scss" scoped>
 .faq {
-    &-header {
-        &__title-wrapper {
-            grid-column: span 7;
-        }
-        &__description-wrapper {
-            grid-column: span 5;
-        }
-    }
-    &-content {
-        &__main-wrapper {
-            margin-top: var(--r-space-sm);
-        }
-    }
+
 }
 </style>
