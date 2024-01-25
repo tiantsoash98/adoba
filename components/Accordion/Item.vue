@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="accordion-item__overflow-wrapper" ref="wrapperEl">
-                <div class="row accordion-item__content-wrapper content-element pt-7 pt-sm-5 pb-7 pb-sm-5">
+                <div class="row accordion-item__content-wrapper content-element pt-7 pt-sm-7 pt-md-7 pb-7 pb-sm-7 pb-md-5">
                     <div :class="contentFullClass" v-html="$mdRenderer.render(content)"></div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section section--margin-top-md studio">
+        <section class="section section--margin-top-md mt-11 mt-md-7 studio">
             <div class="container">
                 <div class="row studio-description__wrapper">
                     <h1 class="title-h6 studio-description__label col-12">{{ content.studioLabel }}</h1>

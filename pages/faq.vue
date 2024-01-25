@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section section--margin-top-md mt-11 mt-sm-7 faq-header">
+        <section class="section section--margin-top-md mt-11 mt-md-7 faq-header">
             <div class="container">
                 <div class="row faq-header__header-wrapper">
                     <div class="faq-header__title-wrapper col-3 col-xs-2 col-md-7">

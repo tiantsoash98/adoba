@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section realisations mt-11 mt-sm-7">
+        <section class="section realisations mt-11 mt-md-7">
             <div class="container">
                 <div class="row realisations__content-wrapper">
                     <div class="realisations__header-wrapper col-12 col-sm-7 ">

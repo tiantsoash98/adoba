@@ -1,13 +1,13 @@
 <template>
     <div>
-        <section class="section section--margin-top-md jobs" ref="hero">
+        <section class="section section--margin-top-md jobs mt-11 mt-md-7" ref="hero">
             <div class="container">
                 <div class="row jobs__content-wrapper">
-                    <div class="col-7 jobs__header-wrapper">
+                    <div class="col-10 col-md-8 jobs__header-wrapper">
                         <h1 class="text-visually-hidden">{{ content.jobsTitle }}</h1>
                         <div class="jobs__title title-h1 hero-title" >{{ content.jobsTitle }}</div>
                     </div>
-                    <div class="col-7 jobs__description-wrapper">
+                    <div class="col-12 col-md-7 jobs__description-wrapper">
                         <h2 class="jobs__description title-h5 hero-description" >{{ content.jobsDescription }}</h2>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="jobs-content__main-wrapper">
                     <AccordionList
                         :dataList="content.jobsContentList"
-                        :content-class="'col-7 offset-5'"
+                        :content-class="'col-12 col-md-7 offset-0 offset-md-5 '"
                         theme="dark"
                     ></AccordionList>
                 </div>
