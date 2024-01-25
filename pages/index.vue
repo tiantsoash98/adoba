@@ -123,9 +123,6 @@
         })
     }
 
-
-    
-
     useContentMetadata().generateMetadata(content)
 </script>
 

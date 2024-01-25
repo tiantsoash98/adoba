@@ -4,9 +4,8 @@
         <div class="service__content-wrapper">
             <div class="service__left-wrapper col-12 col-sm-6 col-md-7">
                 <span class="service__id callout-text pt-2">{{ serviceId }}</span>
-                <div class="service__title-wrapper ml-0 ml-sm-5 mt-1 mt-sm-0">
-                    <h5 class="text-visually-hidden">{{ title }}</h5>
-                    <div class="service__title title-h5">{{ title }}</div>
+                <div class="service__title-wrapper ml-0 ml-sm-5 mt-2 mt-sm-0">
+                    <h5 class="service__title">{{ title }}</h5>
                 </div>
             </div>
             <div class="service__right-wrapper col-12 col-sm-6 col-md-5 mt-5 mt-sm-0">
@@ -82,7 +81,7 @@
         color: var(--color-neutral-50);
     }
     & p {
-        color: var(--color-neutral-10);
+        color: var(--color-neutral-20);
     }
     &__img-container {
         width: 100%;
