@@ -135,12 +135,12 @@ $min-font-size : 1.25rem;
         --unit-fx: calc(var(--vw)/ 425);
         --unit-fy: calc(var(--vh)/ 726);
         --base-unit: 12;
-        --base-unit-x-margin: calc(2.5 * var(--base-unit));
+        --base-unit-x-margin: calc(2 * var(--base-unit));
 
         $min-font-size : 1rem;
 
         // Typescale
-        --title-1: 32;
+        --title-1: 30;
         --title-2: 24;
         --title-3: 16;
         --title-4: 15;

@@ -41,7 +41,7 @@ const imgFullClass = computed(() => `banner-img__img img ${props.imgClass} `)
 .banner-img {
     &__wrapper {
         width: 100%;
-        height: 90vh;
+        height: clamp(600px, 90vh, 1000px);
         overflow: hidden;
         display: flex;
         justify-content: center;
@@ -51,6 +51,14 @@ const imgFullClass = computed(() => `banner-img__img img ${props.imgClass} `)
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .banner-img {
+        &__wrapper {
+            height: clamp(300px, 50vh, 500px);
+        }
     }
 }
 </style>

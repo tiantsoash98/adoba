@@ -1,6 +1,6 @@
 <template>
     <div class="service">
-        <div class="service__border mb-6 mb-sm-7"></div>
+        <div class="service__border mb-9 mb-sm-7"></div>
         <div class="service__content-wrapper">
             <div class="service__left-wrapper col-12 col-sm-6 col-md-7">
                 <span class="service__id callout-text pt-2">{{ serviceId }}</span>
@@ -16,7 +16,7 @@
                 
             </div>
         </div>
-        <div class="service__img-container mt-7">
+        <div class="service__img-container mt-9 mt-sm-7">
             <div class="service__img-wrapper pb-6" data-cursor-text="Voir">
                 <NuxtLink :to="slug">
                     <NuxtPicture

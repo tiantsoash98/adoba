@@ -73,7 +73,7 @@ const getImgClass = (index) => {
 <style lang="scss" scoped>
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--r-space-sm);;
 
     &__img-wrapper {

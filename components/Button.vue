@@ -2,7 +2,7 @@
   <button class="button">
     <div class="button__frame"></div>
     <span class="button__label">{{ text }}</span>
-    <div class="button__icon-wrapper">
+    <div class="button__icon-wrapper ml-5 ml-sm-3">
         <IconArrowRight icon-class="button__icon" v-if="icon == 'arrow-right'"/>
         <IconArrowUpRight icon-class="button__icon" v-else-if="icon == 'arrow-up-right'"/>
     </div>
@@ -36,7 +36,6 @@ export default {
 
     color: var(--button-color);
     padding: calc(0.75 * var(--r-base-unit));
-    padding-right: var(--r-space-sm);
     border: 1px solid var(--button-color);
     border-radius: 50px;
     overflow: hidden;
@@ -107,7 +106,6 @@ export default {
         transition: transform 0.8s var(--alias-default-ease); 
     }
     &__icon-wrapper {
-        margin-left: var(--r-space-xs);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -119,4 +117,13 @@ export default {
         fill: currentColor;
     }
 }
+// @media screen and (max-width: 1280px){
+//     .button {
+//         padding: calc(1 * var(--r-base-unit));
+
+//         &__icon {
+//             width: calc(1 * var(--r-base-unit));
+//         }
+//     }
+// }
 </style>

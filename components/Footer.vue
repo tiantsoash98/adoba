@@ -27,29 +27,29 @@
                         <div class="footer__email-wrapper">
                             <span class="title-h6">{{ content.footerEmail }}</span>
                         </div>
-                        <div class="footer__description callout-text mt-3 mt-sm-3">{{ content.footerDescription }}</div>
+                        <div class="footer__description paragraph-text mt-3 mt-sm-3">{{ content.footerDescription }}</div>
                     </div>
                 </div>
                 <div class="footer__section col-6 col-xs-6 col-md-3 col-lg-3 mt-9 mt-xs-0">
                     <div class="footer__section-title paragraph-text--medium mb-3 mb-sm-3">Liens</div>
                     <ul class="footer__links">
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/">Accueil</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/studio">Le studio</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/blog">Blog</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/faq">FAQ</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/jobs">Jobs</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/contact">Contact</NuxtLink></li>
+                        <li class="mt-4 mt-sm-4 mt-md-1"><NuxtLink to="/">Accueil</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/studio">Le studio</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/realisations">Réalisations</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/blog">Blog</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/faq">FAQ</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/jobs">Jobs</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/contact">Contact</NuxtLink></li>
                     </ul>
                 </div>
                 <div class="footer__section col-6 col-xs-6 col-md-3 col-lg-3 mt-9 mt-lg-0">
                     <div class="footer__section-title paragraph-text--medium mb-3 mb-sm-3">Nos services</div>
                     <ul class="footer__links">
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/perspective-3d">Perspective 3D</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/home-staging">Home staging</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/film-architecture-3d">Film d'architecture 3D</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/visite-virtuelle">Visite virtuelle</NuxtLink></li>
-                        <li class="mt-1 mt-sm-1"><NuxtLink to="/maquette-orbitale-3d">Maquette orbitale</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/perspective-3d">Perspective 3D</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/home-staging">Home staging</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/film-architecture-3d">Film d'architecture 3D</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/visite-virtuelle">Visite virtuelle</NuxtLink></li>
+                        <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/maquette-orbitale-3d">Maquette orbitale</NuxtLink></li>
                     </ul>
                 </div>
                 <div class="footer__section col-12 col-xs-6 col-md-6 col-lg-3 mt-9 mt-lg-0">
@@ -57,7 +57,7 @@
                     <span class="footer__newsletter-text">{{ content.footerNewsletterText }}</span>
                 </div>
             </div>
-            <div class="footer__end-wrapper mt-9 mt-sm-7 pb-7 pb-sm-5">
+            <div class="footer__end-wrapper mt-9 mt-sm-9 pb-7 pb-sm-5">
                 <div class="footer__launched-wrapper">
                     <span class="paragraph-text" v-html="content.footerCopyrights[0].children[0].text"></span>
                 </div>
@@ -172,14 +172,14 @@
             align-items: flex-start;
         }
         &__social {
-            max-width: var(--r-space-md);
+            max-width: var(--r-space-sm-2);
         }
     }
 }
 @media screen and (max-width: 576px){
     .pre-footer {
         &__title-wrapper {
-            max-width: 25ch;
+            max-width: 20ch;
         }
     }
 }
