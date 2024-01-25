@@ -77,23 +77,16 @@ export default {
             background-color: var(--brand-secondary);
             color: var(--brand-primary);
         }
-    }
-    
+    } 
     &--tertiary {
         padding: 0;
         border: none;
         overflow: visible;
-
-        #{$root}__icon {
-            width: calc(0.5 * var(--r-base-unit));
-            transform: translateY(80%);
-        }
     }
     &--white {
         --button-color: var(--brand-primary);
         --button-color-opposite: var(--brand-secondary);
     }
-
     &__frame {
         position: absolute;
         top: 0;
@@ -110,20 +103,28 @@ export default {
         flex-direction: column;
         align-items: center;
         transition: transform 0.5s var(--alias-default-ease); 
+        width: 1.25rem;
     }
     &__icon {
         transform: translateY(50%);
-        width: calc(0.65 * var(--r-base-unit));
         fill: currentColor;
     }
 }
-// @media screen and (max-width: 1280px){
-//     .button {
-//         padding: calc(1 * var(--r-base-unit));
+@media screen and (max-width: 1280px){
+    .button {
+        padding: calc(1 * var(--r-base-unit));
 
-//         &__icon {
-//             width: calc(1 * var(--r-base-unit));
-//         }
-//     }
-// }
+        &__icon-wrapper {
+            width: 1rem;
+        }
+        &--tertiary {
+            padding: 0;
+        }
+    }
+}
+@media screen and (max-width: 576px){
+    .button {
+        padding: calc(1.5 * var(--r-base-unit));
+    }
+}
 </style>

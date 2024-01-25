@@ -16,7 +16,7 @@
                         />
                     </div>
                 </div>
-                <div class="container home-hero__content-wrapper pt-9 pb-11">
+                <div class="container home-hero__content-wrapper pt-9 pb-11 pb-md-9">
                     <div class="home-hero__title-wrapper">
                         <h1 class="text-visually-hidden">{{ content.homeHeadline }}</h1>
                         <div class="home-hero__title title-h1 hero-title">{{ content.homeHeadline }}</div>
