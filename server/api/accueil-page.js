@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
                 fields: ["serviceSlug", "serviceTitle", "serviceDescription"],
                 populate: {
                     serviceImg: {
-                        fields: ["name", "alternativeText", "url"],
+                        fields: ["name", "alternativeText", "url", "width", "height"],
                     }  
                 }
             },
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
                 fields: ["metaTitle", "metaDescription"],
                 populate: {
                     metaImage: {
-                        fields: ["name", "alternativeText", "url"],
+                        fields: ["name", "alternativeText", "url", "width", "height", "formats"],
                     }
                 }
             }

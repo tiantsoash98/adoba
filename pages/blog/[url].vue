@@ -82,26 +82,7 @@
         window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${ currentUrl() }`, "Linkedin", "width=500,height=500");
     }
 
-    useHead({
-        title: content.value.metadata.metaTitle,
-        meta: [
-            { name: 'description', content: content.value.metadata.metaDescription }
-        ]
-    })
-
-    useSeoMeta({
-        description: content.value.metadata.metaDescription,
-        ogTitle: content.value.metadata.metaTitle,
-        ogDescription: content.value.metadata.metaDescription,
-        ogImage: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.url),
-        ogImageWidth: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.width),
-        ogImageHeight: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.height),
-        ogUrl: currentUrl(),
-        twitterTitle: content.value.metadata.metaTitle,
-        twitterDescription: content.value.metadata.metaDescription,
-        twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.url),
-        twitterCard: 'summary'
-    })
+    useContentMetadata().generateMetadata(content)
 </script>
 
 <style lang="scss" scoped>
