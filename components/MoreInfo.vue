@@ -3,12 +3,12 @@
         <section :class="['section more', {'more--dark': theme == 'dark'}]">
             <div class="container">
                 <div class="row">
-                    <div class="more__title-wrapper">
+                    <div class="more__title-wrapper col-12 col-sm-6 col-md-7 pr-7">
                         <h3 class="text-visually-hidden">{{ title }}</h3>
                         <div class="more__title title-h1">{{ title }}</div>
                     </div>
-                    <div class="more__content-wrapper">
-                        <h6 class="more__description">{{ description }}</h6>
+                    <div class="more__content-wrapper col-12 col-sm-6 col-md-5 mt-5">
+                        <h6 class="more__description pb-7">{{ description }}</h6>
                         <NuxtLink :to="`/${buttonRedirect}`" v-if="buttonRedirectType == 'internal'">
                             <Button :text="buttonLabel" ></Button>
                         </NuxtLink>
@@ -56,17 +56,11 @@ const props = defineProps({
             color: var(--color-neutral-20);
         }
     }
-    &__title-wrapper {
-        grid-column: span 5;
-        padding-right: var(--r-space-md);
-    }
     &__content-wrapper  {
-        grid-column: 8/span 5;
         display: flex;
         flex-direction: column;
-    }
-    &__description {
-        margin-bottom: var(--r-space-md);
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 }
 </style>

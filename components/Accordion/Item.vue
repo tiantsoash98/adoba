@@ -1,16 +1,16 @@
 <template>
     <div>
-        <div :class="['accordion-item accordion-item__main-wrapper', {'accordion-item--dark': theme == 'dark'}]" @click="toogleItem">
+        <div :class="['accordion-item accordion-item__main-wrapper pb-8 pb-sm-6', {'accordion-item--dark': theme == 'dark'}]" @click="toogleItem">
             <div class="accordion-item__border"></div>
-            <div class="accordion-item__header-wrapper">
+            <div class="accordion-item__header-wrapper pt-8 pt-sm-6">
                 <p class="accordion-item__header title-h6">{{ header }}</p>
-                <div class="accordion-item__icon-wrapper">
+                <div class="accordion-item__icon-wrapper ml-7 ml-sm-5">
                     <IconPlus :icon-class="getIconClass(!isActive)"/>
                     <IconMinus :icon-class="getIconClass(isActive)"/>
                 </div>
             </div>
             <div class="accordion-item__overflow-wrapper" ref="wrapperEl">
-                <div class="row accordion-item__content-wrapper content-element">
+                <div class="row accordion-item__content-wrapper content-element pt-7 pt-sm-7 pt-md-7 pb-7 pb-sm-7 pb-md-5">
                     <div :class="contentFullClass" v-html="$mdRenderer.render(content)"></div>
                 </div>
             </div>
@@ -31,7 +31,7 @@ const props = defineProps({
     isActive: Boolean,
     contentClass: {
         type: String,
-        default: 'col'
+        default: 'col-12'
     },
     theme: String
 })
@@ -112,7 +112,6 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
 
 <style lang="scss">
 .accordion-item {
-    --accordion-default-padding: var(--r-space-sm-2);
     $root:&;
 
     &--dark {
@@ -127,7 +126,6 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         width: 100%;
         display: flex;
         flex-direction: column;
-        padding-bottom: var(--accordion-default-padding);
         cursor: pointer;
     }
     &__border {
@@ -141,7 +139,6 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding-top: var(--accordion-default-padding);
     }
     &__header {
         transition: opacity .3s var(--alias-default-ease);
@@ -154,9 +151,7 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        max-width: var(--r-space-xs-2);
-        margin-left: var(--r-space-md);
+        width: 1.25rem;
     }
     &__icon {
         position: absolute;
@@ -175,9 +170,13 @@ const contentFullClass = computed(() => `rich-text accordion-item__content ${pro
         overflow: hidden;
         height: 0;
     }
-    &__content-wrapper {
-        padding-top: var(--r-space-sm);
-        padding-bottom: var(--r-space-sm);
+}
+@media screen and (max-width: 1280px){
+    .accordion-item  {
+        &__icon-wrapper {
+            min-width: 1rem;
+            max-width: 1rem;
+        }
     }
 }
 </style>

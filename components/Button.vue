@@ -1,8 +1,8 @@
 <template>
   <button class="button">
     <div class="button__frame"></div>
-    <span class="button__label">{{ text }}</span>
-    <div class="button__icon-wrapper">
+    <span class="button__label title-h6">{{ text }}</span>
+    <div class="button__icon-wrapper ml-5 ml-sm-3">
         <IconArrowRight icon-class="button__icon" v-if="icon == 'arrow-right'"/>
         <IconArrowUpRight icon-class="button__icon" v-else-if="icon == 'arrow-up-right'"/>
     </div>
@@ -29,14 +29,9 @@ export default {
     --button-color: var(--brand-secondary);
     --button-color-opposite: var(--brand-primary);
     $root:&;
-    font-family: var(--font-family-primary), 'Arial', serif; 
-    letter-spacing: 0;
-    line-height: 1.4;
-    font-weight: 350;
 
     color: var(--button-color);
     padding: calc(0.75 * var(--r-base-unit));
-    padding-right: var(--r-space-sm);
     border: 1px solid var(--button-color);
     border-radius: 50px;
     overflow: hidden;
@@ -78,23 +73,16 @@ export default {
             background-color: var(--brand-secondary);
             color: var(--brand-primary);
         }
-    }
-    
+    } 
     &--tertiary {
         padding: 0;
         border: none;
         overflow: visible;
-
-        #{$root}__icon {
-            width: calc(0.5 * var(--r-base-unit));
-            transform: translateY(80%);
-        }
     }
     &--white {
         --button-color: var(--brand-primary);
         --button-color-opposite: var(--brand-secondary);
     }
-
     &__frame {
         position: absolute;
         top: 0;
@@ -107,16 +95,36 @@ export default {
         transition: transform 0.8s var(--alias-default-ease); 
     }
     &__icon-wrapper {
-        margin-left: var(--r-space-xs);
         display: flex;
         flex-direction: column;
         align-items: center;
         transition: transform 0.5s var(--alias-default-ease); 
+        width: 1.25rem;
     }
     &__icon {
         transform: translateY(50%);
-        width: calc(0.65 * var(--r-base-unit));
         fill: currentColor;
+    }
+}
+@media screen and (max-width: 1280px){
+    .button {
+        padding: calc(1 * var(--r-base-unit));
+
+        &__icon-wrapper {
+            width: 1rem;
+        }
+        &--tertiary {
+            padding: 0;
+        }
+    }
+}
+@media screen and (max-width: 576px){
+    .button {
+        padding: calc(1.5 * var(--r-base-unit));
+
+        &--tertiary {
+            padding: 0;
+        }
     }
 }
 </style>

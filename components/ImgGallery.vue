@@ -73,7 +73,7 @@ const getImgClass = (index) => {
 <style lang="scss" scoped>
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--r-space-sm);;
 
     &__img-wrapper {
@@ -82,6 +82,8 @@ const getImgClass = (index) => {
         overflow: hidden;
     }
     &__img {
+        min-height: 30vh;
+
         &--tall {
             grid-row: span 2;
         }

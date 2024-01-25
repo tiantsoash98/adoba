@@ -1,4 +1,8 @@
 .rich-text {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--r-space-sm);
+    
     & h1 {
         margin-bottom: var(--r-space-sm);
     }

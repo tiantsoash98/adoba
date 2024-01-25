@@ -13,7 +13,7 @@
                             :title="service.attributes.serviceTitle"
                             :description="service.attributes.serviceDescription"
                             :img="service.attributes.serviceImg.data.attributes.url"
-                            :class="{'service--active': index === isActiveIndex}"
+                            :class="{'service--active': index == isActiveIndex}"
                             @click="toogleActiveService(index)"
                         ></HomeService>
                     </li>

@@ -6,13 +6,7 @@
                     <div class="advantages__title title-h1">Ce qui nous</div>
                     <div class="advantages__title title-h1">rend différent</div>
                 </div>
-                <transition-group 
-                    appear
-                    tag="ul"
-                    class="advantages__list-wrapper"
-                    @before-enter="beforeEnter"
-                    @enter="enter"
-                >
+                <ul class="advantages__list-wrapper" ref="triggerEl">
                     <li v-for="(advantage, index) in advantages" :key="advantage.attributes.avantageTitle" :data-index="index">
                         <HomeAdvantage
                             :title="advantage.attributes.avantageTitle"
@@ -20,12 +14,13 @@
                             :icon="advantage.attributes.avantageIcon"
                         ></HomeAdvantage>
                     </li>
-                </transition-group>
+                </ul>
             </div>
         </section>
 </template>
 
 <script setup>
+const triggerEl = ref(null)
 const { gsap } = useGsap();
 
 const props = defineProps({
@@ -33,19 +28,34 @@ const props = defineProps({
     advantages: Array
 })
 
-const beforeEnter = (el) => {
-    el.querySelector('.advantage__border').style.transform = 'scaleX(0)'
-}
+onMounted(() => {
+    pageScroll()
+})
 
-const enter = (el) => {
-    let targetEl = el.querySelector('.advantage__border')
+const pageScroll = () => {
+    let items = gsap.utils.toArray('.advantage__border')
+    let delay = 0
 
-    gsap.to(targetEl, {
-        scaleX: 1,
-        duration: 1.5,
-        ease: "power2.out",
-        delay: el.dataset.index * 0.3
+    let tL = gsap.timeline({
+        defaults: { duration: 1.5 },
+        scrollTrigger: {
+            trigger: triggerEl.value,
+            //trigger element - viewport
+            start: "top 80%",
+            end: "top top"
+        }
     })
+    items.forEach((item) => {
+        tL.from(item, {
+            scaleX: 0,
+            duration: 1.5,
+            ease: "power2.out",
+            delay: delay
+        }, 0)
+        delay += 0.3
+    })
+
+    
 }
 </script>
 
@@ -62,5 +72,12 @@ const enter = (el) => {
         column-gap: var(--r-space-md);
         row-gap: var(--r-space-md);
     }
+}
+@media screen and (max-width: 768px) {
+.advantages {
+    &__list-wrapper {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
 }
 </style>

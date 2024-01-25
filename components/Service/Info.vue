@@ -12,12 +12,12 @@
                     </div>
                     <div class="service-info__border-bottom"></div>
                 </div>
-                <div class="row service-info__content-wrapper">
-                    <div class="service-info__description-wrapper">
+                <div class="row service-info__content-wrapper mt-9">
+                    <div class="service-info__description-wrapper col-12 col-md-6 mb-7 mb-md-0">
                         <h3 class="text-visually-hidden">{{ content.serviceInfo.serviceInfoDescription }}</h3>
                         <div class="service-info__description title-h5">{{ content.serviceInfo.serviceInfoDescription }}</div>
                     </div>
-                    <div class="service-info__text-wrapper">
+                    <div class="service-info__text-wrapper col-12 col-md-6">
                         <p class="service-info__text">{{ content.serviceInfo.serviceInfoText }}</p>
                     </div>
                 </div>
@@ -142,14 +142,7 @@ const iconFullClass = computed(() => `service-info__icon ${isScrollingDown.value
         transform-origin: left;
         background-color: var(--brand-secondary);
     }
-    &__content-wrapper {
-        margin-top: var(--r-space-lg);
-    }
-    &__description-wrapper {
-        grid-column: span 6;
-    }
     &__text-wrapper {
-        grid-column: 9/span 4;
         margin-top: auto;
     }
     &__icon {
@@ -177,9 +170,12 @@ const iconFullClass = computed(() => `service-info__icon ${isScrollingDown.value
 .spin-clockwise {
     animation: spin-clockwise 4s linear infinite;
 }
-.text-reveal {
-    &--line-wrapper {
-        overflow: hidden;
+
+@media screen and (max-width: 991px){
+    .service-info {
+        &__headline-wrapper {
+            max-width: 40ch;
+        }
     }
 }
 </style>

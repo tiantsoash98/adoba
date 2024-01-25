@@ -23,6 +23,10 @@
     letter-spacing: -0.06vw;
     line-height: 1.2;
     font-weight: 350;
+
+    @include media(large){
+        line-height: 1.4;
+    }
 }
 @mixin h4 {
     font-family: var(--font-family-primary), 'Arial', serif;
@@ -103,12 +107,19 @@
 }
 
 // For media min-width
-@mixin media-min-width($breakpoint) {
+@mixin media-min-width($breakpoint, $orientation: "") {
     // Add +1px to value to avoid conflict with max-width on given breakpoint
     $value: map-get($map: $breakpoints, $key: $breakpoint) + 1;
 
-    @media screen and (min-width: $value){
-        @content;
+    @if $orientation != "" {
+        @media screen and (min-width: $value) and (orientation: $orientation){
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $value){
+            @content;
+        }
     }
 }
 

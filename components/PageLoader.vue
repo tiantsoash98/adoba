@@ -46,7 +46,7 @@ function animateLoaderOut(){
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     z-index: var(--z-index-loader);
     color: var(--brand-primary);
@@ -89,6 +89,13 @@ function animateLoaderOut(){
         }
         50% {
             opacity: 0.4;
+        }
+    }
+}
+@media screen and (max-width: 576px){
+    .page-loader {
+        &__logo-wrapper {
+            max-width:  var(--r-space-xxl)
         }
     }
 }

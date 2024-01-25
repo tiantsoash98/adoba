@@ -1,7 +1,7 @@
 <template>
     <div>
         <NuxtLink :to="slug">
-            <div class="service-others-item">
+            <div class="service-others-item pt-8 pt-sm-5 pb-8 pb-sm-5">
                 <div class="service-others-item__img-wrapper">
                     <nuxt-img
                         class="service-others-item__img" 
@@ -34,23 +34,8 @@ const props = defineProps({
 <style lang="scss" scoped>
 .service-others-item {
     $root:&;
-    padding-top: var(--r-space-sm-2);
-    padding-bottom: var(--r-space-sm-2);
     border-top: 1px solid var(--color-neutral-70);
     color: var(--color-neutral-30);
-
-    &:hover {
-        #{$root}__img {
-            opacity: 1;
-        }
-        #{$root}__title {
-            color: var(--color-neutral-10);
-            transform: translateX(8%);
-        }
-        #{$root}__icon {
-            transform: translate(25%, -25%);
-        }
-    }
     
     &__content-wrapper {
         display: flex;
@@ -88,6 +73,30 @@ const props = defineProps({
         object-fit: cover;
         opacity: 0;
         transition: opacity 1s var(--alias-default-ease) .1s; 
+    }
+}
+@media screen and (min-width: 768px){
+    .service-others-item {
+        $root:&;
+        &:hover {
+            #{$root}__img {
+                opacity: 1;
+            }
+            #{$root}__title {
+                color: var(--color-neutral-10);
+                transform: translateX(8%);
+            }
+            #{$root}__icon {
+                transform: translate(25%, -25%);
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .service-others-item {
+        &__icon-wrapper {
+            max-width: var(--r-space-sm-2);
+        }
     }
 }
 </style>

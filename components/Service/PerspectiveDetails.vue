@@ -3,8 +3,8 @@
         <section class="section section--no-padding-top section--no-padding-bottom section-perspective">
             <div class="container">
                 <div class="row section-perspective__main-wrapper">
-                    <div class="section-perspective__content-wrapper section-perspective__content-wrapper--1">
-                        <div class="section-perspective__title-wrapper">
+                    <div class="section-perspective__content-wrapper section-perspective__content-wrapper--1 col-12 col-md-12 col-lg-6 pt-9 pb-9">
+                        <div class="section-perspective__title-wrapper mb-5 pr-9 pr-lg-0">
                             <h2 class="text-visually-hidden">{{ content.serviceDetails.servicePerspectiveIntTitle }}</h2>
                             <div class="service-perspective__title title-h1">{{ content.serviceDetails.servicePerspectiveIntTitle }}</div>
                         </div>
@@ -12,7 +12,7 @@
                             <p class="service-perspective__text">{{ content.serviceDetails.servicePerspectiveIntText }}</p>
                         </div>
                     </div>
-                    <div class="section-perspective__canvas-container">
+                    <div class="section-perspective__canvas-container col-12 col-md-12 col-lg-6 pt-0 pb-0 pb-md-7 pt-md-7">
                         <div class="section-perspective__canvas">
                             <div ref="img1" class="section-perspective__img-wrapper section-perspective__img-wrapper--1 section-perspective__img-wrapper--absolute">
                                 <nuxt-img
@@ -34,8 +34,8 @@
                             </div>
                         </div>
                     </div>
-                    <div ref="triggerRef" class="section-perspective__content-wrapper section-perspective__content-wrapper--2">
-                        <div class="section-perspective__title-wrapper">
+                    <div ref="triggerRef" class="section-perspective__content-wrapper section-perspective__content-wrapper--2 col-12 col-md-12 col-lg-6 pt-9 pb-9">
+                        <div class="section-perspective__title-wrapper mb-5 pr-9 pr-lg-0">
                             <h2 class="text-visually-hidden">{{ content.serviceDetails.servicePerspectiveExtTitle }}</h2>
                             <div class="service-perspective__title title-h1">{{ content.serviceDetails.servicePerspectiveExtTitle }}</div>
                         </div>
@@ -43,7 +43,7 @@
                             <p class="service-perspective__text">{{ content.serviceDetails.servicePerspectiveExtText }}</p>
                         </div>
                     </div>
-                    <div class="section-perspective__img-wrapper section-perspective__img-wrapper--mobile-only">
+                    <div class="section-perspective__img-wrapper section-perspective__img-wrapper--mobile-only col-12 pb-7">
                         <nuxt-img
                             :src="imgPath(content.serviceDetails.servicePerspectiveExtImg.data.attributes.url)"
                             class="section-perspective__img" 
@@ -73,29 +73,31 @@ onMounted(() => {
 })
 
 const animateOnScroll = () => {
-    gsap.timeline({
-        defaults: { duration: 1 },
-        scrollTrigger: {
-            trigger: triggerRef.value,
-            //trigger element - viewport
-            start: "top 90%",
-            end: "top top",
-            scrub: true,
-        }
-    })
-    .fromTo(img1.value, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        scale: 1
-    },{
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        scale: 1.2
-    })
-    .from(img2.value, {
-        scale: 1.2
-    }, '<')
+    let matchMedia = gsap.matchMedia();
+    
+    matchMedia.add("(min-width: 1281px)", () => {
+        gsap.timeline({
+            defaults: { duration: 1 },
+            scrollTrigger: {
+                trigger: triggerRef.value,
+                //trigger element - viewport
+                start: "top 90%",
+                end: "top top",
+                scrub: true,
+            }
+        })
+        .fromTo(img1.value, {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+            scale: 1
+        },{
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+            scale: 1.2
+        })
+        .from(img2.value, {
+            scale: 1.2
+        }, '<')
+    });
 }
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -104,29 +106,22 @@ const animateOnScroll = () => {
         width: 100%;
     }
     &__content-wrapper {
-        grid-column: span 4;
-        height: 85vh;
+        height: 80vh;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding-bottom: var(--r-space-lg);
-        padding-top: var(--r-space-lg);
 
         &--2 {
             justify-content: flex-start;
         }
     }
-    &__title-wrapper {
-        margin-bottom: var(--r-space-sm);
+    &__text-wrapper {
+        max-width: 40ch;
     }
     &__canvas-container {
-        grid-column: 7/span 6;
         position: sticky;
         top: 0;
         height: 100vh;
-       
-        padding-top: var(--r-space-md);
-        padding-bottom: var(--r-space-md);
     }
     &__canvas {
         height: 100%;
@@ -147,6 +142,7 @@ const animateOnScroll = () => {
             z-index: 2;
         }
         &--mobile-only {
+            height: clamp(300px, 50vh, 500px);
             display: none;
         }
     }
@@ -154,6 +150,35 @@ const animateOnScroll = () => {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+@media screen and (max-width: 1280px){
+    .section-perspective {
+        &__content-wrapper {
+            height: auto;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        &__canvas-container {
+            position: relative;
+            height: clamp(500px, 70vh, 700px);
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .section-perspective {
+        &__content-wrapper {
+            height: auto;
+            flex-direction: column;
+        }
+        &__text-wrapper {
+            max-width: none;
+        }
+        &__img-wrapper {
+            &--mobile-only {
+                display: flex;
+            }
+        }
     }
 }
 </style>

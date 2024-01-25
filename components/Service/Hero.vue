@@ -19,20 +19,20 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row service-hero__content-wrapper">
-                        <div class="service-hero__title-wrapper">
+                    <div class="row service-hero__content-wrapper pt-11 pt-md-9 pb-11 pb-md-9">
+                        <div class="service-hero__title-wrapper col-12 col-md-7 pr-5 pr-md-13 mb-5 mb-md-0">
                             <span class="service-hero__label title-h6">{{ content.serviceHero.serviceHeroLabel }}</span>
                             <h1 class="text-visually-hidden">{{ content.serviceHero.serviceHeroTitle }}</h1>
-                            <div class="service-hero__title title-h1 hero-title">{{ content.serviceHero.serviceHeroTitle }}</div>
+                            <div class="service-hero__title title-h1 hero-title mt-3 mt-sm-3">{{ content.serviceHero.serviceHeroTitle }}</div>
                         </div>
-                        <div class="service-hero__description-wrapper">
+                        <div class="service-hero__description-wrapper col-10 col-md-5">
                             <h6 class="service-hero__description hero-description">{{ content.serviceHero.serviceHeroDescription }}</h6>
                         </div>
                     </div>
                 </div>
                 <div class="service-hero__scroll-wrapper">
                     <div class="service-hero__label-wrapper">Scroll</div>
-                    <div class="service-hero__icon-wrapper">
+                    <div class="service-hero__icon-wrapper ml-3">
                         <IconArrowDown icon-class="service-hero__icon"></IconArrowDown>
                     </div>
                 </div>
@@ -103,18 +103,11 @@ onBeforeUnmount(() => {
         width: 100%;
         height: 100%;
         color: var(--brand-primary);
-        padding-top: var(--r-space-lg);
-        padding-bottom: var(--r-space-lg);
-    }
-    &__title-wrapper {
-        grid-column: span 5;
     }
     &__title {
-        margin-top: var(--r-space-xs);
         overflow: hidden;
     }
     &__description-wrapper {
-        grid-column: 8/span 5;
         margin-top: auto;
     }
     &__scroll-wrapper {
@@ -133,7 +126,6 @@ onBeforeUnmount(() => {
         align-items: center;
         width: 100%;
         max-width: var(--r-space-xs);
-        margin-left: var(--r-space-xs);
         transition: transform 1s var(--alias-default-ease) .1s; 
     }
     &__icon{

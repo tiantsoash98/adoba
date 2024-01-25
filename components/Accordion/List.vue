@@ -24,7 +24,7 @@ const props = defineProps({
     dataList: Array,
     contentClass: {
         type: String,
-        default: "col-8"
+        default: "col-12 col-sm-8"
     },
     theme: {
         type: String,
