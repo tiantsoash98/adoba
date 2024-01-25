@@ -156,12 +156,12 @@ $min-font-size : 1.25rem;
 @media screen and (max-width: map-get($map: $breakpoints, $key: extra-small))  and (orientation: portrait){
     :root{
         // Typescale
-        --title-1: 30;
-        --title-2: 26;
-        --title-3: 24;
-        --title-4: 18;
-        --title-5: 17;
-        --title-6: 16;
+        --title-1: 38;
+        --title-2: 36;
+        --title-3: 30;
+        --title-4: 26;
+        --title-5: 20;
+        --title-6: 18;
         --paragraph-text: 16;
         --callout-text: 12;
         --display-text: 64;

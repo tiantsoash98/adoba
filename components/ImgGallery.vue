@@ -82,6 +82,8 @@ const getImgClass = (index) => {
         overflow: hidden;
     }
     &__img {
+        min-height: 30vh;
+
         &--tall {
             grid-row: span 2;
         }

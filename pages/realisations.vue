@@ -1,16 +1,16 @@
 <template>
     <div>
-        <section class="section section--margin-top-md realisations">
+        <section class="section realisations mt-11 mt-sm-7">
             <div class="container">
                 <div class="row realisations__content-wrapper">
-                    <div class="realisations__header-wrapper">
+                    <div class="realisations__header-wrapper col-12 col-sm-7 ">
                         <h1 class="text-visually-hidden">{{ content.realisationTitle }}</h1>
                         <div class="realisations__title title-h1">{{ content.realisationTitle }}</div>
                     </div>
                 </div>
-                <div class="realisations__filter-wrapper" @click="openFilterModal">
+                <div class="realisations__filter-wrapper pb-5 pb-sm-4 pb-md-3 mt-9 mt-sm-7" @click="openFilterModal">
                     <div class="title-h6">{{ selectedFilterValue ? selectedFilterValue : "Toutes les réalisations" }}</div>
-                    <div class="realisations__icon-wrapper">
+                    <div class="realisations__icon-wrapper ml-3">
                         <svg class="realisations__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.4 17.2">
                             <polygon points="6.7 17.2 0 10.5 .7 9.8 6.2 15.3 6.2 0 7.2 0 7.2 15.3 12.7 9.8 13.4 10.5 6.7 17.2"/>
                         </svg>
@@ -18,7 +18,7 @@
                     <div class="realisations__bottom-border"></div>
                 </div>
             </div>
-            <div class="container container--wide realisations__gallery-wrapper">
+            <div class="container container--wide realisations__gallery-wrapper pt-9">
                 <ImgGallery
                     gallery="realisations-gallery"
                     :images="filteredImages"
@@ -134,13 +134,8 @@
             overflow: hidden;
         }
     } 
-    &__header-wrapper {
-        grid-column: span 7;
-    }
     &__filter-wrapper {
         cursor: pointer;
-        margin-top: var(--r-space-md);
-        padding-bottom: var(--r-space-xs);
         display: flex;
         justify-content: space-between;
         overflow: hidden;
@@ -176,22 +171,24 @@
             transform: translateX(-115%);
         }
     }
-    &__gallery-wrapper {
-        padding-top: var(--r-space-lg);
-    }
     &__icon-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        max-width: var(--r-space-xs);
-        margin-left: var(--r-space-xs);
+        width: 1.25rem;
         transition: transform 1s var(--alias-default-ease) .1s; 
     }
     &__icon{
         width: 100%;
         fill: currentColor;
         animation: bounce 2s linear infinite 2s;
+    }
+}
+@media screen and (max-width: 1280px){
+    .realisations {
+        &__icon-wrapper {
+            width: 1rem;
+        }
     }
 }
 </style>

@@ -6,23 +6,23 @@
             'realisations-modal--close': !isOpen,
         }">
         <div class="realisations-modal__backdrop" @click="closeMenu"></div>
-        <div class="realisations-modal__wrapper">
+        <div class="realisations-modal__wrapper pl-7 pr-7 pt-md-5 pb-md-5 pl-md-5 pr-md-5">
             <div class="realisations-modal__top-wrapper">
-                <div class="realisations-modal__icon-wrapper " @click="closeMenu">
+                <div class="realisations-modal__icon-wrapper pr-0 pr-md-3" @click="closeMenu">
                     <IconXClose icon-class="realisations-modal__icon realisations-modal__close-icon"></IconXClose>
                 </div>
             </div>
             <div class="realisations-modal__content-wrapper">
-                <span class="realisations-modal__label callout-text">Filtres</span>
+                <span class="realisations-modal__label callout-text mb-7 mb-md-5">Filtres</span>
                 <ul class="realisations-modal__options">
                     <li 
                         v-for="(filter) in filters" 
                         :key="filter.key"
                         :data-value="filter.key"
-                        :class="{'realisations-modal__option title-h6': true, 'realisations-modal__option--selected': isSelected(filter.key)}"
+                        :class="{'realisations-modal__option title-h5 mb-7 mb-md-5': true, 'realisations-modal__option--selected': isSelected(filter.key)}"
                         @click="updateSelected({key: filter.key, text: filter.value})"
                     >
-                        <div class="realisations-modal__active-icon-wrapper">
+                        <div class="realisations-modal__active-icon-wrapper mr-5 mr-mb-3">
                             <IconArrowRight icon-class="realisations-modal__active-icon"></IconArrowRight>
                         </div>
                         {{ filter.value }}
@@ -145,7 +145,6 @@
         opacity: 0.8;
     }
     &__wrapper {
-        padding: var(--r-space-sm);
         height: 100vh;
         width: fit-content;
         background-color: var(--background-color);
@@ -171,7 +170,6 @@
     }
     &__label {
         color: var(--color-neutral-50);
-        margin-bottom: var(--r-space-sm);
     }
     &__options {
         display: flex;
@@ -180,7 +178,6 @@
     }
     &__option {
         cursor: pointer;
-        margin-bottom: var(--r-space-sm);
         transition: transform 0.6s var(--alias-default-ease) .1s,
                     color 0.6s var(--alias-default-ease);
         display: flex;
@@ -203,8 +200,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: var(--r-space-xs);
-        margin-right: var(--r-space-xs); 
+        width: 1.25rem;
         overflow: hidden;
     }
     &__active-icon{
@@ -214,11 +210,10 @@
         transition: transform 0.3s var(--alias-default-ease);
     }
     &__icon-wrapper {
-        padding: var(--r-space-xs);
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: var(--r-space-md);
+        width: 2.75rem;
         cursor: pointer;
     }
     &__close-icon {
@@ -231,6 +226,33 @@
     &__icon{
         width: 100%;
         fill: currentColor;
+    }
+}
+@media screen and (max-width: 1280px){
+    .realisations-modal {
+        &__icon-wrapper {
+            width: 2rem;
+        }
+        &__active-icon-wrapper {
+            width: 1rem;
+        }
+    }
+}
+@media screen and (max-width: 991px){
+    .realisations-modal {
+        &__icon-wrapper {
+            width: 1.75rem;
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .realisations-modal {
+        &__icon-wrapper {
+            width: 2rem;
+        }
+        &__top-wrapper {
+            height: max(10vh, var(--r-space-sm));
+        }
     }
 }
 </style>

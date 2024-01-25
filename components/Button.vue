@@ -1,7 +1,7 @@
 <template>
   <button class="button">
     <div class="button__frame"></div>
-    <span class="button__label">{{ text }}</span>
+    <span class="button__label title-h6">{{ text }}</span>
     <div class="button__icon-wrapper ml-5 ml-sm-3">
         <IconArrowRight icon-class="button__icon" v-if="icon == 'arrow-right'"/>
         <IconArrowUpRight icon-class="button__icon" v-else-if="icon == 'arrow-up-right'"/>
@@ -29,10 +29,6 @@ export default {
     --button-color: var(--brand-secondary);
     --button-color-opposite: var(--brand-primary);
     $root:&;
-    font-family: var(--font-family-primary), 'Arial', serif; 
-    letter-spacing: 0;
-    line-height: 1.4;
-    font-weight: 350;
 
     color: var(--button-color);
     padding: calc(0.75 * var(--r-base-unit));
@@ -125,6 +121,10 @@ export default {
 @media screen and (max-width: 576px){
     .button {
         padding: calc(1.5 * var(--r-base-unit));
+
+        &--tertiary {
+            padding: 0;
+        }
     }
 }
 </style>
