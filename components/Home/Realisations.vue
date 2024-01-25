@@ -2,10 +2,10 @@
     <section class="section works" data-header-state="default">
         <div class="container">
             <div class="row works__content-wrapper">
-                <div class="works__title-wrapper">
+                <div class="works__title-wrapper col-12 col-sm-6 col-md-7">
                     <h2 class="works__title">{{ title }}</h2>
                 </div>
-                <div class="works__text-wrapper">
+                <div class="works__text-wrapper col-12 col-sm-6 col-md-5">
                     <p>{{ description }}</p>
                 </div>
             </div>
@@ -35,12 +35,6 @@
 
 <style lang="scss" scoped>
 .works {
-    &__title-wrapper {
-        grid-column: span 7;
-    }
-    &__text-wrapper {
-        grid-column: span 5;
-    }
     &__gallery-wrapper {
         padding-top: var(--r-space-lg);
     }

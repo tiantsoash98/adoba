@@ -93,6 +93,7 @@
         top: var(--r-space-lg);
         display: flex;
         flex-direction: column;
+        gap: var(--r-space-sm);
     }
     &__date-wrapper {
         display: flex;
@@ -124,6 +125,11 @@
         &:hover {
             opacity: 0.7;
         }
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--r-space-sm);
     }
 }
 </style>

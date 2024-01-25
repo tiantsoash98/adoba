@@ -19,13 +19,15 @@ export default () => {
         let matchMedia = gsap.matchMedia();
     
         matchMedia.add("(hover: none)", () => {
-            console.log('Touchscreen detected')
-            cursor.destroy()
+            if(cursor.value){
+                cursor.value.destroy()
+            }
         });
     }
 
     const destroyCursor = () => {
-        cursor.value.destroy()
+        if(cursor.value)
+            cursor.value.destroy()
     }
 
     return { 

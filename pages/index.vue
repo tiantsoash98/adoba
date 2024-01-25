@@ -38,7 +38,7 @@
         <section class="section home-presentation" ref="presentationEl">
             <div class="container">
                 <div class="row home-presentation__content-wrapper">
-                    <div class="home-presentation__title-wrapper col-12 col-md-8">
+                    <div class="home-presentation__title-wrapper col-12 col-sm-10 col-md-8">
                         <h2 class="text-visually-hidden"> {{ content.homePresentation }}</h2>
                         <div class="home-presentation__title title-h3" ref="presentationTargetEl"> {{ content.homePresentation }}</div>
                     </div>
@@ -70,7 +70,6 @@
     const presentationTargetEl = ref(null)
     const { gsap } = useGsap()
     
-    import SplitType from 'split-type';
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
@@ -105,7 +104,7 @@
     }
 
     const presentationEnter = () => {
-        let triggerEl = '.home-presentation';
+        let triggerEl = presentationEl.value;
         let targetEl = '.home-hero__img';
 
         gsap.timeline({
@@ -260,6 +259,7 @@
             row-gap: var(--r-space-md);
         }
         &__button-wrapper {
+            justify-content: flex-start;
             align-items: flex-start;
         }
     }

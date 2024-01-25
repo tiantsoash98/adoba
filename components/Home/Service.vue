@@ -2,14 +2,14 @@
     <div class="service">
         <div class="service__border"></div>
         <div class="service__content-wrapper">
-            <div class="service__left-wrapper">
+            <div class="service__left-wrapper col-12 col-sm-6 col-md-7">
                 <span class="service__id callout-text">{{ serviceId }}</span>
                 <div class="service__title-wrapper">
                     <h5 class="text-visually-hidden">{{ title }}</h5>
                     <div class="service__title title-h5">{{ title }}</div>
                 </div>
             </div>
-            <div class="service__right-wrapper">
+            <div class="service__right-wrapper col-12 col-sm-6 col-md-5">
                 <p>{{ description }}</p>
                 <NuxtLink :to="slug">
                     <Button text="Voir Plus" class="button--tertiary button--white"></Button>
@@ -77,7 +77,6 @@
         column-gap: var(--r-space-sm);
     }
     &__left-wrapper {
-        grid-column: span 7;
         display: flex;
     }
     &__id {
@@ -86,9 +85,6 @@
     }
     &__title-wrapper {
         margin-left: var(--r-space-sm);
-    }
-    &__right-wrapper {
-        grid-column: span 5;
     }
     & button {
         margin-top: var(--r-space-md);
