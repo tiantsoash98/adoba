@@ -23,3 +23,11 @@
         background: transparent;
     }
 }
+
+@media screen and (max-width: 991px){
+    .form  {
+        &__fieldset {
+            margin-bottom: var(--r-space-md-2);
+        }
+    }
+}

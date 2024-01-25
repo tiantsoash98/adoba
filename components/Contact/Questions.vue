@@ -5,19 +5,19 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
         <section class="section section--margin-top-md contact-questions">
             <div class="container">
                 <div class="row contact-questions__main-wrapper">
-                    <div class="contact-questions__content-wrapper col-6">
+                    <div class="contact-questions__content-wrapper col-12 col-md-6 mr-0 mr-md-9">
                         <div class="contact-questions__title-wrapper">
                             <h2 class="text-visually-hidden">{{ title }}</h2>
                             <div class="more__title title-h2">{{ title }}</div>
                         </div>
                         <div class="contact-questions__description-wrapper">
-                            <p class="contact-questions__description title-h6">{{ description }}</p>
+                            <p class="contact-questions__description title-h6 mt-7 mt-md-3">{{ description }}</p>
                         </div>
-                        <NuxtLink :to="`/${buttonRedirect}`" class="contact-questions__button">
+                        <NuxtLink :to="`/${buttonRedirect}`" class="contact-questions__button mt-7">
                             <Button :text="buttonLabel"></Button>
                         </NuxtLink>
                     </div>
-                    <div class="contact-questions__img-wrapper col-6" ref="imgEl">
+                    <div class="contact-questions__img-wrapper col-12 col-md-6 mt-5 mt-md-0" ref="imgEl">
                         <nuxt-img
                             format="webp"
                             :src="imgPath(img.data.attributes.url)"
@@ -60,10 +60,6 @@ onMounted(() => {
         align-items: flex-start;
         justify-content: center;
         height: 100%;
-        margin: 0 var(--r-space-xl) 0 0;
-    }
-    &__button {
-        margin-top: var(--r-space-sm);
     }
     &__img-wrapper {
         display: flex;
@@ -75,6 +71,18 @@ onMounted(() => {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+@media screen and (max-width: 991px){
+    
+    .contact-questions  {
+        &__content-wrapper {
+            order: 2;
+        }
+        &__img-wrapper {
+            order: 1;
+        }
+        
     }
 }
 </style>
