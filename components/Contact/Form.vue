@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <form :action="formSubmitAction" method="post" accept-charset="UTF-8" class="form">
+        <form class="form" method="post" data-netlify="true">
             <FormInput 
                 v-model="name" 
                 :name="'name'" 
