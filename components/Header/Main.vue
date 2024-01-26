@@ -1,7 +1,7 @@
 <template>
     <header 
     :class="{
-        'header pt-7 pt-md-5': true, 
+        'header pt-7 pb-7 pt-md-5 pb-md-0': true, 
         'header--exclusion': !isBeyondFold && headerExclusion,
         'header--beyond-fold': isBeyondFold,
         'header--page-scrolling-up': isBeyondFold && !isScrollingDown,

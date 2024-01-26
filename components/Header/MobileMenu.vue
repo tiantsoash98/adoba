@@ -1,5 +1,5 @@
 <template>
-    <aside :class="{'mobile-menu': true, 'menu--open': isOpen }" :aria-expanded="isOpen">
+    <aside :class="{'mobile-menu': true, 'menu--open': isOpen }" :aria-expanded="isOpen" aria-hidden="true" tabindex="-1">
         <div class="mobile-menu__frame"></div>
         <div class="mobile-menu__main-wrapper">
             <div class="container mobile-menu__content-wrapper pt-14">
@@ -140,6 +140,7 @@
                     isOpen.value = true
                     emit('animationOpenComplete')
                     updateServicesAccordionHeight()
+                    document.body.classList.add('noscroll');
                     resolve()
                 },
                 defaults: {
@@ -168,6 +169,7 @@
                 onComplete: () => {
                     isOpen.value = false
                     emit('animationCloseComplete')
+                    document.body.classList.remove('noscroll');
                     resolve()
                 },
                 defaults: {
@@ -249,13 +251,16 @@
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     height: 100dvh;
     width: 100vw;
     z-index: calc(var( --z-index-nav) - 1);
     display: none;
+    overflow-y: scroll;
 
     &__frame {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
