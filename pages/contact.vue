@@ -11,7 +11,7 @@
                             </a>
                             <span class="contact-options__item contact-options__item--phone title-h6" v-if="content.contactConfig.configContactNumber != ''">{{ content.contactConfig.configContactNumber }}</span>
                         </div>
-                        <div class="contact-options__item-wrapper" v-if="content.contactConfig.configLocationAdress != ''">
+                        <div class="contact-options__item-wrapper" v-if="content.contactConfig.configLocationAdress != null">
                             <span class="contact-options__label title-h6">{{ content.contactConfig.configLocationLabel }}</span>
                             <span class="contact-options__item contact-options__item--location title-h6">{{ content.contactConfig.configLocationAdress }}</span>
                         </div>
