@@ -19,9 +19,11 @@
 </template>
 
 <script setup>
-    const { gsap } = useGsap();
+    const { gsap } = useGsap()
+    const isOpen = ref(false)
 
     const props = defineProps({
+        services: Object,
         headerState: String
     })
     const emit = defineEmits([
@@ -29,9 +31,6 @@
         'animationOpenComplete', 
         'animationCloseComplete'
     ])
-
-    const {data: services }  = await useFetch('/api/header')
-    const isOpen = useServiceDropdownOpen()
     
     const closeHeaderMenu = () => {
         emit('backdropClick')
@@ -44,7 +43,7 @@
         else if(newVal == "closing") {
             closeServices();
         }
-    });
+    })
 
     function openServices() {
         return new Promise((resolve) => {

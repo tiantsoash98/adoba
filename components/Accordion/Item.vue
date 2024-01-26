@@ -87,6 +87,8 @@ const open = () => {
 }
 
 const close = () => {
+    isClickable.value = false
+
     gsap.timeline({
         defaults: {
             duration: 0.6,

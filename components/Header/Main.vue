@@ -55,16 +55,27 @@
                         </li>
                     </ul>
                 </nav>
-                <HeaderMobile class="header__mobile col-8"/>
+                <nav class="header__mobile header-mobile col-8">
+                    <div class="header-mobile__toogler-wrapper">
+                        <div class="header-mobile__toogle-label header-mobile__toogle-label--menu title-h4">Menu</div>
+                        <div class="header-mobile__toogle-label header-mobile__toogle-label--close title-h5">Fermer</div>
+                    </div>
+                </nav>
             </div>
         </div>
     </header>
     <HeaderServicesDropdown
         :headerState="headerState" 
+        :services="services"
         @backdrop-click="closeHeader" 
         @animation-open-complete="dropdownOpenAnimationComplete"
         @animation-close-complete="dropdownCloseAnimationComplete">
     </HeaderServicesDropdown>
+    <HeaderMobileMenu
+        :headerState="headerState" 
+        :services="services"
+    >
+    </HeaderMobileMenu>
 </template>
 
 <script setup>
@@ -76,6 +87,7 @@
     const headerExclusion = useHeaderExclusion()
     const startHidePosition = ref(0)
     const currentScrollPosition = ref(0)
+    const {data: services }  = await useFetch('/api/header')
 
     const props = defineProps({
         isExclusionOnStart: Boolean,
@@ -132,7 +144,6 @@
     })
 
     const isServicesDropdownOpen = computed(() => headerState.value == 'close')
-    const isServicesDropdownClose = computed(() => headerState.value == 'open')
 </script>
 
 <style scoped lang="scss">
@@ -157,14 +168,6 @@
     &--default {
         --header-color: var(--brand-secondary);
     }
-    &--beyond-fold {
-        padding-top: var(--r-space-xs);
-        padding-bottom: var(--r-space-xs);
-
-        #{$root}__logo-wrapper {
-            max-height: var(--r-space-xs-2);
-        }
-    }
     &--page-scrolling-up {
         background-color: var(--brand-primary);
     }
@@ -186,9 +189,6 @@
     &__logo {
         height: 100%;
         fill: currentColor;
-    }
-    &__mobile {
-        display: none;
     }
     &__links {
         height: 100%;
@@ -227,6 +227,40 @@
     &__dropdown-icon{
         width: 100%;
         fill: currentColor;
+    }
+    // Mobile
+    &-mobile {
+        display: none;
+        align-items: center;
+        justify-content: flex-end;
+
+        &__toogler-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+        &__toogle-label {
+            &--close {
+                position: absolute;
+                top: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px){
+    .header {
+        $root:&;
+        &--beyond-fold {
+            padding-top: var(--r-space-xs);
+            padding-bottom: var(--r-space-xs);
+
+            #{$root}__logo-wrapper {
+                max-height: var(--r-space-xs-2);
+            }
+        }
     }
 }
 @media screen and (max-width: 991px){
