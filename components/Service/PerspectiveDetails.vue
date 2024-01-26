@@ -9,7 +9,7 @@
                             <div class="service-perspective__title title-h1">{{ content.serviceDetails.servicePerspectiveIntTitle }}</div>
                         </div>
                         <div class="section-perspective__text-wrapper">
-                            <p class="service-perspective__text">{{ content.serviceDetails.servicePerspectiveIntText }}</p>
+                            <div class="service-perspective__text rich-text" v-html="$mdRenderer.render(content.serviceDetails.servicePerspectiveIntText)"></div>
                         </div>
                     </div>
                     <div class="section-perspective__canvas-container col-12 col-md-12 col-lg-6 pt-0 pb-0 pb-md-7 pt-md-7">
@@ -40,7 +40,7 @@
                             <div class="service-perspective__title title-h1">{{ content.serviceDetails.servicePerspectiveExtTitle }}</div>
                         </div>
                         <div class="section-perspective__text-wrapper">
-                            <p class="service-perspective__text">{{ content.serviceDetails.servicePerspectiveExtText }}</p>
+                            <div class="service-perspective__text rich-text" v-html="$mdRenderer.render(content.serviceDetails.servicePerspectiveExtText)"></div>
                         </div>
                     </div>
                     <div class="section-perspective__img-wrapper section-perspective__img-wrapper--mobile-only col-12 pb-7">
