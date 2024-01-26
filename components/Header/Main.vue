@@ -175,6 +175,7 @@
     }
     // close mobile menu Animation
     function mobileMenuCloseAnimationComplete(){
+        headerIsForcedDefault.value = false
         isMobileMenuClickable.value = true;
         mobileMenuState.value = "open";
     }
@@ -287,6 +288,7 @@
             align-items: flex-end;
             overflow: hidden;
             flex-grow: 1;
+            cursor: pointer;
         }
         &__toogle-label {
             &--close {

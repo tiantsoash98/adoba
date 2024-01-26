@@ -1,10 +1,18 @@
 <template>
-    <aside :class="{'mobile-menu': true, 'menu--open': isOpen }" aria-expanded="false">
+    <aside :class="{'mobile-menu': true, 'menu--open': isOpen }" :aria-expanded="isOpen">
         <div class="mobile-menu__frame"></div>
         <div class="mobile-menu__main-wrapper">
             <div class="container mobile-menu__content-wrapper pt-14">
                 <ul class="mobile-menu__links-wrapper">
-                    <li class="mobile-menu__link title-h4 mt-9" @click="toogleServicesAccordion">
+                    <li class="mobile-menu__link title-h4 mt-9">
+                        <NuxtLink to="/" @click="close">
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">Accueil</div>
+                            </div>
+                        </NuxtLink>
+                        <div class="mobile-menu__border mt-7"></div>
+                    </li>
+                    <li class="mobile-menu__link title-h4 mt-7" @click="toogleServicesAccordion">
                         <div class="mobile-menu__accordion-header-wrapper">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">Services</div>
@@ -72,7 +80,7 @@
                     </li>
                 </ul>
                 <div class="mobile-menu__button-wrapper mt-9">
-                    <NuxtLink to="/contact">
+                    <NuxtLink to="/contact" @click="close">
                         <Button text="Contactez-nous" class="mobile-menu__button mobile-menu__button--contact"></Button>
                     </NuxtLink>
                 </div>
@@ -263,6 +271,9 @@
     }
     &__label-wrapper {
         overflow: hidden;
+    }
+    &__link {
+        cursor: pointer;
     }
     &__border {
         height: 1px;
