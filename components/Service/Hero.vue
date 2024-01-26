@@ -5,17 +5,14 @@
                 <div class="service-hero__img-wrapper">
                     <div class="service-hero__overlay"></div>
                     <div class="service-hero__img-wrapper">
-                        <nuxt-img
-                            width="1920"
-                            height="1080"
+                        <NuxtImg
                             format="webp"
-                            :class="['service-hero__img hero-img img', {'img--loaded': imgIsLoaded}]" 
+                            :class="['service-hero__img hero-img']" 
                             sizes="100vw"
                             :src="imgPath(content.serviceHero.serviceHeroImg.data.attributes.url)" 
                             :alt="content.serviceHero.serviceHeroImg.data.attributes.alternativeText"
                             loading="lazy"
-                            @load="imgIsLoaded = true"
-                            />
+                        />
                     </div>
                 </div>
                 <div class="container">
@@ -63,7 +60,7 @@ onBeforeUnmount(() => {
     &__wrapper {
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 100svh;
         display: flex;
         flex-direction: row;
         align-items: flex-end;

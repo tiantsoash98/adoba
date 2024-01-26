@@ -8,7 +8,7 @@
                         <NuxtImg
                             format="webp"
                             :class="['home-hero__img hero-img img', {'img--loaded':imgIsLoaded}]" 
-                            sizes="100vw sm:50vw"
+                            sizes="100vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                             :alt="content.homeHeaderImg.data.attributes.alternativeText"
                             loading="lazy"
@@ -132,7 +132,7 @@
         &__wrapper {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 100svh;
         }
         &__overlay {
             position: absolute;
