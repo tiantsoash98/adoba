@@ -56,7 +56,7 @@
                     </ul>
                 </nav>
                 <nav class="header__mobile header-mobile col-8">
-                    <div class="header-mobile__toogler-wrapper">
+                    <div class="header-mobile__toogler-wrapper" @click="toogleMobileMenu">
                         <div class="header-mobile__toogle-label header-mobile__toogle-label--menu title-h4">Menu</div>
                         <div class="header-mobile__toogle-label header-mobile__toogle-label--close title-h5">Fermer</div>
                     </div>
@@ -72,8 +72,10 @@
         @animation-close-complete="dropdownCloseAnimationComplete">
     </HeaderServicesDropdown>
     <HeaderMobileMenu
-        :headerState="headerState" 
+        :headerState="mobileMenuState" 
         :services="services"
+        @animation-open-complete="mobileMenuOpenAnimationComplete"
+        @animation-close-complete="mobileMenuCloseAnimationComplete">
     >
     </HeaderMobileMenu>
 </template>
@@ -83,6 +85,8 @@
     const isScrollingDown = ref(false)
     const isClickable = ref(true)
     const headerState = ref("open")
+    const isMobileMenuClickable = ref(true)
+    const mobileMenuState = ref("open")
     const headerIsForcedDefault = ref(false)
     const headerExclusion = useHeaderExclusion()
     const startHidePosition = ref(0)
@@ -107,6 +111,8 @@
         currentScrollPosition.value = window.scrollY;
     }
 
+    /* SERVICES DROPDOWN */
+    // Header toogler
     function toogleServicesDropdown(){
         if(isClickable.value && headerState.value == "open"){
             openHeader()
@@ -115,24 +121,64 @@
             closeHeader()
         }
     }
+    // open Services Dropdown
     function openHeader(){
         headerIsForcedDefault.value = true
         isClickable.value = false;
         headerState.value = "opening";
     }
+    // close Services Dropdown
     function closeHeader(){
         headerIsForcedDefault.value = false
         isClickable.value = false;
         headerState.value = "closing";
     }
+    
+    // open Services Dropdown Animation
     function dropdownOpenAnimationComplete(){
         isClickable.value = true;
         headerState.value = "close";
     }
+    // close Services Dropdown Animation
     function dropdownCloseAnimationComplete(){
         isClickable.value = true;
         headerState.value = "open";
     }
+    /* END SERVICES DROPDOWN */
+    
+    /* MOBILE MENU */
+    // MobileMenu toogler
+    function toogleMobileMenu(){
+        if(isMobileMenuClickable.value && mobileMenuState.value == "open"){
+            openMobileMenu()
+        }
+        else if(isMobileMenuClickable.value && mobileMenuState.value == "close"){   
+            closeMobileMenu()
+        }
+    }
+    // open MobileMenu
+    function openMobileMenu(){
+        headerIsForcedDefault.value = true
+        isMobileMenuClickable.value = false;
+        mobileMenuState.value = "opening";
+    }
+    // close Mobile Menu
+    function closeMobileMenu(){
+        headerIsForcedDefault.value = false
+        isMobileMenuClickable.value = false;
+        mobileMenuState.value = "closing";
+    }
+    // open mobile menu Animation
+    function mobileMenuOpenAnimationComplete(){
+        isMobileMenuClickable.value = true;
+        mobileMenuState.value = "close";
+    }
+    // close mobile menu Animation
+    function mobileMenuCloseAnimationComplete(){
+        isMobileMenuClickable.value = true;
+        mobileMenuState.value = "open";
+    }
+    /* END SERVICES DROPDOWN */
 
     const headerCTAButtonClass = computed(() => {
         const baseClass = `button--small`;

@@ -67,7 +67,6 @@
             // .to('.header', { '--header-color': 'var(--brand-secondary)' }, '<')
             .to('.menu__links-wrapper', { opacity: 1 }, '<+0.3s')
             .to('.menu__label', { yPercent: 0, opacity: 1, stagger: 0.15 }, 0)
-
         })
     }
 

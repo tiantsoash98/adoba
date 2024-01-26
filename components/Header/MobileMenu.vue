@@ -4,7 +4,6 @@
         <div class="mobile-menu__main-wrapper">
             <div class="container menu__content-wrapper pt-14">
                 <ul class="mobile-menu__links-wrapper">
-                    
                     <li class="mobile-menu__link title-h4 mt-9" @click="toogleServicesAccordion">
                         <div class="mobile-menu__accordion-header-wrapper">
                             <div class="mobile-menu__sub-link-label">Services</div>
@@ -30,23 +29,43 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/studio" @click="close">Le studio</NuxtLink>
+                        <NuxtLink to="/studio" @click="close">
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">Studio</div>
+                            </div>
+                        </NuxtLink>
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/realisations" @click="close">Réalisations</NuxtLink>
+                        <NuxtLink to="/realisations" @click="close">
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">Réalisations</div>
+                            </div>
+                        </NuxtLink>
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/blog" @click="close">Blog</NuxtLink>
+                        <NuxtLink to="/blog" @click="close">
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">Blog</div>
+                            </div>
+                        </NuxtLink>
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/faq" @click="close">FAQ</NuxtLink>
+                        <NuxtLink to="/faq" @click="close">
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">FAQ</div>
+                            </div>
+                        </NuxtLink>
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/jobs" @click="close">Jobs</NuxtLink>
+                        <NuxtLink to="/jobs" @click="close">
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">Jobs</div>
+                            </div>
+                        </NuxtLink>
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                 </ul>
@@ -63,7 +82,6 @@
 <script setup>
     const { gsap } = useGsap()
     const isOpen = ref(false)
-    const isClickable = ref(true)
     const isServicesOpen = ref(false)
     const isServicesClickable = ref(true)
     const wrapperEl = ref(null)
@@ -73,6 +91,10 @@
         services: Object,
         headerState: String
     })
+    const emit = defineEmits([
+        'animationOpenComplete', 
+        'animationCloseComplete'
+    ])
 
     watch(() => props.headerState, (newVal) => {
         if(newVal == "opening"){
@@ -84,21 +106,58 @@
     })
 
     onMounted(() => {
-        contentEl.value = wrapperEl.value.querySelector('.content-element')
-        if(contentEl.value){
-            contentHeight.value = contentEl.value.offsetHeight
-
-            window.addEventListener("resize", function () {
-                contentHeight.value = contentEl.value.offsetHeight
-            })
-        }    
+        updateServicesAccordionHeight()
     })
 
-    const open = () => {
+    const updateServicesAccordionHeight = () => {
+        window.removeEventListener("resize", onWindowResizeEvent)
+        contentEl.value = wrapperEl.value.querySelector('.content-element')
 
+        if(contentEl.value){
+            contentHeight.value = contentEl.value.offsetHeight
+            window.addEventListener("resize", onWindowResizeEvent)
+        }  
+    }
+    
+    const onWindowResizeEvent = () => {
+        contentHeight.value = contentEl.value.offsetHeight
+    }
+
+    const open = () => {
+        return new Promise((resolve) => {
+            gsap.timeline({
+                onComplete: () => {
+                    isOpen.value = true
+                    emit('animationOpenComplete')
+                    updateServicesAccordionHeight()
+                    resolve()
+                },
+                defaults: {
+                    duration: 1,
+                    ease: "power2.inOut"
+                },
+            })
+            .set('.mobile-menu', { display: 'block'})
+            .set('.mobile-menu', { display: 'block'})
+            .to('.mobile-menu__frame', { scaleY: 1 })
+        })
     }
     const close = () => {
-
+        return new Promise((resolve) => {
+            gsap.timeline({
+                onComplete: () => {
+                    isOpen.value = false
+                    emit('animationCloseComplete')
+                    resolve()
+                },
+                defaults: {
+                    duration: 1,
+                    ease: "power2.inOut"
+                },
+            })
+            .to('.mobile-menu__frame', { scaleY: 0 })
+            .set('.mobile-menu', { display: 'none'})     
+        })
     }
 
     const toogleServicesAccordion = () => {
@@ -170,6 +229,7 @@
     height: 100dvh;
     width: 100vw;
     z-index: calc(var( --z-index-nav) - 1);
+    display: none;
 
     &__frame {
         position: absolute;
@@ -180,6 +240,8 @@
         height: 100dvh;
         width: 100vw;
         background-color: var(--brand-primary);
+        transform: scaleY(0);
+        transform-origin: top;
     }
     &__content-wrapper {
         max-height: 100vh;
