@@ -2,11 +2,13 @@
     <aside :class="{'mobile-menu': true, 'menu--open': isOpen }" aria-expanded="false">
         <div class="mobile-menu__frame"></div>
         <div class="mobile-menu__main-wrapper">
-            <div class="container menu__content-wrapper pt-14">
+            <div class="container mobile-menu__content-wrapper pt-14">
                 <ul class="mobile-menu__links-wrapper">
                     <li class="mobile-menu__link title-h4 mt-9" @click="toogleServicesAccordion">
                         <div class="mobile-menu__accordion-header-wrapper">
-                            <div class="mobile-menu__sub-link-label">Services</div>
+                            <div class="mobile-menu__label-wrapper">
+                                <div class="mobile-menu__label">Services</div>
+                            </div>
                             <div class="mobile-menu__icon-wrapper ml-7 ml-sm-5">
                                 <IconPlus :icon-class="getIconClass(!isServicesOpen)"/>
                                 <IconMinus :icon-class="getIconClass(isServicesOpen)"/>
@@ -14,11 +16,11 @@
                         </div>
                         <div class="mobile-menu__overflow-wrapper" ref="wrapperEl">
                             <div class="mobile-menu__accordion-content-wrapper  mt-7 pl-5">
-                                <ul class="mobile-menu__links-wrapper content-element pb-5">
+                                <ul class="mobile-menu__links-wrapper content-element pb-5 pt-5">
                                     <li v-for="service in services" :key="service.title" class="mobile-menu__sub-link mb-7">
                                         <NuxtLink :to="`/${service.slug}`" @click="close">
                                             <div class="mobile-menu__link title-h4">
-                                                <div class="mobile-menu__label">{{ service.title }}</div>
+                                                <div class="mobile-menu__sub-label">{{ service.title }}</div>
                                             </div>
                                         </NuxtLink>
                                     </li>
@@ -71,7 +73,7 @@
                 </ul>
                 <div class="mobile-menu__button-wrapper mt-9">
                     <NuxtLink to="/contact">
-                        <Button text="Contactez-nous"></Button>
+                        <Button text="Contactez-nous" class="mobile-menu__button mobile-menu__button--contact"></Button>
                     </NuxtLink>
                 </div>
             </div>
@@ -118,7 +120,7 @@
             window.addEventListener("resize", onWindowResizeEvent)
         }  
     }
-    
+
     const onWindowResizeEvent = () => {
         contentHeight.value = contentEl.value.offsetHeight
     }
@@ -138,8 +140,18 @@
                 },
             })
             .set('.mobile-menu', { display: 'block'})
-            .set('.mobile-menu', { display: 'block'})
-            .to('.mobile-menu__frame', { scaleY: 1 })
+            .set('.mobile-menu__content-wrapper', { opacity: 1 })
+            .set('.mobile-menu__label', { yPercent: 100, opacity: 0 })
+            .set('.mobile-menu__icon-wrapper', { opacity: 0 })
+            .set('.mobile-menu__border', { scaleX: 0 })
+            .set('.mobile-menu__button--contact', { opacity: 0 })
+            .to('.header-mobile__toogle-label--menu', { yPercent: -100, duration: 0.8 }, 0)
+            .to('.header-mobile__toogle-label--close', { yPercent: -100, duration: 0.8 }, 0)
+            .to('.mobile-menu__frame', { scaleY: 1, duration: 0.8 }, 0)
+            .to('.mobile-menu__label', { yPercent: 0, opacity: 1, stagger: 0.1 }, 0)
+            .to('.mobile-menu__icon-wrapper', { opacity: 1 }, 0.6)
+            .to('.mobile-menu__button--contact', { opacity: 1 }, 1)
+            .to('.mobile-menu__border', { scaleX: 1, stagger: 0.1, duration: 1.3 }, 0)
         })
     }
     const close = () => {
@@ -155,7 +167,10 @@
                     ease: "power2.inOut"
                 },
             })
-            .to('.mobile-menu__frame', { scaleY: 0 })
+            .to('.header-mobile__toogle-label--menu', { yPercent: 0, duration: 0.8 }, 0)
+            .to('.header-mobile__toogle-label--close', { yPercent: 0, duration: 0.8 }, 0)
+            .to('.mobile-menu__content-wrapper', { opacity: 0, duration: 0.8}, 0)
+            .to('.mobile-menu__frame', { scaleY: 0 }, 0)
             .set('.mobile-menu', { display: 'none'})     
         })
     }
@@ -246,10 +261,14 @@
     &__content-wrapper {
         max-height: 100vh;
     }
+    &__label-wrapper {
+        overflow: hidden;
+    }
     &__border {
         height: 1px;
         width: 100%;
         background-color:  var(--color-neutral-20);
+        transform-origin: left;
     }
     &__button-wrapper {
         width: 100%;

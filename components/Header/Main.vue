@@ -286,6 +286,7 @@
             justify-content: flex-end;
             align-items: flex-end;
             overflow: hidden;
+            flex-grow: 1;
         }
         &__toogle-label {
             &--close {
