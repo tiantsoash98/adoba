@@ -89,6 +89,7 @@
     const mobileMenuState = ref("open")
     const headerIsForcedDefault = ref(false)
     const headerExclusion = useHeaderExclusion()
+    const headerStartHidePosition = useHeaderStartHidePosition()
     const startHidePosition = ref(0)
     const currentScrollPosition = ref(0)
     const {data: services }  = await useFetch('/api/header')
@@ -98,7 +99,7 @@
     })
     
     onMounted(() => {
-        startHidePosition.value = window.innerHeight/2;
+        startHidePosition.value = headerStartHidePosition.value
         window.addEventListener("scroll", onScroll)
     })
     onBeforeUnmount(() => {

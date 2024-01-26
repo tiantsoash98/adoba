@@ -15,10 +15,12 @@
         transform: (_content) => _content.data.data.attributes
     })
     const headerExclusion = useHeaderExclusion()
+    const headerStartHidePosition = useHeaderStartHidePosition()
     const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = true
+        headerStartHidePosition.value = window.innerHeight/2
         initCursor()
     })
 

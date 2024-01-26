@@ -1,5 +1,5 @@
 <template>
-    <div class="page__cursor">
+    <div>
         <PageLoader :loaded="loaded" ></PageLoader>
         <HeaderMain :isExclusionOnStart="headerExclusion"/>
 
