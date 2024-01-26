@@ -1,11 +1,13 @@
 import qs from "qs"
 
 export default defineEventHandler(async (event) => {
+    const pageQuery = getQuery(event)
+
     const query = qs.stringify(
     {
         fields: ["blogTitle", "createdAt", "blogUrl"],
         pagination: {
-            pageSize: 10,
+            pageSize: pageQuery.pageSize,
             page: 1
         },
         sort: ['createdAt:desc'],

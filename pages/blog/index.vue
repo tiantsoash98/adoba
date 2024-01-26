@@ -18,11 +18,21 @@
             :buttonLabel="content.blogReadArticleButtonLabel"
         ></BlogFeaturedList>
         <BlogList
-            v-if="allArticles.length"
+            v-if="allArticles.length > 0"
             :dataList="allArticles"
-            :title="content.allArticles"
+            :title="content.blogListTitle"
             :buttonLabel="content.blogReadArticleButtonLabel"
         ></BlogList>
+        <div 
+            v-if="allArticles.length >= 4"
+            class="blog__button-wrapper mb-7"
+        >
+            <Button 
+                text="Voir plus" 
+                @click="fetchMoreArticles"
+                v-show="showMoreArticlesButton"
+            ></Button>
+        </div>
     </div>
 </template>
 
@@ -30,15 +40,39 @@
     const textReveal = ref(null)
     const featuredArticles = ref([])
     const allArticles = ref([])
+    const blogPageSize = ref(4)
+    const showMoreArticlesButton = ref(true)
+    const firstDataFetch = ref(true)
+    const blogFetchIncrement = ref(4)
+    const blogFeaturedCount = ref(2)
+    const currentPageSize = ref(0)
     
     const { data: content }  = await useFetch('/api/blog-page', {
         transform: (_content) => _content.data.data.attributes
     })
-    const { pending, data: articles }  = await useLazyFetch('/api/blog', {server: false})
+
+    blogPageSize.value = content.value.blogPageSize
+    blogFetchIncrement.value = content.value.blogFetchIncrement
+    blogFeaturedCount.value = content.value.blogFeaturedCount
+
+    const { pending, data: articles }  = await useLazyFetch(`/api/blog`, {
+        server: false,
+        query: { 
+            pageSize: blogPageSize,
+        }
+    })
 
     watch(articles, (newArticles) => {
-        featuredArticles.value = newArticles.data.data.slice(0, 2)
-        allArticles.value = newArticles.data.data.slice(2)
+        featuredArticles.value = newArticles.data.data.slice(0, blogFeaturedCount.value )
+        allArticles.value = newArticles.data.data.slice(blogFeaturedCount.value )
+        currentPageSize.value = blogPageSize.value - blogFetchIncrement.value
+        
+        if(firstDataFetch.value == false) {
+            if(newArticles.data.data.length == currentPageSize.value){
+                showMoreArticlesButton.value = false
+            }
+        }
+        firstDataFetch.value = false
     })
     
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
@@ -58,18 +92,18 @@
         destroyCursor()
     })    
 
+    const fetchMoreArticles = () => {
+        blogPageSize.value += blogFetchIncrement.value
+    }
+
     useContentMetadata().generateMetadata(content)
 </script>
 
 <style lang="scss" scoped>
 .blog {
-    &-content {
-        &__spinner-wrapper {
-            max-height: var(--r-space-lg);
-        }
-        &__spinner {
-            height: 100%;
-        }
+    &__button-wrapper {
+        display: flex;
+        justify-content: center;
     }
 }
 </style>
