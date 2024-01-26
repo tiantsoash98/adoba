@@ -63,7 +63,7 @@
                 </div>
                 <ul class="footer__socials-wrapper">
                     <li 
-                        v-for="social in content.socials.data" 
+                        v-for="social in activeSocials" 
                         :key="social.attributes.socialLink"
                         class="footer__social mr-5 mr-sm-5 mr-md-3 mt-5 mt-sm-5"
                     >
@@ -81,9 +81,12 @@
 </template>
 
 <script setup>
-    const { data: content }  = await useLazyFetch('/api/footer', {
+    const { data: content }  = await useFetch('/api/footer', {
         transform: (_content) => _content.data.data.attributes
     })
+
+    const activeSocials = computed(() => content.value.socials.data.filter((social) => social.attributes.socialLink != null))
+    
 </script>
 
 <style scoped lang="scss">
