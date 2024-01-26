@@ -6,7 +6,9 @@ html {
     padding: 0;
     box-sizing: border-box;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
+    // Disable bounce effect on Safari/ios
+    overscroll-behavior: none;
     font-kerning: none;
     position: relative;
 }
