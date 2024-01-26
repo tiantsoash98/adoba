@@ -5,7 +5,7 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
         <section class="section section--margin-top-md contact-questions">
             <div class="container">
                 <div class="row contact-questions__main-wrapper">
-                    <div class="contact-questions__content-wrapper col-12 col-md-6 mr-0 mr-md-9">
+                    <div class="contact-questions__content-wrapper col-12 col-md-6 mr-0 mr-md-9 pt-11 pb-11">
                         <div class="contact-questions__title-wrapper">
                             <h2 class="text-visually-hidden">{{ title }}</h2>
                             <div class="more__title title-h2">{{ title }}</div>
@@ -51,9 +51,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .contact-questions {
-    &__main-wrapper {
-        height: clamp(600px, 80vh, 1000px);
-    }
     &__content-wrapper {
         display: flex;
         flex-direction: column;

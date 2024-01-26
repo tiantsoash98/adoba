@@ -59,6 +59,9 @@ export default {
         #{$root}__icon-wrapper {
             display: none;
         }
+        #{$root}__label {
+            font-size: calc( var(--paragraph-text) * var(--unit-fx)); 
+        }
 
         &:hover {
             background-color: var(--button-color);
@@ -112,6 +115,9 @@ export default {
 
         &__icon-wrapper {
             width: 1rem;
+        }
+        &--small {
+            padding: calc(0.5 * var(--r-base-unit)) calc(0.5 * var(--r-base-unit));
         }
         &--tertiary {
             padding: 0;
