@@ -7,12 +7,11 @@
                     <div class="home-hero__img-wrapper">
                         <NuxtImg
                             format="webp"
-                            :class="['home-hero__img hero-img img', {'img--loaded':imgIsLoaded}]" 
-                            sizes="100vw"
+                            :class="['home-hero__img hero-img']" 
+                            sizes="100vw sm:100vw md:100vw lg:100vw"
                             :src="imgPath(content.homeHeaderImg.data.attributes.url)" 
                             :alt="content.homeHeaderImg.data.attributes.alternativeText"
                             loading="lazy"
-                            @load="imgIsLoaded = true"
                         />
                     </div>
                 </div>
