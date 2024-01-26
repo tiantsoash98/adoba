@@ -61,10 +61,12 @@
     })
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const headerExclusion = useHeaderExclusion()
+    const headerStartHidePosition = useHeaderStartHidePosition()
     const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = false
+        headerStartHidePosition.value = 200
         initCursor()
         animateHero(hero)
     })

@@ -63,7 +63,6 @@
 </template>
 
 <script setup>
-    const imgIsLoaded = ref(false)
     const hero = ref(null)
     const presentationEl = ref(null)
     const presentationTargetEl = ref(null)
@@ -75,10 +74,12 @@
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const { createTextRevealScroll, revertTextRevealScroll } = useTextRevealScroll()
     const headerExclusion = useHeaderExclusion()
+    const headerStartHidePosition = useHeaderStartHidePosition()
     const { initCursor, destroyCursor } = useCursor()
 
     onMounted(() => {
         headerExclusion.value = true
+        headerStartHidePosition.value = window.innerHeight/2
         initCursor()
         animateHero(hero)
         pageScroll()
