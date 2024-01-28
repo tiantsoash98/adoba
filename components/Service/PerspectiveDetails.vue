@@ -106,7 +106,7 @@ const animateOnScroll = () => {
         width: 100%;
     }
     &__content-wrapper {
-        height: 80vh;
+        height: max(700px, 80vh);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;

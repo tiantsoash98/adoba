@@ -18,7 +18,7 @@
                         <div class="service-info__description title-h5">{{ content.serviceInfo.serviceInfoDescription }}</div>
                     </div>
                     <div class="service-info__text-wrapper col-12 col-md-6">
-                        <p class="service-info__text">{{ content.serviceInfo.serviceInfoText }}</p>
+                        <p class="service-info__tex pl-0 pl-sm-7 pl-md-9">{{ content.serviceInfo.serviceInfoText }}</p>
                     </div>
                 </div>
             </div>

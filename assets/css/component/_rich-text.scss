@@ -15,4 +15,10 @@
     & ul, li {
         list-style: inside;
     }
+
+    &--dark {
+        & a {
+            color: var(--brand-primary);
+        }
+    }
 }

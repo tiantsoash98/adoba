@@ -109,7 +109,9 @@ const getIconClass = (isItemActive) => {
     else return baseClass
 }
 
-const contentFullClass = computed(() => `rich-text accordion-item__content ${props.contentClass}`)
+const contentFullClass = computed(() => {
+    return `rich-text ${ props.theme == 'dark' ? 'rich-text--dark' : '' } accordion-item__content ${props.contentClass}`
+})
 </script>
 
 <style lang="scss">
