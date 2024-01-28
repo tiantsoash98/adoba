@@ -9,12 +9,13 @@
                     <li v-for="(service, index) in services" :key="service.index">
                         <HomeService
                             :slug="service.attributes.serviceSlug"
-                            :index="index + 1"
+                            :index="index"
                             :title="service.attributes.serviceTitle"
                             :description="service.attributes.serviceDescription"
                             :img="service.attributes.serviceImg.data.attributes.url"
                             :class="{'service--active': index == isActiveIndex}"
-                            @click="toogleActiveService(index)"
+                            :isActive="index == isActiveIndex"
+                            @toogle-service="toogleActiveService"
                         ></HomeService>
                     </li>
                 </ul>
@@ -31,6 +32,7 @@
     const isActiveIndex = ref(-1);
 
     const toogleActiveService = (index) => {
+        console.log('Toogle active index, ', index)
         if(index == isActiveIndex.value){
             isActiveIndex.value = -1;
         }

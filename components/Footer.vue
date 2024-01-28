@@ -88,7 +88,6 @@
     })
 
     const activeSocials = computed(() => content.value.socials.data.filter((social) => social.attributes.socialLink != null))
-    
 </script>
 
 <style scoped lang="scss">

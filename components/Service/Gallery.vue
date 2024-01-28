@@ -17,12 +17,6 @@
 const props = defineProps({
     content: Object
 })
-
-const getImgClass = (index) => {
-    const baseClass = "service-gallery__img"
-    if(index % 3 == 0) return `${baseClass} service-gallery__img--wide`
-    return baseClass
-}
 </script>
 
 <style lang="scss" scoped>

@@ -2,33 +2,31 @@
     <div class="service">
         <div class="service__border mb-9 mb-sm-7"></div>
         <div class="service__content-wrapper">
-            <div class="service__left-wrapper col-12 col-sm-6 col-md-7">
+            <div class="service__left-wrapper col-12 col-sm-6 col-md-7" @click="toogleService">
                 <span class="service__id callout-text pt-2">{{ serviceId }}</span>
                 <div class="service__title-wrapper ml-0 ml-sm-5 mt-2 mt-sm-0">
                     <h5 class="service__title">{{ title }}</h5>
                 </div>
             </div>
             <div class="service__right-wrapper col-12 col-sm-6 col-md-5 mt-5 mt-sm-0">
-                <p>{{ description }}</p>
+                <p @click="toogleService">{{ description }}</p>
                 <NuxtLink :to="slug">
                     <Button text="Voir Plus" class="button--tertiary button--white mt-8 mt-sm-7"></Button>
                 </NuxtLink>
-                
             </div>
         </div>
-        <div class="service__img-container mt-9 mt-sm-7">
-            <div class="service__img-wrapper pb-6" data-cursor-text="Voir">
-                <NuxtLink :to="slug">
-                    <NuxtPicture
-                        :src="imgPath(img)"
-                        format="webp"
-                        :class="'service__img'" 
-                        sizes="90vw md:870px lg:1093px" 
-                        :alt="title"
-                        loading="lazy"
-                        quality="70"
-                    />
-                </NuxtLink>
+        <div class="service__img-container mt-9 mt-sm-8">
+            <div class="service__img-wrapper pb-6" :data-cursor-text="isActive ? 'Fermer' : 'Ouvrir'">
+                <NuxtPicture
+                    @click="toogleService"
+                    :src="imgPath(img)"
+                    format="webp"
+                    :class="'service__img'" 
+                    sizes="90vw md:870px lg:1093px" 
+                    :alt="title"
+                    loading="lazy"
+                    quality="70"
+                />
             </div>
         </div>
     </div>
@@ -40,10 +38,19 @@
         slug: String,
         title: String,
         description: String,
-        img: String
+        img: String,
+        isActive: Boolean
     })
+    const emit = defineEmits([
+        'toogleService', 
+    ])
 
-    const serviceId = computed(() => `0${props.index}.`)
+    const toogleService = () => {
+        console.log(props.index)
+        emit('toogleService', props.index)
+    }
+
+    const serviceId = computed(() => `0${props.index + 1}.`)
 </script>
 
 
