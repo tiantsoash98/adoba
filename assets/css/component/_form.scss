@@ -17,10 +17,18 @@
         border-top: 0;
         border-left: 0;
         border-right: 0;
-        border-bottom: 1px solid var(--brand-secondary);
+        border-bottom: 1px solid var(--color-neutral-40);
         padding-bottom: var(--r-space-sm);
         margin-top: var(--r-space-sm-2);
         background: transparent;
+        transition: padding .3s var(--alias-default-ease), 
+                    border .3s var(--alias-default-ease);
+
+        &:focus {
+            outline: none;
+            padding-left: var(--r-space-xs);
+            border-bottom: 1px solid var(--color-neutral-100);
+        }
     }
 }
 

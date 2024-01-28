@@ -5,7 +5,7 @@
                 v-for="(image, index) in content.serviceGallery.serviceImgGallery.data" 
                 :key="index"
                 class="service-gallery__img"
-                imgClass="service-gallery__img-item" 
+                imgClass="service-gallery__img-item mb-5" 
                 :src="imgPath(image.attributes.url)" 
                 :alt="image.attributes.alternativeText"
                 />
@@ -29,11 +29,8 @@ const getImgClass = (index) => {
 .service-gallery {
     &__wrapper {
         display: grid;
-        grid-template-columns: repeat(1, minmax(300px, 1fr));
+        grid-template-columns: repeat(1, 1fr);
         gap: var(--r-space-sm);
-    }
-    &__img {
-        margin-bottom: var(--r-space-sm);
     }
     &__img-item {
         width: 100%;
