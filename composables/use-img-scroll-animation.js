@@ -16,7 +16,7 @@ export default () => {
                 scrub: true
             }
         })
-        .set(targetEl, { scale: 1.1 })
+        .set(targetEl, { scale: 1.15 })
         .to(targetEl, {
             y: '10vh',
             ease: "none"
