@@ -2,15 +2,6 @@
     <div>
         <NuxtLink :to="slug">
             <div class="service-others-item pt-8 pt-sm-5 pb-8 pb-sm-5">
-                <div class="service-others-item__img-wrapper">
-                    <nuxt-img
-                        class="service-others-item__img" 
-                        sizes="md:30vw lg:30vw 30vw"
-                        :src="imgPath(img.data.attributes.url)" 
-                        :alt="title"
-                        loading="lazy"
-                        />
-                </div>
                 <div class="service-others-item__content-wrapper">
                     <div class="service-others-item__title title-h5">{{ title }}</div>
                     <div class="service-others-item__icon-wrapper">
@@ -58,30 +49,11 @@ const props = defineProps({
     &__icon {
         transition: transform .6s var(--alias-default-ease) .1s; 
     }
-    &__img-wrapper {
-        width: 25vw;
-        overflow: hidden;
-        position: absolute;
-        top: 0%;
-        right: 10%;
-        transform: translateY(-25%);
-        z-index: 1;
-    }
-    &__img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 1s var(--alias-default-ease) .1s; 
-    }
 }
 @media screen and (min-width: 768px){
     .service-others-item {
         $root:&;
         &:hover {
-            #{$root}__img {
-                opacity: 1;
-            }
             #{$root}__title {
                 color: var(--color-neutral-10);
                 transform: translateX(8%);
