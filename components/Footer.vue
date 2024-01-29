@@ -57,6 +57,34 @@
                 <div class="footer__section col-12 col-xs-6 col-md-6 col-lg-3 mt-9 mt-lg-0">
                     <div class="footer__section-title paragraph-text--medium mb-3 mb-sm-3">Newsletter</div>
                     <span class="footer__newsletter-text">{{ content.footerNewsletterText }}</span>
+                    <div class="footer__newsletter-form-wrapper mt-5 mt-md-0">
+                        <form class="form footer__newsletter-form" @submit.prevent="onSubmit">
+                            <FormInput 
+                                v-model="newsletterEmail" 
+                                :custom-class="'footer__newsletter-input'"
+                                :name="'newsletter'"
+                                :placeholder="'Adresse email'"
+                                :type="'email'"
+                                :required="false"
+                            ></FormInput>
+                            <Button
+                                :text="''"
+                                :type="'submit'"
+                                class="button--tertiary"
+                            ></Button>
+                        </form>
+                        <div class="footer__newsletter-validation mt-5" v-show="newsletterFeedback != ''">
+                            <div v-if="newsletterFeedback === 'error'" class="form-validation form-validation--error">
+                                Une erreur s'est produite, veuillez réessayer.
+                            </div>
+                            <div v-if="newsletterFeedback === 'invalid'" class="form-validation form-validation--error">
+                                Veuillez spécifier un email valide
+                            </div>
+                            <div v-else-if="newsletterFeedback === 'success'" class="form-validation form-validation--success">
+                                Merci pour l'inscription !
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="footer__end-wrapper mt-9 mt-sm-9 pb-7 pb-sm-5">
@@ -83,14 +111,59 @@
 </template>
 
 <script setup>
+    const { getRecaptchaToken } = useRecaptchaInit()
     const { data: content }  = await useFetch('/api/footer', {
         transform: (_content) => _content.data.data.attributes
     })
 
+    const newsletterEmail = ref('')
+    const newsletterFeedback = ref('')
+    const success = ref(false)
     const activeSocials = computed(() => content.value.socials.data.filter((social) => social.attributes.socialLink != null))
+    
+    const onSubmit = async(event) => {
+        await getRecaptchaToken('newsletter')
+
+        success.value = false
+        newsletterFeedback.value = ''
+
+        // Form validation
+        // https://dev.to/michaelsynan/nuxt3-form-with-feedback-25b9
+        if(!newsletter.value.trim()) {
+            newsletterFeedback.value = 'error'
+            success.value = false
+            return
+        }
+
+        if (!emailValidator(newsletterEmail.value)) {
+            newsletterFeedback.value = 'invalid'
+            success.value = false
+            return
+        }
+        
+        // Subscribe to mailChimp
+        // const { data } = await useFetch("/api/send-mail", {
+        //     method: "POST",
+        //     body: {
+        //         "name": name,
+        //         "firstname": firstName,
+        //         "email": email,
+        //         "message": message
+        //     }
+        // })
+
+        // Send mail success
+        newsletterEmail.value = ""
+        newsletterFeedback.value = 'success'
+        success.value = true
+
+        // Error
+        // newsletterFeedback.value = 'error'
+        // success.value = false
+    }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .pre-footer {
     $root: &;
 
@@ -162,6 +235,24 @@
     }
     &__social {
         max-width: var(--r-space-sm);
+    }
+    &__newsletter-form-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    &__newsletter-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid var(--color-neutral-40);
+    }
+    &__newsletter-input {
+        flex-grow: 1;
+
+        & input {
+            border-bottom: 0;
+        }
     }
 }
 @media screen and (max-width: 991px){

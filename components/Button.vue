@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 export default {
     props: {
         text: String,
@@ -23,7 +22,6 @@ export default {
         }
     },
 }
-
 </script>
 
 

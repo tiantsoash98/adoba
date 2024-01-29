@@ -1,5 +1,5 @@
 <template>
-    <div class="form__fieldset">
+    <div :class="customClass">
         <label :for="name" v-if="label != ''" >{{ fullLabel }}</label>
         <textarea 
             v-if="type == 'textarea'" 
@@ -18,7 +18,6 @@
             :id="name" 
             :name="name"
             :placeholder="placeholder"
-
         />
     </div>
 </template>
@@ -48,7 +47,11 @@ const props = defineProps({
     required: {
         type: Boolean,
         default: false
-    }
+    },
+    customClass: {
+        type: String,
+        default: "form__fieldset"
+    },
 })
 const modelBind = defineModel({ required: true })
 
