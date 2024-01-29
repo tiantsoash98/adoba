@@ -1,10 +1,12 @@
 <template>
-  <button class="button">
+  <button class="button" :disabled="disabled">
     <div class="button__frame"></div>
     <span class="button__label title-h6">{{ text }}</span>
-    <div class="button__icon-wrapper ml-5 ml-sm-3">
+    <div class="button__icon-wrapper ml-5 ml-sm-3" v-if="icon != 'none'">
         <IconArrowRight icon-class="button__icon" v-if="icon == 'arrow-right'"/>
         <IconArrowUpRight icon-class="button__icon" v-else-if="icon == 'arrow-up-right'"/>
+        <IconSuccess icon-class="button__icon" v-else-if="icon == 'success'"/>
+        <IconClock icon-class="button__icon" v-else-if="icon == 'clock'"/>
     </div>
   </button>
 </template>
@@ -14,6 +16,7 @@
 export default {
     props: {
         text: String,
+        disabled: Boolean,
         icon: {
             type: String,
             default: 'arrow-right'

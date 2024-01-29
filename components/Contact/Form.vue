@@ -37,12 +37,12 @@
             <ContactFormFeedback
                 :formFeedback="formFeedback"
             >
-
             </ContactFormFeedback>
             <Button 
-                :text="isLoading ? 'Envoi en cours' : formSubmitLabel" 
+                :text="sendButtonLabel" 
                 :type="'submit'"
-                :disabled="isLoading"
+                :disabled="isLoading || success"
+                :icon="sendButtonIcon" 
             ></Button>
         </form>
     </div>
@@ -58,6 +58,7 @@ const props = defineProps({
 const { getRecaptchaToken } = useRecaptchaInit()
 const formFeedback = ref('')
 const isLoading = ref(false)
+const success = ref(false)
 const name = ref('')
 const firstName = ref('')
 const email = ref('')
@@ -67,12 +68,32 @@ const nameVal = computed(() => props.formInputs.find((input) => input.formName =
 const firstNameVal = computed(() => props.formInputs.find((input) => input.formName == 'firstname'))
 const emailVal = computed(() => props.formInputs.find((input) => input.formName == 'email'))
 const messageVal = computed(() => props.formInputs.find((input) => input.formName == 'message'))
+const sendButtonIcon = computed(() => {
+    if(isLoading.value == true){
+        return 'none'
+    }
+    if(success.value == true && isLoading.value == false){
+        return 'success'
+    }
 
+    return 'arrow-right'
+})
+const sendButtonLabel = computed(() => {
+    if(isLoading.value == true){
+        return 'Envoi en cours'
+    }
+    if(success.value == true && isLoading.value == false){
+        return 'Envoyé'
+    }
+
+    return props.formSubmitLabel
+})
 
 const onSubmit = async(event) => {
     await getRecaptchaToken('contact')
 
     isLoading.value = true
+    success.value = false
     formFeedback.value = ''
 
     // Form validation
@@ -83,12 +104,14 @@ const onSubmit = async(event) => {
         || !message.value.trim() ) {
             formFeedback.value = 'incomplete'
             isLoading.value = false
+            success.value = false
             return
     }
 
-    if (email.value && !emailValidator(email.value)) {
+    if (!emailValidator(email.value)) {
         formFeedback.value = 'invalid'
         isLoading.value = false
+        success.value = false
         return
     }
 
@@ -106,14 +129,16 @@ const onSubmit = async(event) => {
     if(data.value.status == 200){
         formFeedback.value = 'success'
         isLoading.value = false
-        name.val = ""
-        firstname.val = ""
-        email.val = ""
-        message.val = ""
+        success.value = true
+        name.value = ""
+        firstname.value = ""
+        email.value = ""
+        message.value = ""
     }
     else { // Send mail error
         formFeedback.value = 'error'
         isLoading.value = false
+        success.value = false
     }
 }
 </script>
