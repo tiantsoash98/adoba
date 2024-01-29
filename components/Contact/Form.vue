@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <form class="form">
+        <form class="form" @submit.prevent="onSubmit">
             <FormInput 
                 v-model="name" 
                 :name="'name'" 
@@ -57,6 +57,15 @@ const nameVal = computed(() => props.formInputs.find((input) => input.formName =
 const firstNameVal = computed(() => props.formInputs.find((input) => input.formName == 'firstname'))
 const emailVal = computed(() => props.formInputs.find((input) => input.formName == 'email'))
 const messageVal = computed(() => props.formInputs.find((input) => input.formName == 'message'))
+const { getRecaptchaToken } = useRecaptchaInit()
+
+const onSubmit = async(event) => {
+    // Wait for the reCAPTCHA token
+    const token = await getRecaptchaToken('contact')
+ 
+ // Submit the form
+    // event.target.submit()
+}
 </script>
 
 <style lang="scss" scoped>
