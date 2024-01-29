@@ -36,11 +36,6 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .form-validation {
-    &--error {
-        color: red;
-    }
-    &--success {
-        color: green;
-    }
+    
 }
 </style>

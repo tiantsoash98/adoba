@@ -30,6 +30,17 @@
             border-bottom: 1px solid var(--color-neutral-100);
         }
     }
+    &-validation {
+        &--neutral {
+            color: var(--brand-secondary);
+        }
+        &--error {
+            color: red;
+        }
+        &--success {
+            color: green;
+        }
+    }
 }
 
 @media screen and (max-width: 991px){

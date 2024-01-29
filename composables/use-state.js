@@ -1,2 +1,5 @@
 export const useHeaderExclusion = () => useState("headerExclusion", () => false)
 export const useHeaderStartHidePosition = () => useState("headerStartHidePosition", () => 0)
+export const useFooterNewsletterEmail = () => useState("footerNewsletterEmail", () => "")
+export const useFooterNewsletterFeedback = () => useState("footerNewsletterFeedback", () => "")
+export const useFooterNewsletterSuccess = () => useState("footerNewsletterSuccess", () => false)

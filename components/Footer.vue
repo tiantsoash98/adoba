@@ -54,10 +54,10 @@
                         <li class="mt-4 mt-sm-5 mt-md-1"><NuxtLink to="/maquette-orbitale-3d">Maquette orbitale</NuxtLink></li>
                     </ul>
                 </div>
-                <div class="footer__section col-12 col-xs-6 col-md-6 col-lg-3 mt-9 mt-lg-0">
-                    <div class="footer__section-title paragraph-text--medium mb-3 mb-sm-3">Newsletter</div>
-                    <span class="footer__newsletter-text">{{ content.footerNewsletterText }}</span>
-                </div>
+                <FooterNewsletter
+                    class="footer__section col-12 col-xs-6 col-md-6 col-lg-3 mt-9 mt-lg-0"
+                    :text="content.footerNewsletterText"
+                ></FooterNewsletter>
             </div>
             <div class="footer__end-wrapper mt-9 mt-sm-9 pb-7 pb-sm-5">
                 <div class="footer__launched-wrapper">
@@ -90,7 +90,7 @@
     const activeSocials = computed(() => content.value.socials.data.filter((social) => social.attributes.socialLink != null))
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .pre-footer {
     $root: &;
 
@@ -162,6 +162,24 @@
     }
     &__social {
         max-width: var(--r-space-sm);
+    }
+    &__newsletter-form-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    &__newsletter-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid var(--color-neutral-40);
+    }
+    &__newsletter-input {
+        flex-grow: 1;
+
+        & input {
+            border-bottom: 0;
+        }
     }
 }
 @media screen and (max-width: 991px){

@@ -5,7 +5,7 @@ import moment from 'moment';
 
 export default defineEventHandler(async (event) => {
     
-    const config = useRuntimeConfig();
+    const config = useRuntimeConfig()
     sendgrid.setApiKey(config.sendGridApiKey)
     moment.locale('fr')
 
