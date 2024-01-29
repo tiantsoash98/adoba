@@ -50,6 +50,9 @@ export default defineNuxtConfig({
     url: process.env.CMS_BASE_URL
   },
   runtimeConfig: {
+    sendGridApiKey: process.env.SENDGRID_API_KEY,
+    sendGridMailFrom: process.env.SENDGRID_MAIL_FROM,
+    sendGridMailTo: process.env.SENDGRID_MAIL_TO,
     public: {
       siteKey: process.env.SITE_RECAPTCHA_KEY,
       baseUrl: process.env.BASE_URL,
