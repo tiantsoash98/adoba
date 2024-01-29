@@ -18,7 +18,7 @@
             :id="name" 
             :name="name"
             :placeholder="placeholder"
-            :required="required" 
+
         />
     </div>
 </template>
