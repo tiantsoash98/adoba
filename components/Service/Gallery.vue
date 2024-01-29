@@ -4,8 +4,8 @@
             <BannerImg 
                 v-for="(image, index) in content.serviceGallery.serviceImgGallery.data" 
                 :key="index"
-                class="service-gallery__img"
-                imgClass="service-gallery__img-item mb-5" 
+                class="service-gallery__img mb-5"
+                imgClass="service-gallery__img-item" 
                 :src="imgPath(image.attributes.url)" 
                 :alt="image.attributes.alternativeText"
                 />

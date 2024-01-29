@@ -69,7 +69,7 @@
                         :key="social.attributes.socialLink"
                         class="footer__social mr-5 mr-sm-5 mr-md-3 mt-5 mt-sm-5"
                     >
-                        <a :href="social.attributes.socialLink">
+                        <a :href="social.attributes.socialLink" target="_blank">
                             <IconFacebook v-if="social.attributes.socialIcon == 'icon-facebook'"/>
                             <IconLinkedin v-else-if="social.attributes.socialIcon == 'icon-linkedin'"/>
                             <IconInstagram v-else-if="social.attributes.socialIcon == 'icon-instagram'"/>
