@@ -74,13 +74,13 @@
                             ></Button>
                         </form>
                         <div class="footer__newsletter-validation mt-5" v-show="newsletterFeedback != ''">
-                            <div v-if="newsletterFeedback === 'error'" class="form-validation form-validation--error">
+                            <div v-if="newsletterFeedback === 'error'" class="form-validation form-validation--neutral">
                                 Une erreur s'est produite, veuillez réessayer.
                             </div>
-                            <div v-if="newsletterFeedback === 'invalid'" class="form-validation form-validation--error">
+                            <div v-if="newsletterFeedback === 'invalid'" class="form-validation form-validation--neutral">
                                 Veuillez spécifier un email valide
                             </div>
-                            <div v-else-if="newsletterFeedback === 'success'" class="form-validation form-validation--success">
+                            <div v-else-if="newsletterFeedback === 'success'" class="form-validation form-validation--neutral">
                                 Merci pour l'inscription !
                             </div>
                         </div>
@@ -142,24 +142,17 @@
         }
         
         // Subscribe to mailChimp
-        // const { data } = await useFetch("/api/send-mail", {
-        //     method: "POST",
-        //     body: {
-        //         "name": name,
-        //         "firstname": firstName,
-        //         "email": email,
-        //         "message": message
-        //     }
-        // })
+        const { data: response } = await useFetch("/api/newsletter-signup", {
+            method: "POST",
+            body: {
+                "email": newsletterEmail.value,
+            }
+        })
 
         // Send mail success
         newsletterEmail.value = ""
         newsletterFeedback.value = 'success'
         success.value = true
-
-        // Error
-        // newsletterFeedback.value = 'error'
-        // success.value = false
     }
 </script>
 

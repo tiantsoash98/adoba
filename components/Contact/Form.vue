@@ -118,10 +118,10 @@ const onSubmit = async(event) => {
     const { data } = await useFetch("/api/send-mail", {
         method: "POST",
         body: {
-            "name": name,
-            "firstname": firstName,
-            "email": email,
-            "message": message
+            "name": name.value,
+            "firstname": firstName.value,
+            "email": email.value,
+            "message": message.value
         }
     })
 

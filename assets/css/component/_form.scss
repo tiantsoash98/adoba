@@ -31,6 +31,9 @@
         }
     }
     &-validation {
+        &--neutral {
+            color: var(--brand-secondary);
+        }
         &--error {
             color: red;
         }
