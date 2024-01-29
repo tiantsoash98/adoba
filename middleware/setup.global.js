@@ -1,4 +1,11 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-    // Middleware here
+   
+    // Reset footer newsletter
+    const newsletterEmail = useFooterNewsletterEmail()
+    const newsletterFeedback = useFooterNewsletterFeedback()
+    const success = useFooterNewsletterSuccess()
+    newsletterEmail.value = ''
+    newsletterFeedback.value = ''
+    success.value = false
 })
   

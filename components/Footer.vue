@@ -71,6 +71,7 @@
                                 :text="''"
                                 :type="'submit'"
                                 class="button--tertiary"
+                                :disabled="isLoading"
                             ></Button>
                         </form>
                         <div class="footer__newsletter-validation mt-5" v-show="newsletterFeedback != ''">
@@ -116,26 +117,30 @@
         transform: (_content) => _content.data.data.attributes
     })
 
-    const newsletterEmail = ref('')
-    const newsletterFeedback = ref('')
-    const success = ref(false)
+    const newsletterEmail = useFooterNewsletterEmail()
+    const newsletterFeedback = useFooterNewsletterFeedback()
+    const success = useFooterNewsletterSuccess()
+    const isLoading = ref(false)
     const activeSocials = computed(() => content.value.socials.data.filter((social) => social.attributes.socialLink != null))
     
     const onSubmit = async(event) => {
         await getRecaptchaToken('newsletter')
 
+        isLoading.value = true
         success.value = false
         newsletterFeedback.value = ''
 
         // Form validation
         // https://dev.to/michaelsynan/nuxt3-form-with-feedback-25b9
         if(!newsletter.value.trim()) {
+            isLoading.value = false
             newsletterFeedback.value = 'error'
             success.value = false
             return
         }
 
         if (!emailValidator(newsletterEmail.value)) {
+            isLoading.value = false
             newsletterFeedback.value = 'invalid'
             success.value = false
             return
@@ -150,6 +155,7 @@
         })
 
         // Send mail success
+        isLoading.value = false
         newsletterEmail.value = ""
         newsletterFeedback.value = 'success'
         success.value = true
