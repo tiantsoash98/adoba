@@ -26,7 +26,7 @@
                     <div class="footer__infos-wrapper mt-7 mt-sm-7">
                         <div class="footer__email-wrapper">
                             <a :href="`mailto:${ content.footerEmail }`" target="_blank">
-                                <Button :text="content.footerEmail" icon="arrow-up-right" class="footer__email button--tertiary title-h6"></Button>
+                                <div class="footer__email title-h6">{{ content.footerEmail }}</div>
                             </a> 
                         </div>
                         <div class="footer__description paragraph-text mt-3 mt-sm-3">{{ content.footerDescription }}</div>
