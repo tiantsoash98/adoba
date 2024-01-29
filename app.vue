@@ -9,7 +9,7 @@
 </template>
   
 <script setup>
-    const lenisOptions = useLenis()  
+  const lenisOptions = useLenis()  
 </script>
 
 <style>

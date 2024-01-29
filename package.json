@@ -28,6 +28,7 @@
     "photoswipe": "^5.4.3",
     "qs": "^6.11.2",
     "split-type": "^0.3.4",
+    "vue-recaptcha-v3": "^2.0.1",
     "vue-vimeo-player": "^1.1.2"
   }
 }
