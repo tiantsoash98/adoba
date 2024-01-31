@@ -9,12 +9,25 @@ export default () => {
 
     const initCursor = () => {
         cursor.value = new MouseFollower({
+            visible: false,
             container: document.body,
             speed: 1,
             ease: 'expo.out',
-            skewingText: 0,
+            skewingText: 0,    
         });
     
+        const el = document.querySelectorAll('[data-cursor-text]');
+
+        el.forEach(function(item){
+            item.addEventListener('mouseenter', () => {
+                cursor.value.removeState('-hidden'); 
+            })
+    
+            item.addEventListener('mouseleave', () => {
+                cursor.value.addState('-hidden');
+            });
+        })
+        
                 
         let matchMedia = gsap.matchMedia();
     

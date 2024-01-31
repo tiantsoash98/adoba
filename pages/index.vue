@@ -1,11 +1,12 @@
 <template>
     <div>
-        <section class="section section--no-padding-top section--no-padding-bottom home-hero" data-cursor="-inverse" ref="hero">
+        <section class="section section--no-padding-top section--no-padding-bottom home-hero" ref="hero">
             <div class="home-hero__wrapper">
                 <div class="home-hero__img-wrapper">
                     <div class="home-hero__overlay"></div>
                     <div class="home-hero__img-wrapper">
                         <NuxtImg
+                            
                             format="webp"
                             :class="['home-hero__img hero-img']" 
                             sizes="100vw sm:100vw md:100vw lg:100vw"

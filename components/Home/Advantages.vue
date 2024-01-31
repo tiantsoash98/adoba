@@ -1,5 +1,5 @@
 <template>
-    <section class="section advantages" data-cursor="-inverse" data-header-state="white">
+    <section class="section advantages">
             <div class="container">
                 <div class="advantages__title-wrapper">
                     <h2 class="text-visually-hidden"> {{ label }}</h2>
