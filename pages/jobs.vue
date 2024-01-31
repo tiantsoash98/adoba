@@ -48,6 +48,7 @@
         <section class="section section--no-padding-top">
             <BannerImg 
                 imgClass="jobs-banner__second" 
+                :scroll-animation="true"
                 :src="imgPath(content.jobsBannerTwo.serviceBannerMedia.data.attributes.url)" 
                 :alt="content.jobsBannerTwo.serviceBannerMedia.data.attributes.alternativeText"
             />

@@ -36,14 +36,14 @@ function animateLoaderIn(){
     .to('.page-transition', { 
         opacity: 1 
     })
-    .fromTo('.page-transition__logo', { 
-        yPercent: 0,
-        opacity: 0
-    }, { 
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.3
-    }, 0.3)
+    // .fromTo('.page-transition__logo', { 
+    //     yPercent: 0,
+    //     opacity: 0
+    // }, { 
+    //     yPercent: 0,
+    //     opacity: 1,
+    //     duration: 0.3
+    // }, 0.3)
 }
 
 function animateLoaderOut(){
@@ -53,7 +53,7 @@ function animateLoaderOut(){
             ease: "power2.inOut"
         },
     })
-    .to('.page-transition__logo', { yPercent: -100, duration: 0.5 })
+    // .to('.page-transition__logo', { yPercent: -100, duration: 0.5 })
     .to('.page-transition', { opacity: 0 })
     .set('.page-transition', { display: 'none', pointerEvents: 'none' })
     
@@ -99,6 +99,7 @@ function animateLoaderOut(){
         width: 100%;
         max-width: var(--r-space-xl);
         overflow: hidden;
+        opacity: 0;
     }
     &__logo{
         width: 100%;
