@@ -12,7 +12,7 @@
 
                         <div class="article__date-wrapper">
                             <span class="title-h6">Posté le </span>
-                            <span class="article__date title-h6">{{ dateFormat(content.createdAt) }}</span>
+                            <span class="article__date title-h6">{{ dateFormat(content.blogDate) }}</span>
                         </div>
                         <div class="article__share-wrapper">
                             <span class="title-h6">Partager l'article</span>

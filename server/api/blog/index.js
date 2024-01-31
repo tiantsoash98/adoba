@@ -5,12 +5,12 @@ export default defineEventHandler(async (event) => {
 
     const query = qs.stringify(
     {
-        fields: ["blogTitle", "createdAt", "blogUrl"],
+        fields: ["blogTitle", "blogDate", "blogUrl"],
         pagination: {
             pageSize: pageQuery.pageSize,
             page: 1
         },
-        sort: ['createdAt:desc'],
+        sort: ['blogDate:desc'],
         populate: {
             blogImg: {
                 fields: ["name", "alternativeText", "url", "mime"],

@@ -3,6 +3,6 @@ import moment from 'moment';
 
 export default function (dateString) {
     moment.locale('fr')
-    const momentDate = moment(dateString, moment.ISO_8601);
+    const momentDate = moment(dateString);
     return momentDate.format('MMM DD, YYYY')
   }
