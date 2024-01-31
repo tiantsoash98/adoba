@@ -91,6 +91,7 @@
     })
 
     onBeforeUnmount(() => {
+        window.removeEventListener("resize", onWindowResizeEvent)
         beforeUnmountHero(hero)
         revertTextRevealScroll(presentationTargetEl)
         destroyCursor()
