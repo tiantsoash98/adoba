@@ -60,6 +60,7 @@
     const { data: content }  = await useFetch('/api/jobs-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    const pageTransition = usePageTransition()
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const headerExclusion = useHeaderExclusion()
     const headerStartHidePosition = useHeaderStartHidePosition()
@@ -68,6 +69,7 @@
     onMounted(() => {
         headerExclusion.value = false
         headerStartHidePosition.value = 200
+        pageTransition.value = false
         initCursor()
         animateHero(hero)
     })

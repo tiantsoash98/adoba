@@ -13,12 +13,12 @@
 </script>
 
 <style>
-.page-enter-active,
+/* .page-enter-active,
 .page-leave-active {
   transition: all 1s var(--alias-default-ease);
 }
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
-}
+} */
 </style>

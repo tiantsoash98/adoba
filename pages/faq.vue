@@ -32,6 +32,7 @@
     const { data: content }  = await useFetch('/api/faq-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    const pageTransition = usePageTransition()
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
     const headerStartHidePosition = useHeaderStartHidePosition()
@@ -40,6 +41,7 @@
     onMounted(() => {
         headerExclusion.value = false
         headerStartHidePosition.value = 200
+        pageTransition.value = false
         initCursor()
         animateTextReveal(textReveal)
     })

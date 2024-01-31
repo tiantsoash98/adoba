@@ -60,6 +60,7 @@
     const { data: content }  = await useFetch('/api/contact-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    const pageTransition = usePageTransition()
     const headerExclusion = useHeaderExclusion()
     const headerStartHidePosition = useHeaderStartHidePosition()
     const { initCursor, destroyCursor } = useCursor()
@@ -67,6 +68,7 @@
     onMounted(() => {
         headerExclusion.value = false
         headerStartHidePosition.value = 200
+        pageTransition.value = false
         initCursor()
     })
 
