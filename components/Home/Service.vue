@@ -15,8 +15,8 @@
                 </NuxtLink>
             </div>
         </div>
-        <div class="service__img-container mt-9 mt-sm-8">
-            <div class="service__img-wrapper pb-6" :data-cursor-text="isActive ? 'Fermer' : 'Ouvrir'">
+        <div class="service__img-container mt-9 mt-sm-8" >
+            <div class="service__img-wrapper pb-6" data-cursor="-inverse" :data-cursor-text="isActive ? 'Fermer' : 'Ouvrir'">
                 <NuxtPicture
                     @click="toogleService"
                     :src="imgPath(img)"
@@ -46,7 +46,6 @@
     ])
 
     const toogleService = () => {
-        console.log(props.index)
         emit('toogleService', props.index)
     }
 

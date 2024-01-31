@@ -8,7 +8,7 @@
             <slot />
         </main>
 
-        <Footer/>
+        <FooterMain/>
     </div>
 </template>
 

@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     sendGridApiKey: process.env.SENDGRID_API_KEY,
     sendGridMailFrom: process.env.SENDGRID_MAIL_FROM,
     sendGridMailTo: process.env.SENDGRID_MAIL_TO,
+    sendGridMailCC: process.env.SENDGRID_MAIL_CC,
     mailChimpApiKey: process.env.MAILCHIMP_API_KEY,
     mailChimpAudienceKey: process.env.MAILCHIMP_AUDIENCE_KEY,
     mailChimpServerPrefix: process.env.MAILCHIMP_SERVER_PREFIX,

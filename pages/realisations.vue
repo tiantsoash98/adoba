@@ -8,7 +8,10 @@
                         <div class="realisations__title title-h1">{{ content.realisationTitle }}</div>
                     </div>
                 </div>
-                <div class="realisations__filter-wrapper pb-5 pb-sm-4 pb-md-3 mt-9 mt-sm-7" @click="openFilterModal">
+                <div class="realisations__filter-wrapper pb-5 pb-sm-4 pb-md-3 mt-9 mt-sm-7" 
+                    @click="openFilterModal"
+                    data-cursor-text="Filtres"
+                >
                     <div class="title-h6">{{ selectedFilterValue ? selectedFilterValue : "Toutes les réalisations" }}</div>
                     <div class="realisations__icon-wrapper ml-3">
                         <svg class="realisations__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.4 17.2">

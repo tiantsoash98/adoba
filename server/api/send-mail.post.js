@@ -24,11 +24,12 @@ export default defineEventHandler(async (event) => {
         `</ul>` +
         `<br/>`+
         `<strong>Message :</strong>`+
-        `<p>${ body.message }}</p>`;
+        `<p>${ body.message }</p>`;
 
     const options = {
         from: config.sendGridMailFrom,
         to: config.sendGridMailTo,
+        cc: config.sendGridMailCC,
         subject: 'Nouveau formulaire reçu de adoba.agency',
         html: template,
     }
@@ -38,6 +39,7 @@ export default defineEventHandler(async (event) => {
     .then(() => {
         response = "Email sent"
         status = 200
+        return
     }, error => {
         response = error
         console.error(error);
