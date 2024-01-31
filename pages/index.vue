@@ -98,12 +98,12 @@
 
     const onWindowResizeEvent = () => {
         revertTextRevealScroll(presentationTargetEl)
-        createTextRevealScroll(presentationEl, presentationTargetEl, 'presentation-title')
+        createTextRevealScroll(presentationEl, presentationTargetEl, 'home-presentation__title')
     }
 
     const pageScroll = () => {
         presentationEnter()
-        createTextRevealScroll(presentationEl, presentationTargetEl, 'presentation-title')
+        createTextRevealScroll(presentationEl, presentationTargetEl, 'home-presentation__title')
     }
 
     const presentationEnter = () => {
