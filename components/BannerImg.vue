@@ -1,20 +1,18 @@
 <template>
     <div class="banner-img__wrapper" ref="img">
-        <NuxtPicture
+        <NuxtImg
             format="webp"
-            :class="[imgFullClass, {'img--loaded': isLoaded}]" 
+            :class="imgFullClass" 
             :sizes="sizes"
             :src="src" 
             :alt="alt"
             :loading="loading"
-            @load="isLoaded = true"
         />
     </div>
 </template>
 
 <script setup>
 const img = ref(null)
-const isLoaded = ref(false)
 const props = defineProps({
     src: String,
     alt: String,
@@ -34,7 +32,7 @@ onMounted(() => {
     imgScrollAnimation(img)
 })
 
-const imgFullClass = computed(() => `banner-img__img img ${props.imgClass} `)
+const imgFullClass = computed(() => `banner-img__img ${props.imgClass} `)
 </script>
 
 <style lang="scss" scoped>

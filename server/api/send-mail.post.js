@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
         `</ul>` +
         `<br/>`+
         `<strong>Message :</strong>`+
-        `<p>${ body.message }}</p>`;
+        `<p>${ body.message }</p>`;
 
     const options = {
         from: config.sendGridMailFrom,
