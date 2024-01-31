@@ -1,7 +1,7 @@
 <template>
     <div>
         <NuxtLink :to="slug" :aria-label="title">
-            <div class="service-others-item pt-8 pt-sm-5 pb-8 pb-sm-5" data-cursor="-inverse" data-cursor-text="Voir">
+            <div class="service-others-item pt-8 pt-sm-5 pb-8 pb-sm-5">
                 <div class="service-others-item__content-wrapper">
                     <div class="service-others-item__title title-h5">{{ title }}</div>
                     <div class="service-others-item__icon-wrapper">
