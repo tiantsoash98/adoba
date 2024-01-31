@@ -1,6 +1,7 @@
 <template>
     <div>
         <PageLoader :loaded="loaded" ></PageLoader>
+        <PageTransition></PageTransition>
         <HeaderMain :isExclusionOnStart="headerExclusion"/>
 
         <!-- output the page content -->

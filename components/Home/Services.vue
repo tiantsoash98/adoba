@@ -32,7 +32,6 @@
     const isActiveIndex = ref(-1);
 
     const toogleActiveService = (index) => {
-        console.log('Toogle active index, ', index)
         if(index == isActiveIndex.value){
             isActiveIndex.value = -1;
         }

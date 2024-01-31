@@ -60,6 +60,7 @@
     }
     content.value = article.value[0].attributes
 
+    const pageTransition = usePageTransition()
     const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
     const headerStartHidePosition = useHeaderStartHidePosition()
@@ -68,6 +69,7 @@
     onMounted(() => {
         headerExclusion.value = false
         headerStartHidePosition.value = 200
+        pageTransition.value = false
         initCursor()
 
         textReveal.value = blogContent.value.querySelector('h1')

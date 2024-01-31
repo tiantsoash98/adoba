@@ -72,6 +72,7 @@
     const { data: content }  = await useFetch('/api/accueil-page', {
         transform: (_content) => _content.data.data.attributes
     })
+    const pageTransition = usePageTransition()
     const { animateHero, beforeUnmountHero } = useSectionAnimation()
     const { createTextRevealScroll, revertTextRevealScroll } = useTextRevealScroll()
     const headerExclusion = useHeaderExclusion()
@@ -81,6 +82,7 @@
     onMounted(() => {
         headerExclusion.value = true
         headerStartHidePosition.value = window.innerHeight/2
+        pageTransition.value = false
         initCursor()
         animateHero(hero)
         pageScroll()

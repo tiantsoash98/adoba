@@ -45,6 +45,7 @@
     })
     import SplitType from 'split-type';
     const { gsap } = useGsap();
+    const pageTransition = usePageTransition()
     const headerExclusion = useHeaderExclusion()
     const headerStartHidePosition = useHeaderStartHidePosition()
     const { initCursor, destroyCursor } = useCursor()
@@ -91,6 +92,7 @@
     onMounted(() => {
         headerExclusion.value = false
         headerStartHidePosition.value = 200
+        pageTransition.value = false
         initCursor()
         animatePageEnter()
     })
