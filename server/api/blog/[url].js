@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
                 $eq: url,
             },
         },
-        fields: ["blogTitle", "blogUrl", "blogContent", "blogDate"],
+        fields: ["blogTitle", "blogUrl", "blogContent", "blogDate", "createdAt"],
         populate: {
             metadata: {
                 fields: ["metaTitle", "metaDescription"],
