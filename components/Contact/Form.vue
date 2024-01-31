@@ -115,18 +115,17 @@ const onSubmit = async(event) => {
         return
     }
 
-    const { data } = await useFetch("/api/send-mail", {
-        method: "POST",
-        body: {
-            "name": name.value,
-            "firstname": firstName.value,
-            "email": email.value,
-            "message": message.value
-        }
-    })
+    try {
+        const { data } = await useFetch("/api/send-mail", {
+            method: "POST",
+            body: {
+                "name": name.value,
+                "firstname": firstName.value,
+                "email": email.value,
+                "message": message.value
+            }
+        })
 
-    // Send mail success
-    if(data.value.status == 200){
         formFeedback.value = 'success'
         isLoading.value = false
         success.value = true
@@ -134,8 +133,7 @@ const onSubmit = async(event) => {
         firstname.value = ""
         email.value = ""
         message.value = ""
-    }
-    else { // Send mail error
+    } catch(e) {
         formFeedback.value = 'error'
         isLoading.value = false
         success.value = false

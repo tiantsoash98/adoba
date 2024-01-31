@@ -10,12 +10,10 @@ export default defineEventHandler(async (event) => {
     moment.locale('fr')
 
     const body = await readBody(event);
-    let response = ""
-    let status = 0
 
     const template = 
         `<h1>Nouveau formulaire reçu de ${ body.firstname } ${ body.name } (${ body.email })</h1>` +
-        `<strong>Détails :</strong>` +
+        `<h4>Détails :</h4>` +
         `<ul>` +
         `   <li>Nom: ${ body.name }</li>` +
         `   <li>Prénom: ${ body.firstname }</li>`+
@@ -23,8 +21,8 @@ export default defineEventHandler(async (event) => {
         `   <li>Date: ${ moment().format('LLL') }</li>`+
         `</ul>` +
         `<br/>`+
-        `<strong>Message :</strong>`+
-        `<p>${ body.message }</p>`;
+        `<h4>Message :</h4>`+
+        `<p style="font-size: 20px">${ body.message }</p>`;
 
     const options = {
         from: config.sendGridMailFrom,
@@ -36,23 +34,11 @@ export default defineEventHandler(async (event) => {
 
     sendgrid
     .send(options)
-    .then(() => {
-        response = "Email sent"
-        status = 200
-        return
-    }, error => {
-        response = error
-        console.error(error);
-    
-        if (error.response) {
-            response = error.response.body
-            status = 400
-            console.error(error.response.body)
-        }
+    .then(() => {}, error => {
+        return error
     })
 
     return {
-        response,
-        status
+        responseMessage : "Email sent"
     }
 })
