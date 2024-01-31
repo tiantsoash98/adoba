@@ -13,7 +13,7 @@ import type { FooterLinks } from '#build/components';
                     </div>
                     <div class="footer__infos-wrapper mt-7 mt-sm-7">
                         <div class="footer__email-wrapper">
-                            <a :href="`mailto:${ content.footerEmail }`" target="_blank">
+                            <a :href="`mailto:${ content.footerEmail }`" target="_blank" aria-label="Email">
                                 <div class="footer__email title-h6">{{ content.footerEmail }}</div>
                             </a> 
                         </div>
@@ -32,6 +32,7 @@ import type { FooterLinks } from '#build/components';
                         v-if="content.footerNumarenaLink != '' || content.footerNumarenaLink != '#'"
                         :href="content.footerNumarenaLink"
                         target="_blank"
+                        aria-label="Site web Numarena"
                     >
                         <span class="paragraph-text" v-html="content.footerCopyrights"></span>
                     </a>
@@ -43,7 +44,7 @@ import type { FooterLinks } from '#build/components';
                         :key="social.attributes.socialLink"
                         class="footer__social mr-5 mr-sm-5 mr-md-3 mt-5 mt-sm-5"
                     >
-                        <a :href="social.attributes.socialLink" target="_blank">
+                        <a :href="social.attributes.socialLink" target="_blank" :aria-label="social.attributes.socialTitle">
                             <IconFacebook v-if="social.attributes.socialIcon == 'icon-facebook'"/>
                             <IconLinkedin v-else-if="social.attributes.socialIcon == 'icon-linkedin'"/>
                             <IconInstagram v-else-if="social.attributes.socialIcon == 'icon-instagram'"/>

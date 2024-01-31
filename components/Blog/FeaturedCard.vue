@@ -3,14 +3,14 @@
         <article :class="cardFullClass">
             <div class="featured-article__header-wrapper col-12 col-sm-7 col-md-6 mt-7 mt-sm-0">
                 <span class="featured-article__date callout-text">{{ dateFormat(date) }}</span>
-                <NuxtLink :to="`/blog/${ url }`">
+                <NuxtLink :to="`/blog/${ url }`" :aria-label="title">
                     <h4 class="featured-article__title mb-5">{{ title }}</h4>
                 </NuxtLink>
-                <NuxtLink :to="`/blog/${ url }`" class="featured-article__button">
+                <NuxtLink :to="`/blog/${ url }`" :aria-label="title" class="featured-article__button">
                     <Button :text="buttonLabel" class="button--tertiary"></Button>
                 </NuxtLink>
             </div>
-            <NuxtLink :to="`/blog/${ url }`" class="featured-article__figure-wrapper col-12 col-sm-5 col-md-6">
+            <NuxtLink :to="`/blog/${ url }`" :aria-label="title" class="featured-article__figure-wrapper col-12 col-sm-5 col-md-6">
                 <figure class="featured-article__figure" role="presentation"  data-cursor-text="Lire">
                     <nuxt-img
                         :width="img.data.attributes.width"

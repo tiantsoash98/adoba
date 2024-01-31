@@ -9,7 +9,7 @@
                 <IconTime v-else-if="icon === 'icon-time'" icon-class="advantage__icon advantage__icon--time"/>
             </div>
             <div class="advantage__text-wrapper">
-                <h5 class="advantage__title">{{ title }}</h5>
+                <h6 class="advantage__title title-h5">{{ title }}</h6>
                 <p class="advantage__description">{{ description }}</p>
             </div>
         </div>

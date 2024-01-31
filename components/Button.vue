@@ -1,5 +1,5 @@
 <template>
-  <button class="button" :disabled="disabled">
+  <button class="button" :disabled="disabled" :aria-label="text">
     <div class="button__frame"></div>
     <span class="button__label title-h6">{{ text }}</span>
     <div class="button__icon-wrapper ml-5 ml-sm-3" v-if="icon != 'none'">

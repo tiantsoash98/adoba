@@ -12,6 +12,7 @@
             data-cropped="true"
             :data-index="index"
             :class="getImgClass(index)"
+            role="presentation"
         >
             <div class="gallery__img-wrapper">
                 <NuxtImg

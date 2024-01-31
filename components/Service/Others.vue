@@ -2,7 +2,7 @@
     <section class="section service-others pt-11 pt-md-9 pb-11 pb-md-9" data-cursor="-inverse">
         <div class="container">
             <div class="service-others__label-wrapper mb-7">
-                <h6>Autres services</h6>
+                <span class="title-h6">Autres services</span>
             </div>
             <div class="service-others__list-wrapper">
                 <ul>

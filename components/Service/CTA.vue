@@ -7,7 +7,7 @@
                         <div class="service-ctan__text title-h3"> {{ content.serviceCTA.serviceCTAText }}</div>
                     </div>
                     <div class="service-cta__button-wrapper col-12 col-md-4 mt-9 mt-xs-7 mt-md-0">
-                        <NuxtLink to="/contact" class="service-cta__button">
+                        <NuxtLink to="/contact" aria-label="contact" class="service-cta__button">
                             <Button :text="content.serviceCTA.serviceCTAButtonLabel"></Button>
                         </NuxtLink>
                     </div>
