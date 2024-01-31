@@ -61,7 +61,14 @@
             </div>
             <div class="footer__end-wrapper mt-9 mt-sm-9 pb-7 pb-sm-5">
                 <div class="footer__launched-wrapper">
-                    <span class="paragraph-text" v-html="content.footerCopyrights[0].children[0].text"></span>
+                    <a 
+                        v-if="content.footerNumarenaLink != '' || content.footerNumarenaLink != '#'"
+                        :href="content.footerNumarenaLink"
+                        target="_blank"
+                    >
+                        <span class="paragraph-text" v-html="content.footerCopyrights"></span>
+                    </a>
+                    <span v-else class="paragraph-text" v-html="content.footerCopyrights"></span>
                 </div>
                 <ul class="footer__socials-wrapper">
                     <li 
