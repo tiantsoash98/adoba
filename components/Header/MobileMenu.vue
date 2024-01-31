@@ -5,7 +5,7 @@
             <div class="container mobile-menu__content-wrapper pt-14">
                 <ul class="mobile-menu__links-wrapper">
                     <li class="mobile-menu__link title-h4 mt-9">
-                        <NuxtLink to="/" @click="close">
+                        <NuxtLink to="/" aria-label="Page accueil" @click="close">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">Accueil</div>
                             </div>
@@ -26,7 +26,7 @@
                             <div class="mobile-menu__accordion-content-wrapper  mt-7 pl-5">
                                 <ul class="mobile-menu__links-wrapper content-element pb-5 pt-5">
                                     <li v-for="service in services" :key="service.title" class="mobile-menu__sub-link mb-7">
-                                        <NuxtLink :to="`/${service.slug}`" @click="close">
+                                        <NuxtLink :to="`/${service.slug}`" :aria-label="service.title" @click="close">
                                             <div class="mobile-menu__link title-h4">
                                                 <div class="mobile-menu__sub-label">{{ service.title }}</div>
                                             </div>
@@ -39,7 +39,7 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/studio" @click="close">
+                        <NuxtLink to="/studio" aria-label="Page studio" @click="close">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">Studio</div>
                             </div>
@@ -47,7 +47,7 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/realisations" @click="close">
+                        <NuxtLink to="/realisations" aria-label="Page réalisations" @click="close">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">Réalisations</div>
                             </div>
@@ -55,7 +55,7 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/blog" @click="close">
+                        <NuxtLink to="/blog" aria-label="Page blog" @click="close">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">Blog</div>
                             </div>
@@ -63,7 +63,7 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/faq" @click="close">
+                        <NuxtLink to="/faq" aria-label="Page FAQ" @click="close">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">FAQ</div>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                     <li class="mobile-menu__link title-h4 mt-7">
-                        <NuxtLink to="/jobs" @click="close">
+                        <NuxtLink to="/jobs" aria-label="Page jobs" @click="close">
                             <div class="mobile-menu__label-wrapper">
                                 <div class="mobile-menu__label">Jobs</div>
                             </div>
@@ -80,7 +80,7 @@
                     </li>
                 </ul>
                 <div class="mobile-menu__button-wrapper mt-9">
-                    <NuxtLink to="/contact" @click="close">
+                    <NuxtLink to="/contact" aria-label="Page contact" @click="close">
                         <Button text="Contactez-nous" class="mobile-menu__button mobile-menu__button--contact"></Button>
                     </NuxtLink>
                 </div>

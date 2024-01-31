@@ -1,5 +1,4 @@
 
-import type { clamp } from 'photoswipe/dist/types/util/util';
 <template>
     <div>
         <section class="section section--margin-top-md contact-questions">
@@ -13,7 +12,7 @@ import type { clamp } from 'photoswipe/dist/types/util/util';
                         <div class="contact-questions__description-wrapper">
                             <p class="contact-questions__description title-h6 mt-7 mt-md-3">{{ description }}</p>
                         </div>
-                        <NuxtLink :to="`/${buttonRedirect}`" class="contact-questions__button mt-7">
+                        <NuxtLink :to="`/${buttonRedirect}`" aria-label="Page FAQ" class="contact-questions__button mt-7">
                             <Button :text="buttonLabel"></Button>
                         </NuxtLink>
                     </div>

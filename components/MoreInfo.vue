@@ -9,10 +9,19 @@
                     </div>
                     <div class="more__content-wrapper col-12 col-sm-6 col-md-5 mt-5">
                         <h6 class="more__description pb-7">{{ description }}</h6>
-                        <NuxtLink :to="`/${buttonRedirect}`" v-if="buttonRedirectType == 'internal'">
+                        <NuxtLink 
+                            :to="`/${buttonRedirect}`" 
+                            v-if="buttonRedirectType == 'internal'"
+                            :aria-label="title"
+                        >
                             <Button :text="buttonLabel" ></Button>
                         </NuxtLink>
-                        <a :href="`mailto:${ buttonRedirect }`" target="_blank" v-else-if="buttonRedirectType == 'mail'">
+                        <a 
+                            aria-label="Envoyer un email"
+                            :href="`mailto:${ buttonRedirect }`" 
+                            target="_blank" 
+                            v-else-if="buttonRedirectType == 'mail'"
+                        >
                             <Button :text="buttonLabel" icon="arrow-up-right" class="button--tertiary button--white title-h5"></Button>
                         </a>
                     </div>

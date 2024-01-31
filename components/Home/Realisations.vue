@@ -17,7 +17,7 @@
                 :start-wide="true"
             ></ImgGallery>
             <div class="works__button-wrapper mt-9 mt-sm-7">
-                <NuxtLink to="/realisations">
+                <NuxtLink to="/realisations" aria-label="Page réalisations">
                     <Button text="Voir toutes nos réalisations"></Button>
                 </NuxtLink>
             </div>

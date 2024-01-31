@@ -1,6 +1,6 @@
 <template>
     <article :class="cardFullClass">
-        <NuxtLink :to="`/blog/${ url }`" class="article__figure-wrapper">
+        <NuxtLink :to="`/blog/${ url }`" :aria-label="title" class="article__figure-wrapper">
             <figure class="article__figure" role="presentation"  data-cursor-text="Lire">
                 <nuxt-img
                     :width="img.data.attributes.width"
@@ -17,10 +17,10 @@
         </NuxtLink>
         <div class="article__header-wrapper mt-5">
             <span class="article__date callout-text">{{ dateFormat(date) }}</span>
-            <NuxtLink :to="`/blog/${ url }`">
+            <NuxtLink :to="`/blog/${ url }`" :aria-label="title">
                 <h4 class="article__title mb-5">{{ title }}</h4>
             </NuxtLink>
-            <NuxtLink :to="`/blog/${ url }`" class="article__button">
+            <NuxtLink :to="`/blog/${ url }`" class="article__button" :aria-label="title">
                 <Button :text="buttonLabel" class="button--tertiary"></Button>
             </NuxtLink>
         </div>

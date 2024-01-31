@@ -6,7 +6,11 @@
                     <div class="contact-options__wrapper col-12 col-md-6 mt-11 mt-md-0">
                         <div class="contact-options__item-wrapper">
                             <span class="contact-options__label title-h6">{{ content.contactConfig.configContactLabel }}</span>
-                            <a :href="`mailto:${ content.contactConfig.configContactEmail }`" target="_blank">
+                            <a 
+                                :href="`mailto:${ content.contactConfig.configContactEmail }`" 
+                                target="_blank" 
+                                :aria-label="content.contactConfig.configContactEmail"
+                            >
                                 <Button :text="content.contactConfig.configContactEmail" icon="arrow-up-right" class="contact-options__item contact-options__item--email button--tertiary title-h6"></Button>
                             </a>
                             <span class="contact-options__item contact-options__item--phone title-h6" v-if="content.contactConfig.configContactNumber != ''">{{ content.contactConfig.configContactNumber }}</span>
