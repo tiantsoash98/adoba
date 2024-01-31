@@ -10,7 +10,7 @@
                         v-for="article in dataList" 
                         :key="article.blogUrl"
                         :title="article.attributes.blogTitle"
-                        :date="article.attributes.createdAt"
+                        :date="article.attributes.blogDate"
                         :url="article.attributes.blogUrl"
                         :img="article.attributes.blogImg"
                         :buttonLabel="buttonLabel"
