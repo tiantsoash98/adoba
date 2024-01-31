@@ -25,11 +25,18 @@ const props = defineProps({
         type: String,
         default: "lazy"
     },
+    scrollAnimation: {
+        type: Boolean,
+        default: true
+    }
 })
 const { imgScrollAnimation } = useImgScrollAnimation();
 
 onMounted(() => {
-    imgScrollAnimation(img)
+    if(props.scrollAnimation){
+        imgScrollAnimation(img)
+    }
+    
 })
 
 const imgFullClass = computed(() => `banner-img__img ${props.imgClass} `)

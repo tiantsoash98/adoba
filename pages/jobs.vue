@@ -17,6 +17,7 @@
             <div class="container container--wide">
                 <BannerImg
                     imgClass="jobs-banner__first" 
+                    :scroll-animation="false"
                     :src="imgPath(content.jobsBannerOne.serviceBannerMedia.data.attributes.url)" 
                     :alt="content.jobsBannerOne.serviceBannerMedia.data.attributes.alternativeText"
                 />
