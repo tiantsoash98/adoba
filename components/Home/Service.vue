@@ -21,7 +21,7 @@
                     @click="toogleService"
                     :src="imgPath(img)"
                     :class="'service__img'" 
-                    sizes="80vw md:80vw lg:80vw" 
+                    sizes="90vw xs:90vw sm:90vw md:80vw lg:80vw" 
                     :alt="title"
                     loading="lazy"
                     quality="70"
