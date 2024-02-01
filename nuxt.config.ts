@@ -47,6 +47,9 @@ export default defineNuxtConfig({
     '@nuxtjs/strapi',
     'nuxt-gtag'
   ],
+  image: {
+    domains: ['adoba-strapi-ep38z.ondigitalocean.app']
+  },
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
     config: {
