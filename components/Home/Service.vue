@@ -8,7 +8,7 @@
                     <h5 class="service__title">{{ title }}</h5>
                 </div>
             </div>
-            <div class="service__right-wrapper col-12 col-sm-6 col-md-5 mt-5 mt-sm-0">
+            <div class="service__right-wrapper col-12 col-sm-6 col-md-5 mt-7 mt-sm-0">
                 <p @click="toogleService">{{ description }}</p>
                 <NuxtLink :to="slug" :aria-label="title">
                     <Button text="Voir Plus" class="button--tertiary button--white mt-8 mt-sm-7"></Button>

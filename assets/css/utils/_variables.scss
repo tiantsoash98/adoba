@@ -155,6 +155,8 @@ $min-font-size : 1.25rem;
 // Media orientation portrait & Screen width below 576px
 @media screen and (max-width: map-get($map: $breakpoints, $key: extra-small))  and (orientation: portrait){
     :root{
+        $min-font-size : 1rem;
+
         // Typescale
         --title-1: 38;
         --title-2: 36;
@@ -162,7 +164,7 @@ $min-font-size : 1.25rem;
         --title-4: 26;
         --title-5: 20;
         --title-6: 18;
-        --paragraph-text: 16;
+        --paragraph-text: 14;
         --callout-text: 12;
         --display-text: 64;
     }

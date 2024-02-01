@@ -54,7 +54,7 @@
 
 @mixin p {  
     font-family: var(--font-family-secondary), 'Arial', serif;
-    @include font-size(var(--paragraph-text));
+    @include font-size(var(--paragraph-text), 1.1rem);
     letter-spacing: -0.03vw;
     line-height: 1.5;
     font-weight: 400;

@@ -26,7 +26,7 @@ import type { FooterLinks } from '#build/components';
                     :text="content.footerNewsletterText"
                 ></FooterNewsletter>
             </div>
-            <div class="footer__end-wrapper mt-9 mt-sm-9 pb-7 pb-sm-5">
+            <div class="footer__end-wrapper mt-11 mt-sm-9 pb-7 pb-sm-5">
                 <div class="footer__launched-wrapper">
                     <a 
                         v-if="content.footerNumarenaLink != '' || content.footerNumarenaLink != '#'"
@@ -38,11 +38,11 @@ import type { FooterLinks } from '#build/components';
                     </a>
                     <span v-else class="paragraph-text" v-html="content.footerCopyrights"></span>
                 </div>
-                <ul class="footer__socials-wrapper">
+                <ul class="footer__socials-wrapper mt-5 mt-sm-0">
                     <li 
                         v-for="social in activeSocials" 
                         :key="social.attributes.socialLink"
-                        class="footer__social mr-5 mr-sm-5 mr-md-3 mt-5 mt-sm-5"
+                        class="footer__social mr-7 mr-sm-5 mr-md-3 mt-5 mt-sm-5"
                     >
                         <a :href="social.attributes.socialLink" target="_blank" :aria-label="social.attributes.socialTitle">
                             <IconFacebook v-if="social.attributes.socialIcon == 'icon-facebook'"/>
@@ -132,11 +132,17 @@ import type { FooterLinks } from '#build/components';
     }
 }
 @media screen and (max-width: 991px){
-    .pre-footer {
-        &__title-wrapper {
-            max-width: 38ch;
+    .footer {
+        &__end-wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        &__social {
+            max-width: var(--r-space-sm-2);
         }
     }
+}
+@media screen and (max-width: 991px){
     .footer {
         &__end-wrapper {
             flex-direction: column;
@@ -148,9 +154,9 @@ import type { FooterLinks } from '#build/components';
     }
 }
 @media screen and (max-width: 576px){
-    .pre-footer {
-        &__title-wrapper {
-            max-width: 20ch;
+    .footer {
+        &__social {
+            max-width: var(--r-space-md-2);
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="section pre-footer">
+        <section class="section pre-footer pt-11 pt-md-9">
         <div class="container pre-footer__main-wrapper">
             <NuxtLink to="/contact">
                 <div class="pre-footer__label title-h6">{{ content.footerCtaLabel }}</div>
@@ -54,6 +54,20 @@ const props = defineProps({
         width: 100%;
         fill: currentColor;
         transition: transform .8s var(--alias-default-ease); 
+    }
+}
+@media screen and (max-width: 991px){
+    .pre-footer {
+        &__title-wrapper {
+            max-width: 38ch;
+        }
+    }
+}
+@media screen and (max-width: 576px){
+    .pre-footer {
+        &__title-wrapper {
+            max-width: 20ch;
+        }
     }
 }
 </style>

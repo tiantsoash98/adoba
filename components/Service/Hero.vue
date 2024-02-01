@@ -20,9 +20,9 @@
                         <div class="service-hero__title-wrapper col-12 col-md-7 pr-5 pr-md-13 mb-5 mb-md-0">
                             <span class="service-hero__label title-h6">{{ content.serviceHero.serviceHeroLabel }}</span>
                             <h1 class="text-visually-hidden">{{ content.serviceHero.serviceHeroTitle }}</h1>
-                            <div class="service-hero__title title-h1 hero-title mt-3 mt-sm-3">{{ content.serviceHero.serviceHeroTitle }}</div>
+                            <div class="service-hero__title title-h1 hero-title mt-7 mt-xs-5 mt-sm-3">{{ content.serviceHero.serviceHeroTitle }}</div>
                         </div>
-                        <div class="service-hero__description-wrapper col-10 col-md-5">
+                        <div class="service-hero__description-wrapper col-12 col-md-5">
                             <h6 class="service-hero__description hero-description">{{ content.serviceHero.serviceHeroDescription }}</h6>
                         </div>
                     </div>
@@ -137,6 +137,13 @@ onBeforeUnmount(() => {
         }
         50% {
             transform: translateY(0.3vw);
+        }
+    }
+}
+@media screen and (max-width: 991px){
+    .service-hero {
+        &__label  {
+            opacity: 0.8;
         }
     }
 }
