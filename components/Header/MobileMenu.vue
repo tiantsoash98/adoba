@@ -79,7 +79,7 @@
                         <div class="mobile-menu__border mt-7"></div>
                     </li>
                 </ul>
-                <div class="mobile-menu__button-wrapper mt-9">
+                <div class="mobile-menu__button-wrapper mt-9 pb-11">
                     <NuxtLink to="/contact" aria-label="Page contact" @click="close">
                         <Button text="Contactez-nous" class="mobile-menu__button mobile-menu__button--contact"></Button>
                     </NuxtLink>
