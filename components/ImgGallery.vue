@@ -17,7 +17,6 @@
             <div class="gallery__img-wrapper">
                 <NuxtImg
                     class="gallery__img-item"
-                    densities="x1 x2"
                     :width="image.attributes.realisationImg.data.attributes.width"
                     :height="image.attributes.realisationImg.data.attributes.height"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
@@ -72,7 +71,7 @@ const getImgClass = (index) => {
 const getImgSizes = (index) => {
     const baseIndex = props.startWide ? index : index + 1
     if(baseIndex % 3 == 0) return '100vw sm:80vw md:80vw xl:90vw xxl:90vw'  // Wide
-    return '40vw sm:80vw md:80vw'
+    return '40vw sm:80vw md:45vw'
 }
 
 </script>
