@@ -45,7 +45,14 @@ export default defineNuxtConfig({
     'nuxt-lenis',
     '@nuxt/image',
     '@nuxtjs/strapi',
+    'nuxt-gtag'
   ],
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    config: {
+      page_title: 'Adoba - Agence en visualisation 3D architecture'
+    }
+  },
   strapi: {
     url: process.env.CMS_BASE_URL
   },
@@ -61,7 +68,8 @@ export default defineNuxtConfig({
       siteKey: process.env.SITE_RECAPTCHA_KEY,
       baseUrl: process.env.BASE_URL,
       cmsBaseUrl: process.env.CMS_BASE_URL,
-      facebookAppId: process.env.FACEBOOK_APP_ID
+      facebookAppId: process.env.FACEBOOK_APP_ID,
+      gtagId: process.env.NUXT_PUBLIC_GTAG_ID
     }
   }
 })
