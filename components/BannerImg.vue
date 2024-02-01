@@ -1,7 +1,6 @@
 <template>
     <div class="banner-img__wrapper" ref="img">
         <NuxtImg
-            format="webp"
             :class="imgFullClass" 
             :sizes="sizes"
             :src="src" 

@@ -17,11 +17,10 @@
                         </NuxtLink>
                     </div>
                     <div class="contact-questions__img-wrapper col-12 col-md-6 mt-5 mt-md-0" ref="imgEl">
-                        <nuxt-img
-                            format="webp"
+                        <NuxtImg
                             :src="imgPath(img.data.attributes.url)"
                             class="contact-questions__img" 
-                            sizes="sm:100vw md:40vw lg:40vw 40vw" 
+                            sizes="sm:100vw md:90vw 90vw" 
                             role="presentation"
                             loading="lazy"
                         />

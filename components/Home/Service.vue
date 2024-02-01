@@ -17,12 +17,11 @@
         </div>
         <div class="service__img-container mt-9 mt-sm-8" >
             <div class="service__img-wrapper pb-6" data-cursor="-inverse" :data-cursor-text="isActive ? 'Fermer' : 'Ouvrir'">
-                <NuxtPicture
+                <NuxtImg
                     @click="toogleService"
                     :src="imgPath(img)"
-                    format="webp"
                     :class="'service__img'" 
-                    sizes="90vw md:870px lg:1093px" 
+                    sizes="80vw md:80vw lg:80vw" 
                     :alt="title"
                     loading="lazy"
                     quality="70"

@@ -17,11 +17,11 @@
             <div class="gallery__img-wrapper">
                 <NuxtImg
                     class="gallery__img-item"
-                    format="webp"
+                    densities="x1 x2"
                     :width="image.attributes.realisationImg.data.attributes.width"
                     :height="image.attributes.realisationImg.data.attributes.height"
                     :src="imgPath(image.attributes.realisationImg.data.attributes.url)"
-                    sizes="sm:80vw md:80vw 50vw" 
+                    :sizes="getImgSizes(index)" 
                     :alt="image.attributes.realisationTitle"
                     loading="lazy"
                 />
@@ -65,8 +65,14 @@ onUnmounted(() => {
 const getImgClass = (index) => {
     const baseIndex = props.startWide ? index : index + 1
     const baseClass = "gallery__img"
-    if(baseIndex % 3 == 0) return `${baseClass} gallery__img--wide`
+    if(baseIndex % 3 == 0) return `${baseClass} gallery__img--wide` // Wide
     return baseClass
+}
+
+const getImgSizes = (index) => {
+    const baseIndex = props.startWide ? index : index + 1
+    if(baseIndex % 3 == 0) return '100vw sm:80vw md:80vw xl:90vw xxl:90vw'  // Wide
+    return '40vw sm:80vw md:80vw'
 }
 
 </script>
@@ -102,6 +108,14 @@ const getImgClass = (index) => {
         
         &:hover {
             transform: scale(1.05);
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .gallery {
+        &__img {
+            min-height: 40vh;
+            grid-column: span 2;
         }
     }
 }
