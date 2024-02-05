@@ -18,6 +18,7 @@
         <div class="service__img-container mt-9 mt-sm-8" >
             <div class="service__img-wrapper pb-6" data-cursor="-inverse" :data-cursor-text="isActive ? 'Fermer' : 'Ouvrir'">
                 <NuxtImg
+                    :placeholder="[50, 25, 75, 5]"
                     @click="toogleService"
                     :src="imgPath(img)"
                     :class="'service__img'" 

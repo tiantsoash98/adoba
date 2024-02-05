@@ -8,10 +8,10 @@
                         <NuxtImg
                             densities="x1 x2"
                             :class="'service-hero__img hero-img'" 
-                            sizes="100vw sm:100vw md:100vw lg:100vw"
+                            sizes="100vw sm:100vw md:100vw lg:1920px"
                             :src="imgPath(content.serviceHero.serviceHeroImg.data.attributes.url)" 
                             :alt="content.serviceHero.serviceHeroImg.data.attributes.alternativeText"
-                            loading="lazy"
+                            preload
                         />
                     </div>
                 </div>

@@ -70,7 +70,7 @@ const getImgClass = (index) => {
 
 const getImgSizes = (index) => {
     const baseIndex = props.startWide ? index : index + 1
-    if(baseIndex % 3 == 0) return '100vw sm:80vw md:80vw xl:90vw xxl:90vw'  // Wide
+    if(baseIndex % 3 == 0) return '100vw sm:80vw md:80vw lg:1920px'  // Wide
     return '40vw sm:80vw md:45vw'
 }
 

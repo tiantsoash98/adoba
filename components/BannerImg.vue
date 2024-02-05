@@ -17,7 +17,7 @@ const props = defineProps({
     alt: String,
     sizes: {
         type: String,
-        default: "100vw sm:100vw md:100vw lg:100vw"
+        default: "100vw sm:100vw md:100vw lg:1920px"
     },
     imgClass: String,
     loading: {
