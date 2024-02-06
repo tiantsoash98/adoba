@@ -2,9 +2,11 @@ import qs from "qs"
 
 export default defineEventHandler(async (event) => {
     const pageQuery = getQuery(event)
+    const runtimeConfig  = useRuntimeConfig()
 
     const query = qs.stringify(
     {
+        publicationState: runtimeConfig.public.strapiPublicationState,
         fields: ["blogTitle", "blogDate", "blogUrl"],
         pagination: {
             pageSize: pageQuery.pageSize,
@@ -22,7 +24,6 @@ export default defineEventHandler(async (event) => {
     }
     );
  
-    const runtimeConfig  = useRuntimeConfig()
     const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/blogs?${query}`;
     const data = await $fetch(uri)
 

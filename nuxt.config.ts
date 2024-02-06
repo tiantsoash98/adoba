@@ -75,7 +75,8 @@ export default defineNuxtConfig({
       baseUrl: process.env.BASE_URL,
       cmsBaseUrl: process.env.CMS_BASE_URL,
       facebookAppId: process.env.FACEBOOK_APP_ID,
-      gtagId: process.env.NUXT_PUBLIC_GTAG_ID
+      gtagId: process.env.NUXT_PUBLIC_GTAG_ID,
+      strapiPublicationState: process.env.STRAPI_PUBLICATION_STATE,
     }
   }
 })
