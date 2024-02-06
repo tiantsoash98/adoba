@@ -61,6 +61,7 @@
         transform: (_content) => _content.data.data.attributes
     })
     const pageTransition = usePageTransition()
+    const { animateTextReveal, beforeUnmountTextReveal } = useTextReveal()
     const headerExclusion = useHeaderExclusion()
     const headerStartHidePosition = useHeaderStartHidePosition()
     const { initCursor, destroyCursor } = useCursor()
@@ -70,9 +71,11 @@
         headerStartHidePosition.value = 200
         pageTransition.value = false
         initCursor()
+        animateTextReveal(textReveal)
     })
 
     onBeforeUnmount(() => {
+        beforeUnmountTextReveal(textReveal)
         destroyCursor()
     })
 
