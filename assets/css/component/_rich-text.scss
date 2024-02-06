@@ -15,6 +15,10 @@
     & ul, li {
         list-style: inside;
     }
+    & img {
+        width: 100%;
+        margin-top: var(--r-space-xs-2);
+    }
 
     &--dark {
         & a {

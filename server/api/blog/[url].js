@@ -2,9 +2,11 @@ import qs from "qs"
 
 export default defineEventHandler(async (event) => {
     const { url } = event.context.params
+    const runtimeConfig  = useRuntimeConfig()
     
     const query = qs.stringify(
     {
+        publicationState: runtimeConfig.public.strapiPublicationState,
         filters: {
             blogUrl: {
                 $eq: url,
@@ -27,7 +29,7 @@ export default defineEventHandler(async (event) => {
     }
     );
     
-    const runtimeConfig  = useRuntimeConfig()
+    
     const uri = `${ runtimeConfig.public.cmsBaseUrl }/api/blogs?${query}`;
     const data = await $fetch(uri)
 
