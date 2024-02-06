@@ -9,6 +9,9 @@ export default defineNuxtConfig({
         lang: 'fr',
         prefix: 'og: https://ogp.me/ns#'
       },
+      meta: [
+        { name: 'robots', content: process.env.META_ROBOTS }
+      ],
       link: [
         {
           rel: 'icon',
