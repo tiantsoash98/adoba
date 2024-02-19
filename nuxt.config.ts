@@ -48,7 +48,8 @@ export default defineNuxtConfig({
     'nuxt-lenis',
     '@nuxt/image',
     '@nuxtjs/strapi',
-    'nuxt-gtag'
+    'nuxt-gtag',
+    '@zadigetvoltaire/nuxt-gtm'
   ],
   image: {
     domains: ['adoba-strapi-ep38z.ondigitalocean.app']
@@ -58,6 +59,10 @@ export default defineNuxtConfig({
     config: {
       page_title: 'Adoba - Agence en visualisation 3D architecture'
     }
+  },
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID,
+    enabled: true
   },
   strapi: {
     url: process.env.CMS_BASE_URL
