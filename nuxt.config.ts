@@ -10,7 +10,8 @@ export default defineNuxtConfig({
         prefix: 'og: https://ogp.me/ns#'
       },
       meta: [
-        { name: 'robots', content: process.env.META_ROBOTS }
+        { name: 'robots', content: process.env.META_ROBOTS },
+        { name: 'google-site-verification', content: process.env.META_SITE_VERIFICATION },
       ],
       link: [
         {
