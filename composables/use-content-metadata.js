@@ -21,6 +21,14 @@ export default () => {
             twitterImage: imgPath(content.value.metadata.metaImage.data.attributes.formats.thumbnail.url),
             twitterCard: 'summary'
         })
+        useMeta({
+            script: [
+                {
+                    type: 'application/ld-json',
+                    children: JSON.stringify(content.value.metadata.metadataRichSnippet),
+                },
+            ],
+        })
     }
 
     return { 
