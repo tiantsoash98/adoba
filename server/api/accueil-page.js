@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
                 fields: ["avantageTitle", "avantageDescription", "avantageIcon"],
             },
             metadata: {
-                fields: ["metaTitle", "metaDescription"],
+                fields: ["metaTitle", "metaDescription", "metaRichSnippet"],
                 populate: {
                     metaImage: {
                         fields: ["name", "alternativeText", "url", "width", "height", "formats"],
