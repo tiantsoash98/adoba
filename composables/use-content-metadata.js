@@ -5,7 +5,11 @@ export default () => {
             title: content.value.metadata.metaTitle,
             meta: [
                 { name: 'description', content: content.value.metadata.metaDescription }
-            ]
+            ],
+            script: [{
+                type: 'application/ld+json',
+                innerHTML: JSON.stringify(content.value.metadata.metaRichSnippet)
+            }],
         })
     
         useSeoMeta({
