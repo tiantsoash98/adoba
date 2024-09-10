@@ -53,7 +53,7 @@ export default defineNuxtConfig({
     '@zadigetvoltaire/nuxt-gtm'
   ],
   image: {
-    domains: ['adoba-strapi-ep38z.ondigitalocean.app']
+    domains: ['adoba-cms-zt78s.ondigitalocean.app']
   },
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
